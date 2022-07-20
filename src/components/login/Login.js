@@ -42,9 +42,11 @@ function Login() {
                 </div>
                 <div className='buttonDiv'>
                   <input type="submit" id='submit' onClick={verifEmail} />
+
                 </div>
+                  <label className='alert' hidden>{erreur}</label>
             </div>
-              <label className='alert' hidden>{erreur}</label>
+
         </div>
 
         );
