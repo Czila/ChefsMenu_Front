@@ -1,19 +1,33 @@
 import { useEffect, useState } from 'react';
-import './App.css';
+
 import Login from './components/login/Login';
 
-
+import {useGestLogin} from './lib/useGestLogin'
 
 function App() {
-  const [token] = useState("")
-  const [userId] = useState("")
-  const [flagLogin] = useState(false)
+  const gestLogin = useGestLogin()
+  const [isLogin,setIsLogin] = useState(false)
+  
 
+  const logOut =() => {
+    gestLogin.logout()
+    setIsLogin(gestLogin.getState())
+  }
+
+  useEffect(() => {
+
+    setIsLogin(gestLogin.getState())
+  })
 
 
   return (
-    <div className="App">
-      {(!flagLogin) ? <Login /> : <label>log</label>}
+    <div >
+      {(!isLogin) ? <Login auth={setIsLogin} /> : 
+      <div>
+        <label>log</label>
+        <button onClick={()=> logOut() }>Logout</button>
+      </div>
+      }
     </div>
   );
 }
