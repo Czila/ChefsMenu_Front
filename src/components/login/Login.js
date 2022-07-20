@@ -53,9 +53,15 @@ function Login(props) {
                 </div>
                 <div className='buttonDiv'>
                   <input type="submit" id='submit' onClick={verifEmail} />
+
                 </div>
+                  <label className='alert' hidden>{erreur}</label>
             </div>
+<<<<<<< HEAD
               <label className='alert' >{erreur}</label>
+=======
+
+>>>>>>> 0d8aca1bf46b9481fca2e7fe812f4b388e936d1f
         </div>
 
         );
