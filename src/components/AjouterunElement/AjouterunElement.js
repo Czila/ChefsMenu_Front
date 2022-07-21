@@ -55,6 +55,10 @@ function reloadComponent(){
                   <input type="number" placeholder="tva" name="tva" onChange={(e) => setTVA(e.currentTarget.value)} value={tva} required/>
                   <label><b>Description</b></label>
                   <input type="textarea" placeholder="description" name="description" onChange={(e) => setDescription(e.currentTarget.value)} value={description}/>
+                  <label><b>Catégorie</b></label>
+                  <select onChange={(e) => handleChange(e)}>
+    		            <option value="categorie">Catégorie</option>
+   		        </select>
                 </div>
                 <div className='AUEBdiv'>
                   <input type="submit" id='submit' onClick={VerifieElement} />
