@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './AjouterunElement.css'
 import logo from '../../assets/logo.png'
 
@@ -31,7 +31,10 @@ const res = await fetch(url, {
 })
 
 console.log(res)
-
+function reloadComponent(){
+    window.location.reload(false);
+  }
+  reloadComponent()
 
 }
 
@@ -43,7 +46,7 @@ console.log(res)
             <div className='AUEFdiv'>
                 <div className='AUEIdiv'>
                     
-                  <label><b>Ajoutez votre élément</b></label>
+                  <label className='AUEtitre'><b>Ajoutez votre élément</b><br/></label>
                   <label><b>Nom</b></label>
                   <input type="text" placeholder="nom" onChange={(e) => setNom(e.currentTarget.value)} name='nom'value={nom} required/>
                   <label><b>Prix H.T.</b></label>

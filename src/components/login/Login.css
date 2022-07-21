@@ -52,13 +52,7 @@ input {
     background-color: #f44336;
 }
 
-<<<<<<< HEAD
-input[type=submit]:hover {
-   background-color: #78C40B;
-   color: black;
-=======
   input[type=submit]:hover {
     background-color: #78C40B;
     color: #555b6e;
->>>>>>> 0d8aca1bf46b9481fca2e7fe812f4b388e936d1f
   }
