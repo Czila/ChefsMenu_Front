@@ -15,15 +15,12 @@ function App() {
     gestLogin.logout()
     setIsLogin(gestLogin.getState())
   }
-
   useEffect(() => {
     setIsLogin(gestLogin.getState())
   })
 
-
   return (
     <div>
-      <Inscription />
       {(!isLogin) ? <Login auth={setIsLogin} /> : 
       <div>
         <label>log</label>

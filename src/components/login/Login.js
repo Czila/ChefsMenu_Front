@@ -4,7 +4,7 @@ import logo from '../../assets/logo.png'
 import { useGestLogin } from '../../lib/useGestLogin'
 
 function Login(props) {
-    const [erreur,setErreur]= useState("no")
+    const [erreur,setErreur]= useState("")
     const [login,setLogin] = useState({mail:'',password:''})
     const gestLogin = useGestLogin()
     //fonction qui vérifie la validité du mail.
@@ -50,10 +50,9 @@ function Login(props) {
                 </div>
                 <div className='buttonDiv'>
                   <input type="submit" id='submit' onClick={verifEmail} />
-
                 </div>
-                  <label className='alert' hidden>{erreur}</label>
             </div>
+            {(erreur !=='') && <div className='alert'><label >{erreur}</label></div>}
             <button>Inscription</button>
         </div>
         );

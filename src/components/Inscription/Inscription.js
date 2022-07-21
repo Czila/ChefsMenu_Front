@@ -68,8 +68,8 @@ function Inscription() {
         <div className='formDiv'>
         {(inscriptionFini) ?
         <div>
-          <h1>Inscription ok</h1>
-          <span>Merci pour vogtre inscription, vous allez recevoir un mail pour valider votre compte.</span>
+          <h1>Inscription validé</h1>
+          <span>Merci pour vogtre inscription ... Bonne journée.</span>
         </div>
         :
         <form>
