@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import Login from './components/login/Login';
 
 import {useGestLogin} from './lib/useGestLogin'
+import Inscription from './components/Inscription/Inscription';
+
 
 function App() {
   const gestLogin = useGestLogin()
@@ -15,13 +17,13 @@ function App() {
   }
 
   useEffect(() => {
-
     setIsLogin(gestLogin.getState())
   })
 
 
   return (
-    <div >
+    <div>
+      <Inscription />
       {(!isLogin) ? <Login auth={setIsLogin} /> : 
       <div>
         <label>log</label>

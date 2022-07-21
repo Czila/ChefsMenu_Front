@@ -3,9 +3,6 @@ import './Login.css'
 import logo from '../../assets/logo.png'
 import { useGestLogin } from '../../lib/useGestLogin'
 
-
-
-
 function Login(props) {
     const [erreur,setErreur]= useState("no")
     const [login,setLogin] = useState({mail:'',password:''})
@@ -57,9 +54,8 @@ function Login(props) {
                 </div>
                   <label className='alert' hidden>{erreur}</label>
             </div>
-              <label className='alert' >{erreur}</label>
+            <button>Inscription</button>
         </div>
-
         );
 }
 
