@@ -1,11 +1,10 @@
 #loginForm {
-    flex: 1;
     display: flex;
     flex-direction: column;
     background-color : #bee3db;
     justify-content: center;
     align-items: center;
-
+    height: 100vh;
 }
 
 .logo {
@@ -27,7 +26,7 @@
     padding-left: 2%;
 }
 
-input {
+.input {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -37,7 +36,7 @@ input {
     box-sizing: border-box;
   }
 
-  input[type=submit] {
+.input[type=submit], button{
     width: 100;
     background-color: white;
     color: #555b6e;
@@ -50,15 +49,14 @@ input {
 
 .alert {
     background-color: #f44336;
+    text-align: center;
+    padding: 0.5vh;
+    width: 30vw;
+    border-radius: 4px;
 }
 
-<<<<<<< HEAD
-input[type=submit]:hover {
-   background-color: #78C40B;
-   color: black;
-=======
-  input[type=submit]:hover {
+.input[type=submit]:hover, button:hover{
     background-color: #78C40B;
     color: #555b6e;
->>>>>>> 0d8aca1bf46b9481fca2e7fe812f4b388e936d1f
   }
+  
