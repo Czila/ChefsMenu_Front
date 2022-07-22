@@ -7,6 +7,7 @@ function AjouterunMenu() {
     const [nom, setNom] = useState("")
     const [prix_HT, setPrixHT] = useState("")
     const [tva, setTVA] = useState("")
+    const [plats, setPlats] = useState([])
     const [erreur,setErreur]= useState(false)
 
 function VerifieMenu(){
@@ -52,7 +53,7 @@ function reloadComponent(){
                   <input type="number" placeholder="prix" name="prix HT" onChange={(e) => setPrixHT(e.currentTarget.value)} value={prix_HT} required/>
                   <label><b>TVA</b></label>
                   <input type="number" placeholder="tva" name="tva" onChange={(e) => setTVA(e.currentTarget.value)} value={tva} required/>
-                  <select onChange={(e) => handleChange(e)}>
+                  <select onChange={(e) => setPlats(e.currentTarget.value)} value={plats} required>
     		            <option value="plats">plats</option>
    		        </select>
                 </div>

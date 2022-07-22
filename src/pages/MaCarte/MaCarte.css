@@ -1,0 +1,8 @@
+#MaCarte {
+    background-color : #bee3db;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+};

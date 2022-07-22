@@ -127,7 +127,11 @@ return (
     );
 
     
+<<<<<<< HEAD
     //  AjoutRestaurant extends Component {
+=======
+class AjoutRestaurant extends Component {
+>>>>>>> 4eda7e0ade3069efa3e051546520ca7a6176f0a8
     
     //   state = {
     
@@ -218,5 +222,5 @@ return (
     
     
 
-
+  }
 export default AjoutRestaurant;
