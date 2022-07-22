@@ -129,7 +129,7 @@ return (
     );
 
     
-    class AjoutRestaurant extends Component {
+class AjoutRestaurant extends Component {
     
       state = {
     
@@ -220,5 +220,5 @@ return (
     
     
 
-
+  }
 export default AjoutRestaurant;
