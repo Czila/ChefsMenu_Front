@@ -65,7 +65,7 @@ function Inscription() {
       }
 
     return ( 
-        <div className='formDiv'>
+        <div id='inscriptionForm' className='formDiv'>
         {(inscriptionFini) ?
         <div>
           <h1>Inscription validé</h1>
