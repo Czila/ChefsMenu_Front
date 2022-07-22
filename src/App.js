@@ -5,9 +5,6 @@ import Login from './components/login/Login';
 import {useGestLogin} from './lib/useGestLogin'
 import ListeTable from './components/ListeTable/ListeTable';
 
-import Inscription from './components/Inscription/Inscription';
-
-
 function App() {
   const gestLogin = useGestLogin()
   const [isLogin,setIsLogin] = useState(false)

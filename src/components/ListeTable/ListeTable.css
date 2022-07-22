@@ -12,9 +12,15 @@
     height: 15vw;
     flex-grow: 4;
     flex-shrink: 3;
-    
+    border-radius: 10vh;
+    align-items: center;
+    justify-content: center;
 }
 
 .table.active {
-    background-color: greenyellow;
+    background-color: #89b0ae;
+}
+
+.table.active:hover {
+    background-color:#bee3db;
 }
