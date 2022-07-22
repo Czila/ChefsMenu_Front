@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
-import React, {useRef} from 'react'
+import React, { useState, useRef, Component} from 'react';
 import axios from 'axios';
-import React,{Component} from 'react';
 import './AjoutRestaurant.css'
 import logo from '../../assets/logo.png'
 
@@ -129,94 +127,94 @@ return (
     );
 
     
-    class AjoutRestaurant extends Component {
+    //  AjoutRestaurant extends Component {
     
-      state = {
+    //   state = {
     
-      // Initially, no file is selected
-      selectedFile: null
-      };
+    //   // Initially, no file is selected
+    //   selectedFile: null
+    //   };
       
-      // On file select (from the pop up)
-      onFileChange = event => {
+    //   // On file select (from the pop up)
+    //   onFileChange = event => {
       
-      // Update the state
-      this.setState({ selectedFile: event.target.files[0] });
+    //   // Update the state
+    //   this.setState({ selectedFile: event.target.files[0] });
       
-      };
+    //   };
       
-      // On file upload (click the upload button)
-      onFileUpload = () => {
+    //   // On file upload (click the upload button)
+    //   onFileUpload = () => {
       
-      // Create an object of formData
-      const formData = new FormData();
+    //   // Create an object of formData
+    //   const formData = new FormData();
       
-      // Update the formData object
-      formData.append(
-        "myFile",
-        this.state.selectedFile,
-        this.state.selectedFile.name
-      );
+    //   // Update the formData object
+    //   formData.append(
+    //     "myFile",
+    //     this.state.selectedFile,
+    //     this.state.selectedFile.name
+    //   );
       
-      // Details of the uploaded file
-      console.log(this.state.selectedFile);
+    //   // Details of the uploaded file
+    //   console.log(this.state.selectedFile);
       
-      // Request made to the backend api
-      // Send formData object
-      axios.post("api/uploadfile", formData);
-      };
+    //   // Request made to the backend api
+    //   // Send formData object
+    //   axios.post("api/uploadfile", formData);
+    //   };
       
-      // File content to be displayed after
-      // file upload is complete
-      fileData = () => {
+    //   // File content to be displayed after
+    //   // file upload is complete
+    //   fileData = () => {
       
-      if (this.state.selectedFile) {
+    //   if (this.state.selectedFile) {
         
-        return (
-        <div>
-          <h2>File Details:</h2>
+    //     return (
+    //     <div>
+    //       <h2>File Details:</h2>
           
-    <p>File Name: {this.state.selectedFile.name}</p>
+    // <p>File Name: {this.state.selectedFile.name}</p>
     
           
-    <p>File Type: {this.state.selectedFile.type}</p>
+    // <p>File Type: {this.state.selectedFile.type}</p>
     
           
-    <p>
-          Last Modified:{" "}
-          {this.state.selectedFile.lastModifiedDate.toDateString()}
-          </p>
+    // <p>
+    //       Last Modified:{" "}
+    //       {this.state.selectedFile.lastModifiedDate.toDateString()}
+    //       </p>
     
-        </div>
-        );
-      } else {
-        return (
-        <div>
-          <br />
-          <h4>Choissisez une image de votre choix du restaurant </h4>
-        </div>
-        );
-      }
-      };
+    //     </div>
+    //     );
+    //   } else {
+    //     return (
+    //     <div>
+    //       <br />
+    //       <h4>Choissisez une image de votre choix du restaurant </h4>
+    //     </div>
+    //     );
+    //   }
+    //   };
       
-      render() {
+    //   render() {
       
-      return (
-        <div>
-          <h1>
-          Télécharger votre image
-          </h1>
-          <div>
-            <input type="file" onChange={this.onFileChange} />
-            <button onClick={this.onFileUpload}>
-            Télécharger!
-            </button>
-          </div>
-        {this.fileData()}
-        </div>
-      );
-      }
-    }
+    //   return (
+    //     <div>
+    //       <h1>
+    //       Télécharger votre image
+    //       </h1>
+    //       <div>
+    //         <input type="file" onChange={this.onFileChange} />
+    //         <button onClick={this.onFileUpload}>
+    //         Télécharger!
+    //         </button>
+    //       </div>
+    //     {this.fileData()}
+    //     </div>
+    //   );
+    //   }
+    // }
     
     
 
