@@ -11,6 +11,7 @@ import QRCode from './components/QR Code/QRCode'
 import GenererunQRCode from './pages/GenererunQRCode/GenererunQRCode';
 import AccueilLogin from './pages/AccueilLogin/AccueilLogin';
 import AjouteruneCategorie from './components/AjouteruneCategorie/AjouteruneCategorie';
+import AjoutRestaurant from './components/AjoutRestaurant';
 
 function App() {
   const gestLogin = useGestLogin()
@@ -46,6 +47,8 @@ function App() {
         <Route path="ajouterunmenu" element={<AjouterunMenu />} />
         <Route path="modifiermacarte" element={<MaCarte />} />
         <Route path="visualisercarte" element={<PreviewMaCarte />} />
+        <Route path="ajoutrestaurant" element={<AjoutRestaurant />} />    
+        <Route path="listetables" element={<ListeTable />} />
       </Routes>
     </div>
   );

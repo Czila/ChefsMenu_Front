@@ -16,7 +16,7 @@ function AccueilLogin(){
                 <label className='ALbienvenue'><b>Bienvenue (restaurateur)</b></label>
             </div>
             <nav className='ALLiens'>
-            <Link to="/creerresto">Créer un nouveau restaurant</Link>
+            <Link to="/ajoutrestaurant">Créer un nouveau restaurant</Link>
             <Link to="/about">Mes restaurants</Link>
             <Link to="/modifierresto">Modifier mes restaurants</Link>
             <Link to="/modifierinfos">Modifier les informations de mon compte</Link>

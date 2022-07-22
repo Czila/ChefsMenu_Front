@@ -16,6 +16,7 @@ function MonRestaurant(){
                 <label className='MRtitre'><b>"Nom du restaurant sélectionné"</b></label>
             </div>
             <nav className='MRLiens'>
+            <Link to="/listetables">Consulter les commandes en cours</Link>    
             <Link to="/nouvellecarte">Créer une nouvelle carte</Link> 
             <Link to="/macarte">Modifier ma Carte</Link>
             <Link to="/genererqrcode">Générer les QR Codes de mon restaurant</Link>
