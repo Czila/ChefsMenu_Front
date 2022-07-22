@@ -4,8 +4,6 @@ import Login from './components/login/Login';
 import { Routes, Route} from "react-router-dom";
 import {useGestLogin} from './lib/useGestLogin'
 import ListeTable from './components/ListeTable/ListeTable';
-<<<<<<< HEAD
-=======
 import AjouterunElement from './components/AjouterunElement/AjouterunElement';
 import Inscription from './components/Inscription/Inscription';
 import NouvelleCarte from './components/NouvelleCarte/NouvelleCarte';
@@ -14,7 +12,6 @@ import GenererunQRCode from './pages/GenererunQRCode/GenererunQRCode';
 import AccueilLogin from './pages/AccueilLogin/AccueilLogin';
 import AjouteruneCategorie from './components/AjouteruneCategorie/AjouteruneCategorie';
 import AjoutRestaurant from './components/AjoutRestaurant';
->>>>>>> 2f19502d4f34b220e69d4fa968c05efba5670faf
 
 function App() {
   const gestLogin = useGestLogin()
