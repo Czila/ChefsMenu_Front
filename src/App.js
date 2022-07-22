@@ -12,6 +12,9 @@ import GenererunQRCode from './pages/GenererunQRCode/GenererunQRCode';
 import AccueilLogin from './pages/AccueilLogin/AccueilLogin';
 import AjouteruneCategorie from './components/AjouteruneCategorie/AjouteruneCategorie';
 import AjoutRestaurant from './components/AjoutRestaurant';
+import AjouterunMenu from './components/AjouterunMenu/AjouterunMenu';
+import MaCarte from './pages/MaCarte/MaCarte';
+
 
 function App() {
   const gestLogin = useGestLogin()

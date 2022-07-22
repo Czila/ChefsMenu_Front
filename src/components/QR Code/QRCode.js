@@ -8,12 +8,15 @@ import { Button } from "react-bootstrap";
 
 import "./styles.css";
 
-let data = [
-  { id: 1, url: "http://localhost:3001/resto/table1" },
-  { id: 2, url: "http://localhost:3001/resto/table2" },
-  { id: 3, url: "http://localhost:3001/resto/table3" }
-];
 
+
+
+  let data = [
+    { id: 1, url: "http://localhost:3001/resto/table1" },
+    { id: 2, url: "http://localhost:3001/resto/table2" },
+    { id: 3, url: "http://localhost:3001/resto/table3" }
+  ];
+  
 class QRCode extends React.Component {
   print(row, e) {
     const qrCodeCanvas = document.querySelectorAll(
@@ -61,6 +64,7 @@ class QRCode extends React.Component {
     );
   }
 }
-
 const rootElement = document.getElementById("root");
 ReactDOM.render(<QRCode />, rootElement);
+
+

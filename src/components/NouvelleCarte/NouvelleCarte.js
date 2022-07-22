@@ -4,11 +4,11 @@ import logo from '../../assets/logo.png'
 
 
 function NouvelleCarte() {
-    const [menus, setmenus] = useState("")
-    const [plats, setplats] = useState("")  
-
+    const [menus, setMenus] = useState("")
+    const [plats, setPlats] = useState("")  
+    const [erreur,setErreur]= useState(false)
 function VerifieCarte(){
-    if (menus!=="" && prix_HT!=="" && tva!==""){
+    if (menus!=="" && plats!==""){
         setCarte()
     }
     else {setErreur(true)
@@ -38,7 +38,7 @@ return resc}
 
 async function setCarte (){
 
- console.log (menus, prix_HT, tva, plats)
+ console.log (menus, plats)
 const url = 'http://localhost:3001/carte'
 const res = await fetch(url, {
     method: "post",
@@ -65,10 +65,15 @@ function reloadComponent(){
                 <div className='NCIdiv'>
                     
                 <label className='NCtitre'><b>Ajoutez un plat ou un menu à votre carte</b><br/></label>
-                <select onChange={(e) => handleChange(e)}>
+                <select onChange={(e) => setPlats(e.currentTarget.value)} value={plats}>
     		            <option value="plats">plats</option>
-                        <option value="menus">menus</option>
+                        
    		        </select>
+                   <select onChange={(e) => setMenus(e.currentTarget.value)} value={menus}>
+                   <option value="menus">menus</option>
+                        
+   		        </select>
+                   
                 </div>
                 <div className='AUEBdiv'>
                   <input type="submit" id='submit' onClick={VerifieCarte} />
