@@ -3,19 +3,16 @@ import { useEffect, useState } from 'react';
 import Login from './components/login/Login';
 import { Routes, Route} from "react-router-dom";
 import {useGestLogin} from './lib/useGestLogin'
-import ListeTable from './components/ListeTable/ListeTable';
-import AjouterunElement from './components/AjouterunElement/AjouterunElement';
+//import AjouterunElement from './components/AjouterunElement/AjouterunElement';
 import Inscription from './components/Inscription/Inscription';
 import NouvelleCarte from './components/NouvelleCarte/NouvelleCarte';
-import QRCode from './components/QR Code/QRCode'
-import GenererunQRCode from './pages/GenererunQRCode/GenererunQRCode';
+//import QRCode from './components/QR Code/QRCode'
+//import GenererunQRCode from './pages/GenererunQRCode/GenererunQRCode';
 import AccueilLogin from './pages/AccueilLogin/AccueilLogin';
 import AjouteruneCategorie from './components/AjouteruneCategorie/AjouteruneCategorie';
-import AjoutRestaurant from './components/AjoutRestaurant';
-<<<<<<< HEAD
+import EnteteListTable from './components/ListeTable/EnteteListeTable';
+//import AjoutRestaurant from './components/AjoutRestaurant';
 
-=======
->>>>>>> a6dd30c754b848efe19b4145a82f9853d8d71cc5
 
 function App() {
   const gestLogin = useGestLogin()
@@ -26,6 +23,7 @@ function App() {
     gestLogin.logout()
     setIsLogin(gestLogin.getState())
   }
+  
   useEffect(() => {
     setIsLogin(gestLogin.getState())
   })
@@ -34,28 +32,21 @@ function App() {
     <div>
       {(!isLogin) ? <Login auth={setIsLogin} /> : 
       <div>
-        <ListeTable />
+        <EnteteListTable />
         <button onClick={()=> logOut() }>Logout</button>
       </div>
       }
 
-
-      <Routes>
-        <Route path="/" element={<AccueilLogin />} />
-        <Route path="inscription" element={<Inscription />} />
-        <Route path="ajouterunelement" element={<AjouterunElement />} />
-        <Route path="nouvellecarte" element={<NouvelleCarte />} />
-        <Route path="qrcode" element={<QRCode />} />
-        <Route path="genererqrcode" element={<GenererunQRCode />} />
-        <Route path="ajouterunecategorie" element={<AjouteruneCategorie />} />
-        <Route path="ajouterunmenu" element={<AjouterunMenu />} />
-        <Route path="modifiermacarte" element={<MaCarte />} />
-        <Route path="visualisercarte" element={<PreviewMaCarte />} />
-        <Route path="ajoutrestaurant" element={<AjoutRestaurant />} />    
-        <Route path="listetables" element={<ListeTable />} />
-      </Routes>
     </div>
   );
 }
 
 export default App;
+
+/* <Route path="ajouterunmenu" element={<AjouterunMenu />} />
+        <Route path="ajouterunelement" element={<AjouterunElement />} />
+        <Route path="modifiermacarte" element={<MaCarte />} />
+        <Route path="visualisercarte" element={<PreviewMaCarte />} />
+                <Route path="ajoutrestaurant" element={<AjoutRestaurant />} />  
+                        <Route path="qrcode" element={<QRCode />} />
+        <Route path="genererqrcode" element={<GenererunQRCode />} /> */

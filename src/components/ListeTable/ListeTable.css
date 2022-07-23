@@ -1,5 +1,6 @@
 .tables {
  display: flex;   
+ flex-direction: row;
  gap: 10px;
  align-content:space-around;
  flex-wrap: wrap 
