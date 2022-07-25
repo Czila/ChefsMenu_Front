@@ -1,7 +1,7 @@
-import React, { useState,useRef,Component } from 'react';
-import axios from 'axios';
+import React, { useState} from 'react';
 import './AjoutRestaurant.css'
 import logo from '../../assets/logo.png'
+import { fetchWrapper } from '../../lib/useGestDB';
 
 function AjoutRestaurant() {
   const [nom, setNom] = useState("")
@@ -9,32 +9,43 @@ function AjoutRestaurant() {
   const [cp, setCP] = useState("")
   const [ville, setVille] = useState("")  
   const [image, setImage] = useState("") 
-  const [horaire, setHoraire] = useState("") 
   const [nbTable, setNbTable] = useState("") 
-  const [idRestaurateur, setIdRestaurateur] = useState("") 
+  const [idRestaurateur] = useState(localStorage.getItem('userId').replace(/"/g, '')) 
   const [erreur,setErreur]= useState(false)
+  const [selectedFile,setSelectedFile]=useState(null)
+
+
+function onFileChange(e) {
+  setSelectedFile(e.target.files[0])
+}
 
 function VerifieRestaurant(){
-  if (nom!=="" && adresse!=="" && cp!=="" && ville!=="" && image!=="" && horaire!=="" && nbTable!=="" && idRestaurateur!==""){
-      setRestaurant()
+  setRestaurant()
+  if (nom!=="" && adresse!=="" && cp!=="" && ville!=="" && nbTable!=="" && idRestaurateur!==""){
+      
   }
   else {setErreur(true)
   console.log(erreur)}
 }
 
 async function setRestaurant (){
-
-    console.log (nom, adresse, cp, ville, image, horaire, nbTable, idRestaurateur)
-   const url = 'http://localhost:3001/restaurant'
-   const res = await fetch(url, {
-       method: "post",
-       headers: {
-           "Content-Type": "application/json"
-       },
-       body: JSON.stringify({nom, adresse, cp, ville, image, horaire, nbTable, idRestaurateur})
-   })
-
-   console.log(res)
+    const url = 'http://localhost:3001/restaurant'
+    //const res  =  await fetchWrapper.post(url,{nom, adresse, cp, ville, image, nbTable, idRestaurateur})
+    await fetchWrapper.uploadImg(`http://localhost:3001/restaurant/uploadPicture/62debd1ee45f73b8dc478aa8`, selectedFile);
+    /*if(res._id){
+      
+      setNom("")
+      setAdresse("")
+      setCP("")
+      setVille("")
+      setImage("")
+      setNbTable("")
+      setErreur(false)
+    }
+    else 
+    {
+      setErreur(true)
+    }*/
 }
 
 return (
@@ -53,15 +64,12 @@ return (
               <input type="string" placeholder="CP" name="CP" onChange={(e) => setCP(e.currentTarget.value)} value={cp} required/>
               <label><b>Ville</b></label>
               <input type="string" placeholder="ville" name="ville" onChange={(e) => setVille(e.currentTarget.value)} value={ville}/>
-              <label><b>Horaire</b></label>
-              <input type="Date" placeholder="horaire" onChange={(e) => setHoraire(e.currentTarget.value)} name='horaire'value={horaire} required/>
               <label><b>nbTable</b></label>
               <input type="number" placeholder="nbTable" onChange={(e) => setNbTable(e.currentTarget.value)} name='nbTable'value={nbTable} required/>
-              <label><b>idRestaurateur</b></label>
-              <input type="string" placeholder="idRestaurateur" onChange={(e) => setIdRestaurateur(e.currentTarget.value)} name='idRestaurateur'value={idRestaurateur} required/>
+              <input type="file" onChange={onFileChange}  />
             </div>
             <div className='formulairebutton'>
-              <input type="submit" id='submit' onClick={VerifieRestaurant} />
+              <input type="submit" id='submit' name="myFile" onClick={VerifieRestaurant} />
 
             </div>
             {(erreur) && <label className='alert'>{"Les données sont vides"}</label>}

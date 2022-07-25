@@ -4,10 +4,9 @@ import { useGestLogin } from './useGestLogin'
     get: request('GET'),
     post: request('POST'),
     put: request('PUT'),
-    delete: request('DELETE')
+    delete: request('DELETE'),
+    uploadImg: uploadFile(),
 };
-
-
 
 function request(method) {
     return (url, body) => {
@@ -19,6 +18,25 @@ function request(method) {
             requestOptions.headers['Content-Type'] = 'application/json';
             requestOptions.body = JSON.stringify(body);
         }
+        return fetch(url, requestOptions).then(handleResponse);
+    }
+}
+
+function uploadFile(file) {
+
+    return (url, file) => {
+        const formData = new FormData()
+    
+        formData.append(
+          "myFile",
+          file,
+          file.name);
+          const requestOptions = {
+            method:'POST',
+            headers: authHeader(url)
+        };
+            requestOptions.headers['Content-Type'] = 'application/json';
+            requestOptions.body = formData
         return fetch(url, requestOptions).then(handleResponse);
     }
 }

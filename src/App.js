@@ -3,17 +3,17 @@ import { useEffect, useState } from 'react';
 import Login from './components/login/Login';
 import { Routes, Route} from "react-router-dom";
 import {useGestLogin} from './lib/useGestLogin'
-import AjouterunElement from './components/AjouterunElement/AjouterunElement';
+//import AjouterunElement from './components/AjouterunElement/AjouterunElement';
 //import NouvelleCarte from './components/NouvelleCarte/NouvelleCarte';
 //import QRCode from './components/QR Code/QRCode'
 //import GenererunQRCode from './pages/GenererunQRCode/GenererunQRCode';
 import AccueilLogin from './pages/AccueilLogin/AccueilLogin';
 import AjouteruneCategorie from './components/AjouteruneCategorie/AjouteruneCategorie';
 import EnteteListTable from './components/ListeTable/EnteteListeTable';
-//import AjoutRestaurant from './components/AjoutRestaurant';
-//import AjoutRestaurant from './components/AjoutRestaurant';
 import AjouterunMenu from './components/AjouterunMenu/AjouterunMenu';
 import MaCarte from './pages/MaCarte/MaCarte';
+import AjoutRestaurant from './components/AjoutRestaurant/AjoutRestaurant';
+
 function App() {
   const gestLogin = useGestLogin()
   const [isLogin,setIsLogin] = useState(false)
@@ -36,7 +36,7 @@ function App() {
         <button onClick={()=> logOut() }>Logout</button>
       </div>
       }
-      <AjouterunElement />
+    <AjoutRestaurant></AjoutRestaurant>
     </div>
   );
 }
