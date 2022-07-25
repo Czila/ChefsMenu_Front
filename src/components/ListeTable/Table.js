@@ -1,6 +1,5 @@
 import React, { useState,useEffect } from 'react';
 
-
 function Table(props) {
 
     const [table,setTable] = useState(props.Table)
@@ -20,7 +19,6 @@ function Table(props) {
     <button className='table active' onClick={showCommande}>TABLE : {table.numTable} </button>
     : <button className='table'  onClick={showCommande} disabled={true} >TABLE : {table.numTable} </button> 
     )
-
 }
 
 export default Table;

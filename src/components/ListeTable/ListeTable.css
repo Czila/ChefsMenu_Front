@@ -25,3 +25,9 @@
 .table.active:hover {
     background-color:#bee3db;
 }
+
+.restaurant {
+    height: 50vh;
+    width: 50vh;
+    padding: 10vh;
+}

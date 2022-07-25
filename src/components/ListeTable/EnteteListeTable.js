@@ -3,7 +3,7 @@ import React, { useState,useEffect } from 'react';
 
 import {fetchWrapper} from '../../lib/useGestDB'
 import ListeTable from './ListeTable';
-
+import Commande from '../Commande/Commande';
 
 function EnteteListTable() {
     const idRestaurateur ='62d6b04be6b9a14f00c98ec7'
@@ -21,10 +21,13 @@ function EnteteListTable() {
     return (  
         <div>
             <label>Vos tables pour le restaurant :  {restaurant.nom} </label> 
-            <div >
+            <div className='restaurant'>
                 {(idRestaurateur) &&<ListeTable restaurant={restaurant} afficher={afficher}/> }
-                </div>
-        </div>
+            </div>
+            <div className='commandeDetail'>
+                <Commande></Commande>
+            </div>
+            </div>
     );
 }
 
