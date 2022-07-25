@@ -10,11 +10,9 @@ import "./styles.css";
 
 
 
-
-  let data = [
-    { id: 1, url: "http://localhost:3001/resto/table1" },
-    { id: 2, url: "http://localhost:3001/resto/table2" },
-    { id: 3, url: "http://localhost:3001/resto/table3" }
+const idRestaurant='62d96bb9d4455394b2a619c7'
+  let data = [  
+    { id: _id, url: `http://localhost:3001/${idRestaurant}/table${_id}` }
   ];
   
 class QRCode extends React.Component {
@@ -66,5 +64,7 @@ class QRCode extends React.Component {
 }
 const rootElement = document.getElementById("root");
 ReactDOM.render(<QRCode />, rootElement);
+
+
 
 

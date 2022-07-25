@@ -4,6 +4,7 @@ import logo from '../../assets/logo.png'
 
 
 function NouvelleCarte() {
+    const idRestaurant='62d96bb9d4455394b2a619c7'
     const [menus, setMenus] = useState("")
     const [plats, setPlats] = useState("")  
     const [erreur,setErreur]= useState(false)
@@ -15,7 +16,7 @@ function VerifieCarte(){
     console.log(erreur)}
 }
 async function getElements (){
-    const url = 'http://localhost:3001/element'
+    const url = `http://localhost:3001/${idRestaurant}/element`
     const resb = await fetch(url, {
         method: "get",
         headers: {
@@ -26,7 +27,7 @@ async function getElements (){
 }
 
 async function getMenus (){
-    const url = 'http://localhost:3001/element'
+    const url = `http://localhost:3001/${idRestaurant}/element`
     const resc = await fetch(url, {
         method: "get",
         headers: {
@@ -39,7 +40,7 @@ return resc}
 async function setCarte (){
 
  console.log (menus, plats)
-const url = 'http://localhost:3001/carte'
+const url = `http://localhost:3001/${idRestaurant}/element`
 const res = await fetch(url, {
     method: "post",
     headers: {
@@ -66,11 +67,11 @@ function reloadComponent(){
                     
                 <label className='NCtitre'><b>Ajoutez un plat ou un menu à votre carte</b><br/></label>
                 <select onChange={(e) => setPlats(e.currentTarget.value)} value={plats}>
-    		            <option value="plats">plats</option>
+    		            <option value="plats">{resb.map((plat, index) => <Plats key={index} Plat={plat}/>)}</option>
                         
    		        </select>
                    <select onChange={(e) => setMenus(e.currentTarget.value)} value={menus}>
-                   <option value="menus">menus</option>
+                   <option value="menus">{resc.map((menu, index) => <Menu key={index} Menu={menu}/>)}</option>
                         
    		        </select>
                    

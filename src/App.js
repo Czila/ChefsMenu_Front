@@ -16,7 +16,6 @@ import EnteteListTable from './components/ListeTable/EnteteListeTable';
 import AjouterunMenu from './components/AjouterunMenu/AjouterunMenu';
 import MaCarte from './pages/MaCarte/MaCarte';
 
-
 function App() {
   const gestLogin = useGestLogin()
   const [isLogin,setIsLogin] = useState(false)
@@ -39,6 +38,13 @@ function App() {
         <button onClick={()=> logOut() }>Logout</button>
       </div>
       }
+        <Route path="ajouterunmenu" element={<AjouterunMenu />} />
+        <Route path="ajouterunelement" element={<AjouterunElement />} />
+        <Route path="modifiermacarte" element={<MaCarte />} />
+        <Route path="visualisercarte" element={<PreviewMaCarte />} />
+        <Route path="ajoutrestaurant" element={<AjoutRestaurant />} />  
+        <Route path="qrcode" element={<QRCode />} />
+        <Route path="genererqrcode" element={<GenererunQRCode />} /> */
 
     </div>
   );
@@ -46,10 +52,3 @@ function App() {
 
 export default App;
 
-/* <Route path="ajouterunmenu" element={<AjouterunMenu />} />
-        <Route path="ajouterunelement" element={<AjouterunElement />} />
-        <Route path="modifiermacarte" element={<MaCarte />} />
-        <Route path="visualisercarte" element={<PreviewMaCarte />} />
-                <Route path="ajoutrestaurant" element={<AjoutRestaurant />} />  
-                        <Route path="qrcode" element={<QRCode />} />
-        <Route path="genererqrcode" element={<GenererunQRCode />} /> */
