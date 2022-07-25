@@ -4,11 +4,6 @@ function Table(props) {
 
     const [table,setTable] = useState(props.Table)
 
-    const showCommande = () => {
-        console.log("commande num : ",table.commande)
-    }
-
-
     useEffect(() => { 
         setTable(props.Table)
     },[props.Table])
@@ -16,8 +11,8 @@ function Table(props) {
     return ( 
        
     (table.active) ?
-    <button className='table active' onClick={showCommande}>TABLE : {table.numTable} </button>
-    : <button className='table'  onClick={showCommande} disabled={true} >TABLE : {table.numTable} </button> 
+    <button className='table active' onClick={() => props.showCommande(table.commande)}>TABLE : {table.numTable} </button>
+    : <button className='table'  onClick={props.showCommande} disabled={true} >TABLE : {table.numTable} </button> 
     )
 }
 

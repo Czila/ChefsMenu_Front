@@ -20,6 +20,11 @@ function ListeTable(props) {
         return (commandes.filter(commande => commande.numTable === n))
     }
 
+    const showCommande = (C) =>
+    {
+        console.log(C)
+        props.showCommande(C)
+    }
 
     useEffect(() => {   
         async function updateTables() {
@@ -39,7 +44,7 @@ function ListeTable(props) {
     return (
         
         <div className='tables'>
-            {tables.map((table,index) => <Table key={table.numTable} Table={table} />)}
+            {tables.map((table,index) => <Table key={table.numTable} showCommande={showCommande} Table={table} />)}
         </div>
       )
 

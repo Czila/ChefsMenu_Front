@@ -1,0 +1,42 @@
+.titreCommandeLi {
+    text-decoration: none;
+    font-size: x-large;
+    color: #555b6e;
+    background-color: #ffd6ba;
+    padding: 1vh;
+
+}
+
+.titreCommande {
+    color: #faf9f9;
+    text-align: center;
+    background-color: #89b0ae;
+    padding: 1vh;
+}
+
+.liMenu {
+    list-style: '🍲';
+}
+
+.liCarte {
+    list-style: '🍱';
+}
+ul  {
+    padding-top: 2vh;
+}
+
+.total {
+    display: flex;
+    justify-content :space-around;
+    text-align: center;
+    background-color: #89b0ae;
+    padding: 1vh;
+    color: #faf9f9;
+}
+
+.butCommande {
+    display: flex;
+    margin: 2vh;
+    background-color: #555b6e;
+    justify-content :space-around;
+}
