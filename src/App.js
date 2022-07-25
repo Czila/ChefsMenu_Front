@@ -5,7 +5,7 @@ import { Routes, Route} from "react-router-dom";
 import {useGestLogin} from './lib/useGestLogin'
 //import AjouterunElement from './components/AjouterunElement/AjouterunElement';
 import Inscription from './components/Inscription/Inscription';
-import NouvelleCarte from './components/NouvelleCarte/NouvelleCarte';
+//import NouvelleCarte from './components/NouvelleCarte/NouvelleCarte';
 //import QRCode from './components/QR Code/QRCode'
 //import GenererunQRCode from './pages/GenererunQRCode/GenererunQRCode';
 import AccueilLogin from './pages/AccueilLogin/AccueilLogin';
@@ -38,17 +38,20 @@ function App() {
         <button onClick={()=> logOut() }>Logout</button>
       </div>
       }
-        <Route path="ajouterunmenu" element={<AjouterunMenu />} />
-        <Route path="ajouterunelement" element={<AjouterunElement />} />
-        <Route path="modifiermacarte" element={<MaCarte />} />
-        <Route path="visualisercarte" element={<PreviewMaCarte />} />
-        <Route path="ajoutrestaurant" element={<AjoutRestaurant />} />  
-        <Route path="qrcode" element={<QRCode />} />
-        <Route path="genererqrcode" element={<GenererunQRCode />} /> */
+ 
+       
+  
 
     </div>
   );
 }
 
 export default App;
-
+/*
+ <Route path="ajouterunelement" element={<AjouterunElement />} />
+       <Route path="modifiermacarte" element={<MaCarte />} />
+        <Route path="visualisercarte" element={<PreviewMaCarte />} />
+        <Route path="ajoutrestaurant" element={<AjoutRestaurant />} />  
+        <Route path="qrcode" element={<QRCode />} />
+        <Route path="genererqrcode" element={<GenererunQRCode />} /> 
+               <Route path="ajouterunmenu" element={<AjouterunMenu />} />*/

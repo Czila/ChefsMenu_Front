@@ -35,7 +35,7 @@ function EnteteListTable() {
             </div>
             :
             <div className='commandeDetail'>
-                <button onClick={() => setShowList(true)}>Retour liste tables</button>
+                <button onClick={() => setShowList(true)}> ⬅️ Retour liste tables</button>
                 <Commande commande={currentCommande}></Commande>
             </div>
             
