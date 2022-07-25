@@ -3,8 +3,7 @@ import { useEffect, useState } from 'react';
 import Login from './components/login/Login';
 import { Routes, Route} from "react-router-dom";
 import {useGestLogin} from './lib/useGestLogin'
-//import AjouterunElement from './components/AjouterunElement/AjouterunElement';
-import Inscription from './components/Inscription/Inscription';
+import AjouterunElement from './components/AjouterunElement/AjouterunElement';
 //import NouvelleCarte from './components/NouvelleCarte/NouvelleCarte';
 //import QRCode from './components/QR Code/QRCode'
 //import GenererunQRCode from './pages/GenererunQRCode/GenererunQRCode';
@@ -15,7 +14,6 @@ import EnteteListTable from './components/ListeTable/EnteteListeTable';
 //import AjoutRestaurant from './components/AjoutRestaurant';
 import AjouterunMenu from './components/AjouterunMenu/AjouterunMenu';
 import MaCarte from './pages/MaCarte/MaCarte';
-
 function App() {
   const gestLogin = useGestLogin()
   const [isLogin,setIsLogin] = useState(false)
@@ -34,14 +32,11 @@ function App() {
     <div>
       {(!isLogin) ? <Login auth={setIsLogin} /> : 
       <div>
-        <EnteteListTable />
+
         <button onClick={()=> logOut() }>Logout</button>
       </div>
       }
- 
-       
-  
-
+      <AjouterunElement />
     </div>
   );
 }
