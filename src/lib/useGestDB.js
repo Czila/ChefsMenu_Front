@@ -1,11 +1,9 @@
-import { useGestLogin } from './useGestLogin'
-
  export  const  fetchWrapper = {
     get: request('GET'),
     post: request('POST'),
     put: request('PUT'),
     delete: request('DELETE'),
-    uploadImg: uploadFile(),
+    upload: uploadFile()
 };
 
 function request(method) {
@@ -22,26 +20,21 @@ function request(method) {
     }
 }
 
-function uploadFile(file) {
+function uploadFile(){
+    return (url, body) => {
 
-    return (url, file) => {
-        const formData = new FormData()
-    
-        formData.append(
-          "myFile",
-          file,
-          file.name);
-          const requestOptions = {
-            method:'POST',
-            headers: authHeader(url)
-        };
-            requestOptions.headers['Content-Type'] = 'application/json';
-            requestOptions.body = formData
-        return fetch(url, requestOptions).then(handleResponse);
+        console.log(url)
+        fetch(`${url}`, {
+            method: 'POST',
+            headers: authHeader(url),
+            body: body
+          })
+          .then(response => response.json())
+          .then(data => {
+            return(data)
+          })
     }
 }
-
-// helper functions
 
 function authHeader(url) {
     // return auth header with jwt if user is logged in and request is to the api url
