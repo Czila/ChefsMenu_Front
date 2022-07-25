@@ -1,5 +1,6 @@
 .tables {
  display: flex;   
+ flex-direction: row;
  gap: 10px;
  align-content:space-around;
  flex-wrap: wrap 
@@ -23,4 +24,10 @@
 
 .table.active:hover {
     background-color:#bee3db;
+}
+
+.restaurant {
+    height: 50vh;
+    width: 50vh;
+    padding: 10vh;
 }

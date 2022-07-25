@@ -1,4 +1,4 @@
-import React, { useState, useRef, Component} from 'react';
+import React, { useState,useRef,Component } from 'react';
 import axios from 'axios';
 import './AjoutRestaurant.css'
 import logo from '../../assets/logo.png'
@@ -33,39 +33,9 @@ async function setRestaurant (){
        },
        body: JSON.stringify({nom, adresse, cp, ville, image, horaire, nbTable, idRestaurateur})
    })
-   
+
    console.log(res)
-   
-   
 }
-
-// return (
-
-//     <div className="img">
-
-    
-
-//         <input
-
-//           type="text"
-
-//           value={name}
-
-//           onChange={(e) => setName(e.target.value)}
-
-//         />
-
-
-//         <FileUploaded
-
-//           onFileSelectSuccess={(file) => setSelectedFile(file)}
-
-//           onFileSelectError={({ error }) => alert(error)}
-
-//         />
-
-
-//         <button onClick={submitForm}>Submit</button>
 
 return (
     <div id='AjouterRestaurantForm'>
@@ -74,7 +44,6 @@ return (
         </div>
         <div className='formulaire'>
             <div className='formulaireresto'>
-                
               <label><b>Ajoutez votre Restaurant</b></label>
               <label><b>Nom</b></label>
               <input type="string" placeholder="nom" onChange={(e) => setNom(e.currentTarget.value)} name='nom'value={nom} required/>
@@ -84,30 +53,6 @@ return (
               <input type="string" placeholder="CP" name="CP" onChange={(e) => setCP(e.currentTarget.value)} value={cp} required/>
               <label><b>Ville</b></label>
               <input type="string" placeholder="ville" name="ville" onChange={(e) => setVille(e.currentTarget.value)} value={ville}/>
-              {/* <label><b>Image</b></label>
-              <input
-
-          type="text"
-
-          value={name}
-
-          onChange={(e) => setName(e.target.value)}
-
-        />
-
-
-        <FileUploaded
-
-          onFileSelectSuccess={(file) => setSelectedFile(file)}
-
-          onFileSelectError={({ error }) => alert(error)}
-
-        />
-
-        
-
-        <button onClick={submitForm}>Submit</button>
-              <input type="string" placeholder="image" onChange={(e) => setImage(e.currentTarget.value)} name='image'value={image} required/>  */}
               <label><b>Horaire</b></label>
               <input type="Date" placeholder="horaire" onChange={(e) => setHoraire(e.currentTarget.value)} name='horaire'value={horaire} required/>
               <label><b>nbTable</b></label>
@@ -121,11 +66,11 @@ return (
             </div>
             {(erreur) && <label className='alert'>{"Les données sont vides"}</label>}
         </div>
-
     </div>
 
     );
 
 
   }
+
 export default AjoutRestaurant;
