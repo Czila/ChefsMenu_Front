@@ -8,18 +8,12 @@ function AjouterunElement() {
     const [prix_HT, setPrixHT] = useState("")
     const [tva, setTVA] = useState(5.5)
     const [description, setDescription] = useState("")  
-    const [erreur,setErreur]= useState(false)
     const [categorie,setCategorie]=useState("")
     const [categories,setCategories]=useState([{}])
-    const idRestaurateur='62d96bb9d4455394b2a619c7'
+    const [fieldValidationErrors,setFieldValidationErrors] = useState({
+        message:'',
+        error:false})
 
-function VerifieElement(){
-    if (nom!=="" && prix_HT!=="" && tva!=="" && categorie!=="" ){
-        setElement()
-    }
-    else {setErreur(true)
-    console.log(erreur)}
-}
 
 function handleChange(e){
     setCategorie(e.target.value)
@@ -36,16 +30,23 @@ useEffect(()=>
 
 
 async function setElement (){
-    const update=await fetchWrapper.post('http://localhost:3001/element',
-    {"nom":nom, "prix_HT":prix_HT, "tva":tva, "description":description,"categorie":categorie,"idRestaurant":idRestaurateur})
+    
+    try {
+        await fetchWrapper.post('http://localhost:3001/element',
+        {"nom":nom, "prix_HT":prix_HT, "tva":tva, "description":description,"categorie":categorie})
 
-    //réinitialisation des variables
-    setNom("")
-    setPrixHT(0)
-    setTVA(5.5)
-    setDescription("")  
-    setErreur(false)
-    setCategorie("")
+        //réinitialisation des variables
+        setNom("")
+        setPrixHT(0)
+        setTVA(5.5)
+        setDescription("")  
+        setCategorie("")
+        setFieldValidationErrors({message : "", error:false})
+    }
+    catch(err)
+    {
+        setFieldValidationErrors({message : err, error:true})
+    }
 }
 
     return (
@@ -74,9 +75,12 @@ async function setElement (){
                      </select>
                   </div>
                 <div className='AUEBdiv'>
-                  <input type="submit" id='submit' onClick={VerifieElement} />
+                  <input type="submit" id='submit' onClick={setElement} />
                 </div>
-                {(erreur) && <label className='alert'>{"Les données sont vides"}</label>}
+                {(fieldValidationErrors.error) && 
+                <div >
+                    <label className='error'>{fieldValidationErrors.message}</label>
+                </div>}
             </div>
 
         </div>

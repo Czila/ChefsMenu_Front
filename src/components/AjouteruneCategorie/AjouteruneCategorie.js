@@ -14,6 +14,7 @@ const url = `http://localhost:3001/categorie`
 try {
     await fetchWrapper.post(url,{nom})
     setNom("")
+    setFieldValidationErrors({message : "", error:false})
 }
 catch(err)
 {
