@@ -1,38 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './AjouteruneCategorie.css'
 import logo from '../../assets/logo.png'
-
+import { fetchWrapper } from '../../lib/useGestDB';
 
 function AjouteruneCategorie() {
     const [nom, setNom] = useState("")
-    const [erreur,setErreur]= useState(false)
-
-function VerifieCategorie(){
-    if (nom!==""){
-        setCategorie()
-    }
-    else {setErreur(true)
-    console.log(erreur)}
-}
+    const [fieldValidationErrors,setFieldValidationErrors] = useState({
+        message:'',
+        error:false})
 
 async function setCategorie (){
-
- console.log (nom)
 const url = `http://localhost:3001/categorie`
-const res = await fetch(url, {
-    method: "post",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify({nom})
-})
-
-console.log(res)
-function reloadComponent(){
-    window.location.reload(false);
-  }
-  reloadComponent()
-
+try {
+    await fetchWrapper.post(url,{nom})
+    setNom("")
+}
+catch(err)
+{
+    setFieldValidationErrors({message : err, error:true})
+}
 }
 
     return (
@@ -48,10 +34,13 @@ function reloadComponent(){
                   <input type="text" placeholder="nom" onChange={(e) => setNom(e.currentTarget.value)} name='nom'value={nom} required/>
                 </div>
                 <div className='AUCdiv'>
-                  <input type="submit" id='submit' onClick={VerifieCategorie} />
+                  <input type="submit" id='submit' onClick={setCategorie} />
 
                 </div>
-                {(erreur) && <label className='alert'>{"Les données sont vides"}</label>}
+                {(fieldValidationErrors.error) && 
+                <div >
+                    <label className='error'>{fieldValidationErrors.message}</label>
+                </div>}
             </div>
 
         </div>

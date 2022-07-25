@@ -12,7 +12,7 @@ import AjouteruneCategorie from './components/AjouteruneCategorie/AjouteruneCate
 import EnteteListTable from './components/ListeTable/EnteteListeTable';
 import AjouterunMenu from './components/AjouterunMenu/AjouterunMenu';
 import MaCarte from './pages/MaCarte/MaCarte';
-import AjoutRestaurant from './components/AjoutRestaurant/AjoutRestaurant';
+//import AjoutRestaurant from './components/AjoutRestaurant/AjoutRestaurant';
 
 function App() {
   const gestLogin = useGestLogin()
@@ -36,7 +36,8 @@ function App() {
         <button onClick={()=> logOut() }>Logout</button>
       </div>
       }
-    <AjoutRestaurant></AjoutRestaurant>
+      <AjouteruneCategorie />
+
     </div>
   );
 }
