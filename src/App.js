@@ -11,10 +11,9 @@ import QRCode from './components/QR Code/QRCode'
 import GenererunQRCode from './pages/GenererunQRCode/GenererunQRCode';
 import AccueilLogin from './pages/AccueilLogin/AccueilLogin';
 import AjouteruneCategorie from './components/AjouteruneCategorie/AjouteruneCategorie';
-import AjoutRestaurant from './components/AjoutRestaurant';
+import AjoutRestaurant from './components/AjoutRestaurant/AjoutRestaurant';
 import AjouterunMenu from './components/AjouterunMenu/AjouterunMenu';
 import MaCarte from './pages/MaCarte/MaCarte';
-
 
 function App() {
   const gestLogin = useGestLogin()
@@ -33,13 +32,11 @@ function App() {
     <div>
       {(!isLogin) ? <Login auth={setIsLogin} /> : 
       <div>
-        <ListeTable />
+        <NouvelleCarte/>
         <button onClick={()=> logOut() }>Logout</button>
       </div>
       }
-
-
-      <Routes>
+<Routes>
         <Route path="/" element={<AccueilLogin />} />
         <Route path="inscription" element={<Inscription />} />
         <Route path="ajouterunelement" element={<AjouterunElement />} />
@@ -52,9 +49,15 @@ function App() {
         <Route path="visualisercarte" element={<PreviewMaCarte />} />
         <Route path="ajoutrestaurant" element={<AjoutRestaurant />} />    
         <Route path="listetables" element={<ListeTable />} />
-      </Routes>
+</Routes>
+
+
+
+  
     </div>
   );
 }
 
 export default App;
+
+

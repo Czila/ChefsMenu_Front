@@ -18,7 +18,7 @@ function VerifieCategorie(){
 async function setCategorie (){
 
  console.log (nom)
-const url = 'http://localhost:3001/categorie'
+const url = `http://localhost:3001/categorie`
 const res = await fetch(url, {
     method: "post",
     headers: {
