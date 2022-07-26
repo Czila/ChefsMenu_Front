@@ -1,70 +1,59 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import DataTable from "react-data-table-component";
+import React, { useEffect, useState } from "react";
 import QRCode from "qrcode.react";
-import jsPDF from "jspdf";
+import {fetchWrapper} from '../../lib/useGestDB'
+import { jsPDF } from "jspdf";
+import html2canvas from "html2canvas";
+import ('./QRCode.css')
 
-import { Button } from "react-bootstrap";
+function NewQRCode() {
+  const urlBase = "http://localhost:3001/restaurant/"
+  const restaurant_id='62d96bb9d4455394b2a619c7'
+  const [table,setTables]=useState([{}])
 
-import "./styles.css";
-
-
-
-const idRestaurant='62d96bb9d4455394b2a619c7'
-  let data = [  
-    { id: _id, url: `http://localhost:3001/${idRestaurant}/table${_id}` }
-  ];
-  
-class QRCode extends React.Component {
-  print(row, e) {
-    const qrCodeCanvas = document.querySelectorAll(
-      "[data-qr='" + row.url + "']"
-    )[0];
-    const qrCodeDataUri = qrCodeCanvas.toDataURL("image/png");
-
-    var doc = new jsPDF("p", "pt", "c6");
-    doc.setFontSize(22);
-    doc.text(20, 80, "Table: " + row.id);
-    doc.addImage(qrCodeDataUri, "JPEG", 100, 100, 50, 50);
-
-    doc.save("QrCode-" + row.name + "-" + row.surname + ".pdf");
-  }
-
-  render() {
-    const columns = [
-      {
-        name: "Table",
-        selector: "id",
-        sortable: true
-      },
-      {
-        name: "Qr code",
-        selector: "qrcode",
-        ignoreRowClick: true,
-        cell: (row) =>
-          row.url ? <QRCode data-qr={row.url} value={row.url} /> : ""
-      },
-      {
-        name: "Print",
-        selector: "Print",
-        ignoreRowClick: true,
-        cell: (row) => (
-          <Button onClick={(e) => this.print(row, e)}>
-            Imprimer mon QR code
-          </Button>
-        )
-      }
-    ];
-    return (
-      <div className="QRCode">
-        <DataTable url="QRCode des tables" columns={columns} data={data} />
-      </div>
-    );
-  }
+  async function updateTables() {
+    const t=[]
+    const R = await fetchWrapper.get(`http://localhost:3001/restaurant/${restaurant_id}`)
+    console.log( R[0])
+    for (let i =1 ; i< R[0].nbTable +1; i++)      
+    {   
+        t.push({numTable:i, QRText : urlBase+i})
+    }
+    setTables(t)       
 }
-const rootElement = document.getElementById("root");
-ReactDOM.render(<QRCode />, rootElement);
 
+const printQRCode =() => {
+  const input = document.getElementById('QRCodelist');
+ console.log(input)
+  html2canvas(input)
+    .then((canvas) => {
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF();
+      pdf.addImage(imgData, 'JPEG', 0, 0);
+      // pdf.output('dataurlnewwindow');
+      pdf.save("qRcode.pdf");
+    })
+}
+useEffect(() => {  
+  updateTables()
+},[restaurant_id]);   
 
+  return (
+    <div>
+    <div id="QRCodelist" className="QRCodelist">
+
+      {(table.map((t) =>  
+        <div  >
+          <h2>Table : {t.numTable}</h2>
+          <QRCode size='250' className="QRCode" key={t.numTable} value={t.QRText} renderAs="svg" /> 
+        </div>
+      ))}
+        
+    </div>
+    <input type="submit" onClick={printQRCode} />
+    </div>
+  );
+}
+
+export default NewQRCode;
 
 

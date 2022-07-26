@@ -5,14 +5,14 @@ import { Routes, Route} from "react-router-dom";
 import {useGestLogin} from './lib/useGestLogin'
 import AjouterunElement from './components/AjouterunElement/AjouterunElement';
 //import NouvelleCarte from './components/NouvelleCarte/NouvelleCarte';
-//import QRCode from './components/QR Code/QRCode'
+import NewQRCode from './components/QR Code/QRCode'
 //import GenererunQRCode from './pages/GenererunQRCode/GenererunQRCode';
 import AccueilLogin from './pages/AccueilLogin/AccueilLogin';
 import AjouteruneCategorie from './components/AjouteruneCategorie/AjouteruneCategorie';
 
 import AjouterunMenu from './components/AjouterunMenu/AjouterunMenu';
 import MaCarte from './pages/MaCarte/MaCarte';
-//import AjoutRestaurant from './components/AjoutRestaurant/AjoutRestaurant';
+import AjoutRestaurant from './components/AjoutRestaurant/AjoutRestaurant';
 
 function App() {
   const gestLogin = useGestLogin()
@@ -36,7 +36,7 @@ function App() {
         <button onClick={()=> logOut() }>Logout</button>
       </div>
       }
- <AjouterunElement />
+ <NewQRCode />
 
     </div>
   );

@@ -6,6 +6,15 @@
   text-rendering: optimizeLegibility;
 }
 
+.QRCodelist {
+  display: flex;
+  flex-direction: row;
+  flex-wrap:wrap;
+  gap: 10px;
+}
+h2 {
+  text-align: center;
+}
 html {
     background-color : #bee3db;
     font-size: 14px;
