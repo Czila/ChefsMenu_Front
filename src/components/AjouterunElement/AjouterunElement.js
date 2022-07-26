@@ -57,22 +57,22 @@ async function setElement (){
             <div className='AUEFdiv'>
                 <div className='AUEIdiv'>
                     
-                  <label className='AUEtitre'><b>Ajoutez votre élément</b><br/></label>
+                  <label className='AUEtitre'><b>Ajoutez votre élément</b><br/><br/></label>
                   <label><b>Nom</b></label>
-                  <input type="text" placeholder="nom" onChange={(e) => setNom(e.currentTarget.value)} name='nom'value={nom} required/>
+                  <input type="text" placeholder="nom" onChange={(e) => setNom(e.currentTarget.value)} name='nom'value={nom} required/><br/><br/>
                   <label><b>Prix H.T.</b></label>
-                  <input type="number" placeholder="prix" name="prix HT" onChange={(e) => setPrixHT(e.currentTarget.value)} value={prix_HT} required/>
+                  <input type="number" placeholder="prix" name="prix HT" onChange={(e) => setPrixHT(e.currentTarget.value)} value={prix_HT} required/><br/><br/>
                   <label><b>TVA</b></label>
-                  <input type="number" placeholder="tva" name="tva" onChange={(e) => setTVA(e.currentTarget.value)} value={tva} required/>
+                  <input type="number" placeholder="tva" name="tva" onChange={(e) => setTVA(e.currentTarget.value)} value={tva} required/><br/><br/>
                   <label><b>Description</b></label>
-                  <input type="textarea" placeholder="description" name="description" onChange={(e) => setDescription(e.currentTarget.value)} value={description}/>
+                  <input type="textarea" placeholder="description" name="description" onChange={(e) => setDescription(e.currentTarget.value)} value={description}/><br/><br/>
                   <label><b>Catégorie</b></label>
                   <select  value={categorie}  onChange={handleChange}>
                         <option>---</option>
                         {categories.map((cat) => 
                             <option value={cat.nom} key={cat._id}>{cat.nom} </option>
                         )}
-                     </select>
+                     </select><br/><br/>
                   </div>
                 <div className='AUEBdiv'>
                   <input type="submit" id='submit' onClick={setElement} />

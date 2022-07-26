@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './Inscription.css'
+import logo from '../../assets/logo.png'
+
 
 function Inscription() {
     const baseUrl = `http://localhost:3001/restaurateur`;
@@ -73,14 +75,17 @@ function Inscription() {
         </div>
         :
         <form>
+                      <div>
+              <img src={logo} alt="Logo" className='logo' />
+            </div>
             <label htmlFor="nom">Nom <em>*</em></label>
-            <input id="nom" placeholder="Serre" autoFocus value={newRestaurateur.nom} onChange={handleChange} name='nom' required />
+            <input id="nom" placeholder="Serre" autoFocus value={newRestaurateur.nom} onChange={handleChange} name='nom' required /><br/><br/>
             <label htmlFor="prenom">Prénom <em>*</em></label>
-            <input id="prenom" placeholder="Pierre" value={newRestaurateur.prenom} onChange={handleChange} name='prenom' required />
+            <input id="prenom" placeholder="Pierre" value={newRestaurateur.prenom} onChange={handleChange} name='prenom' required /><br/><br/>
             <label><b>Adresse mail <em>*</em> </b></label>
-            <input htmlFor='email' type="email" placeholder="Votre mail" value={newRestaurateur.mail} onChange={handleChange} name='mail' required/>
+            <input htmlFor='email' type="email" placeholder="Votre mail" value={newRestaurateur.mail} onChange={handleChange} name='mail' required/><br/><br/>
             <label htmlFor='password'><b>Mot de passe <em>*</em></b></label>
-            <input type="password" placeholder="Entrer le mot de passe" name="motdepasse" value={newRestaurateur.password} onChange={handleChange} required />
+            <input type="password" placeholder="Entrer le mot de passe" name="motdepasse" value={newRestaurateur.password} onChange={handleChange} required /><br/><br/>
             <input type="submit" id='submit' onClick={saveRestaurateur} />
             <div className='error'>
               {(fieldValidationErrors.error) && <label >{fieldValidationErrors.message + ' ' + fieldValidationErrors.mail }</label>}
