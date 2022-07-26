@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import './Login.css'
 import logo from '../../assets/logo.png'
 import { useGestLogin } from '../../lib/useGestLogin'
+import { Link } from 'react-router-dom';
+
+
 
 function Login(props) {
     const [erreur,setErreur]= useState("")
@@ -55,9 +58,11 @@ function Login(props) {
             {(erreur !=='') && <div className='alert'><label >{erreur}</label></div>}
 
             <p><br/><br/>Je n'ai pas encore de compte?</p>
-            <button>S'inscrire</button>
+            <Link to="/inscription">S'inscrire</Link>
         </div>
         );
+
+
 }
 
 export default Login;

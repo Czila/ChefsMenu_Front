@@ -4,11 +4,10 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import logo from '../../assets/logo.png'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Route} from "react-router-dom";
-import AjouterunElement from '../AjouterunElement/AjouterunElement';
 import {useGestLogin} from '../../lib/useGestLogin';
 import { useEffect, useState } from 'react';
-import EnteteListTable from '../ListeTable/EnteteListeTable';
+import NavLink from 'react-bootstrap/esm/NavLink';
+
 
 
 function NavScroll() {
@@ -38,7 +37,7 @@ function NavScroll() {
               <NavDropdown.Item href="monrestaurant">Mon restaurant 2</NavDropdown.Item>
               <NavDropdown.Item href="monrestaurant">Mon restaurant 3</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="ajoutrestaurant">
+              <NavDropdown.Item href="/ajoutrestaurant">
                 Créer un restaurant
               </NavDropdown.Item>
             </NavDropdown>
@@ -52,13 +51,13 @@ function NavScroll() {
                 Modifier ma Carte
               </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="ajouterunelement">Ajouter un élément</NavDropdown.Item>
-              <NavDropdown.Item href="ajouterunecategorie">Ajouter une catégorie</NavDropdown.Item>
-              <NavDropdown.Item href="ajouterunmenu">Créer un menu</NavDropdown.Item>
+              <NavDropdown.Item href="/ajouterunelement">Ajouter un élément</NavDropdown.Item>
+              <NavDropdown.Item href="/ajouterunecategorie">Ajouter une catégorie</NavDropdown.Item>
+              <NavDropdown.Item href="/ajouterunmenu">Créer un menu</NavDropdown.Item>
             </NavDropdown>
             <Nav.Link href="/listetable">Mes tables</Nav.Link>
-            <Nav.Link href="genererunqrcode">Mes QR Codes</Nav.Link>
-            <Nav.Link href="modifiermoncompte">Modifier mon restaurant</Nav.Link>
+            <Nav.Link href="/genererunqrcode">Mes QR Codes</Nav.Link>
+            <Nav.Link href="modifiermonrestaurant">Modifier mon restaurant</Nav.Link>
             </Nav>
             <NavDropdown title="Rimbaud Thierry" id="basic-nav-dropdown">
               <NavDropdown.Item href="modifiermoncompte">Modifier mon compte</NavDropdown.Item>
@@ -75,10 +74,8 @@ function NavScroll() {
 
 
 }
-<div>
-<Route path="/ajouterunelement" element={<AjouterunElement />} />
-<Route path="/listetable" element={<EnteteListTable />} />  
-</div>
+
+
 
 
 export default NavScroll;
