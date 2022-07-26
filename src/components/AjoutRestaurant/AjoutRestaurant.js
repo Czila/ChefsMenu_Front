@@ -77,8 +77,8 @@ return (
               <input type="submit"  name="myFile" onClick={setRestaurant} />
             </div>
             {(fieldValidationErrors.error) && 
-            <div >
-              <label className='error'>{fieldValidationErrors.message}</label>
+            <div className='error'>
+              <label >{fieldValidationErrors.message}</label>
             </div>}
         </div>
     </div>

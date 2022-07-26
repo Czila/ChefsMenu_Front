@@ -5,7 +5,7 @@ import { Routes, Route} from "react-router-dom";
 import {useGestLogin} from './lib/useGestLogin'
 import AjouterunElement from './components/AjouterunElement/AjouterunElement';
 //import NouvelleCarte from './components/NouvelleCarte/NouvelleCarte';
-//import QRCode from './components/QR Code/QRCode'
+import NewQRCode from './components/QR Code/QRCode'
 //import GenererunQRCode from './pages/GenererunQRCode/GenererunQRCode';
 import AccueilLogin from './pages/AccueilLogin/AccueilLogin';
 import AjouteruneCategorie from './components/AjouteruneCategorie/AjouteruneCategorie';
@@ -15,6 +15,8 @@ import MaCarte from './pages/MaCarte/MaCarte';
 import NavScroll from './components/Navbar/NavScroll';
 //import AjoutRestaurant from './components/AjoutRestaurant/AjoutRestaurant';
 
+import AjoutRestaurant from './components/AjoutRestaurant/AjoutRestaurant';
+import EnteteListTable from './components/ListeTable/EnteteListeTable';
 function App() {
   const gestLogin = useGestLogin()
   const [isLogin,setIsLogin] = useState(false)
@@ -38,6 +40,7 @@ function App() {
         <button onClick={()=> logOut() }>Logout</button>
       </div>
       }
+ <EnteteListTable />
 
 
         
