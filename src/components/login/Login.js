@@ -70,6 +70,8 @@ function Login(props) {
             <button onClick={goInscription}>S'inscrire</button>
         </div>
         );
+
+
 }
 
 export default Login;
