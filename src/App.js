@@ -9,7 +9,7 @@ import AjouterunElement from './components/AjouterunElement/AjouterunElement';
 //import GenererunQRCode from './pages/GenererunQRCode/GenererunQRCode';
 import AccueilLogin from './pages/AccueilLogin/AccueilLogin';
 import AjouteruneCategorie from './components/AjouteruneCategorie/AjouteruneCategorie';
-
+import Inscription from './components/Inscription/Inscription'
 import AjouterunMenu from './components/AjouterunMenu/AjouterunMenu';
 import MaCarte from './pages/MaCarte/MaCarte';
 //import AjoutRestaurant from './components/AjoutRestaurant/AjoutRestaurant';
@@ -36,7 +36,7 @@ function App() {
         <button onClick={()=> logOut() }>Logout</button>
       </div>
       }
- <AjouterunElement />
+ <Inscription />
 
     </div>
   );
