@@ -1,7 +1,7 @@
 #AjouterunElementForm {
     background-color : #bee3db;
-    flex: 1;
     display: flex;
+    flex-direction: column;
     align-items: center;
     flex-direction: column;
     height: 100vh;
