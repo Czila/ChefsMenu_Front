@@ -1,13 +1,10 @@
-import { useGestLogin } from './useGestLogin'
-
  export  const  fetchWrapper = {
     get: request('GET'),
     post: request('POST'),
     put: request('PUT'),
-    delete: request('DELETE')
+    delete: request('DELETE'),
+    upload: uploadFile()
 };
-
-
 
 function request(method) {
     return (url, body) => {
@@ -23,7 +20,21 @@ function request(method) {
     }
 }
 
-// helper functions
+function uploadFile(){
+    return (url, body) => {
+
+        console.log(url)
+        fetch(`${url}`, {
+            method: 'POST',
+            headers: authHeader(url),
+            body: body
+          })
+          .then(response => response.json())
+          .then(data => {
+            return(data)
+          })
+    }
+}
 
 function authHeader(url) {
     // return auth header with jwt if user is logged in and request is to the api url
@@ -48,7 +59,7 @@ function handleResponse(response) {
         const data = text && JSON.parse(text);
 
         if (!response.ok) {
-            if ([401, 400].includes(response.status) && authToken()) {
+            if ([401, 403].includes(response.status) && authToken()) {
                 localStorage.removeItem("token");
                 localStorage.removeItem("userId");
             }

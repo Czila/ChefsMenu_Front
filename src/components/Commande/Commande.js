@@ -4,9 +4,11 @@ import {fetchWrapper} from '../../lib/useGestDB'
 import ('./Commande.css');
 
 function Commande(props) {
-    const [commande,SetCommande] = useState(props.commande)[0]
+    const [commande,SetCommande] = useState(props.commande[0])
     let total =0;
     let totalTTC =0;
+
+
 
     const updateTotal = (m,t) =>
     {
@@ -18,7 +20,7 @@ function Commande(props) {
     {
         console.log("d")
         fetchWrapper.put(`http://localhost:3001/commande/${commande._id}`,{"etat":"Fini"})
-        
+        SetCommande({...commande,"etat":"Fini"})
     }
 
     return ( <div>
@@ -60,8 +62,8 @@ function Commande(props) {
             </div>
           </div>
           <div className="butCommande">
-            <button>Imprimer l'addition</button>
-            <button onClick={()=> closeCommande}>Terminer la commande</button>
+            <button>🖨️ Imprimer l'addition</button>
+            {(commande.etat==='enCours') && <button onClick={()=> closeCommande()}>✅ Terminer la commande</button>}
           </div>
     </div> );
 }

@@ -1,40 +1,53 @@
-import React, { useState,useRef,Component } from 'react';
-import axios from 'axios';
-import './AjoutRestaurant.css'
+import React, { useEffect, useState} from 'react';
 import logo from '../../assets/logo.png'
+import { fetchWrapper } from '../../lib/useGestDB';
+import './AjoutRestaurant.css'
 
 function AjoutRestaurant() {
   const [nom, setNom] = useState("")
   const [adresse, setAdresse] = useState("")
   const [cp, setCP] = useState("")
   const [ville, setVille] = useState("")  
-  const [image, setImage] = useState("") 
-  const [horaire, setHoraire] = useState("") 
-  const [nbTable, setNbTable] = useState("") 
-  const [idRestaurateur, setIdRestaurateur] = useState("") 
-  const [erreur,setErreur]= useState(false)
+  const [nbTable, setNbTable] = useState(0) 
+  const [idRestaurateur] = useState(localStorage.getItem('userId')) 
+  const [selectedFile,setSelectedFile]=useState(null)
+  const [previewSrc,setPreviewSrc]=useState(null)
+  const [fieldValidationErrors,setFieldValidationErrors] = useState({
+    message:'',
+    error:false})
 
-function VerifieRestaurant(){
-  if (nom!=="" && adresse!=="" && cp!=="" && ville!=="" && image!=="" && horaire!=="" && nbTable!=="" && idRestaurateur!==""){
-      setRestaurant()
-  }
-  else {setErreur(true)
-  console.log(erreur)}
-}
+
+useEffect(()=> {
+    if(selectedFile) setPreviewSrc(URL.createObjectURL(selectedFile))
+},[selectedFile])
 
 async function setRestaurant (){
+  console.log(idRestaurateur)
+    
+  try {
+    const url = 'http://localhost:3001/restaurant'
+    const res  =  await fetchWrapper.post(url,{nom, adresse, cp, ville, nbTable, idRestaurateur})
 
-    console.log (nom, adresse, cp, ville, image, horaire, nbTable, idRestaurateur)
-   const url = 'http://localhost:3001/restaurant'
-   const res = await fetch(url, {
-       method: "post",
-       headers: {
-           "Content-Type": "application/json"
-       },
-       body: JSON.stringify({nom, adresse, cp, ville, image, horaire, nbTable, idRestaurateur})
-   })
+    const formData = new FormData()
+    formData.append(
+      "myFile",
+      selectedFile,
+      selectedFile.name);
 
-   console.log(res)
+    await fetchWrapper.upload(`${url}/uploadPicture/${res._id}`, formData);  
+    setNom("")
+    setAdresse("")
+    setCP("")
+    setVille("")
+    setNbTable(0)   
+    setSelectedFile()
+    setPreviewSrc()
+    setFieldValidationErrors({message : '', error:false})
+  }
+  catch(err)
+  {
+    setFieldValidationErrors({message : err, error:true})
+  }
 }
 
 return (
@@ -53,24 +66,23 @@ return (
               <input type="string" placeholder="CP" name="CP" onChange={(e) => setCP(e.currentTarget.value)} value={cp} required/>
               <label><b>Ville</b></label>
               <input type="string" placeholder="ville" name="ville" onChange={(e) => setVille(e.currentTarget.value)} value={ville}/>
-              <label><b>Horaire</b></label>
-              <input type="Date" placeholder="horaire" onChange={(e) => setHoraire(e.currentTarget.value)} name='horaire'value={horaire} required/>
-              <label><b>nbTable</b></label>
-              <input type="number" placeholder="nbTable" onChange={(e) => setNbTable(e.currentTarget.value)} name='nbTable'value={nbTable} required/>
-              <label><b>idRestaurateur</b></label>
-              <input type="string" placeholder="idRestaurateur" onChange={(e) => setIdRestaurateur(e.currentTarget.value)} name='idRestaurateur'value={idRestaurateur} required/>
+              <label><b>Nombre de tables : </b></label>
+              <input type="number" placeholder="nbTable" onChange={(e) => {if(e.currentTarget.value>0) setNbTable(e.currentTarget.value)}} name='nbTable'value={nbTable} required/>
+              <input type="file" onChange={(e) => setSelectedFile(e.target.files[0])}   />
+              <div className='imgPreview'>
+                {(previewSrc) && <img src={previewSrc} alt='Apercu' />}
+              </div>
             </div>
             <div className='formulairebutton'>
-              <input type="submit" id='submit' onClick={VerifieRestaurant} />
-
+              <input type="submit"  name="myFile" onClick={setRestaurant} />
             </div>
-            {(erreur) && <label className='alert'>{"Les données sont vides"}</label>}
+            {(fieldValidationErrors.error) && 
+            <div >
+              <label className='error'>{fieldValidationErrors.message}</label>
+            </div>}
         </div>
     </div>
-
     );
-
-
   }
 
 export default AjoutRestaurant;
