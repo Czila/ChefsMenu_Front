@@ -33,14 +33,13 @@ function App() {
 
   return (
     <div>
-             <NavScroll />
+             
       {(!isLogin) ? <Login auth={setIsLogin} /> : 
+      
       <div>
-
-        <button onClick={()=> logOut() }>Logout</button>
-      </div>
+      <NavScroll />
+       </div>
       }
- <EnteteListTable />
 
 
         

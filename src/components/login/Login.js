@@ -53,7 +53,9 @@ function Login(props) {
                 </div>
             </div>
             {(erreur !=='') && <div className='alert'><label >{erreur}</label></div>}
-            <button>Inscription</button>
+
+            <p><br/><br/>Je n'ai pas encore de compte?</p>
+            <button>S'inscrire</button>
         </div>
         );
 }
