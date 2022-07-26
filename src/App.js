@@ -13,7 +13,7 @@ import Inscription from './components/Inscription/Inscription'
 import AjouterunMenu from './components/AjouterunMenu/AjouterunMenu';
 import MaCarte from './pages/MaCarte/MaCarte';
 import AjoutRestaurant from './components/AjoutRestaurant/AjoutRestaurant';
-
+import EnteteListTable from './components/ListeTable/EnteteListeTable';
 function App() {
   const gestLogin = useGestLogin()
   const [isLogin,setIsLogin] = useState(false)
@@ -36,11 +36,7 @@ function App() {
         <button onClick={()=> logOut() }>Logout</button>
       </div>
       }
-<<<<<<< HEAD
- <NewQRCode />
-=======
- <Inscription />
->>>>>>> e1199b4de5e40a7d2393808e90c01a4d3c423616
+ <EnteteListTable />
 
     </div>
   );

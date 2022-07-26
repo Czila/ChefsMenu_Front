@@ -30,7 +30,7 @@ function EnteteListTable() {
             <div>
                 <label>Vos tables pour le restaurant :  {restaurant.nom} </label> 
                 <div className='restaurant'>
-                <ListeTable showCommande={showCommande} restaurant={restaurant}/>
+                {restaurant._id && <ListeTable showCommande={showCommande} restaurant={restaurant}/>}
                 </div>
             </div>
             :
