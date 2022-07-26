@@ -15,14 +15,13 @@ function AjoutRestaurant() {
   const [fieldValidationErrors,setFieldValidationErrors] = useState({
     message:'',
     error:false})
-
+  const [fin,SetFin]=useState(false)
 
 useEffect(()=> {
     if(selectedFile) setPreviewSrc(URL.createObjectURL(selectedFile))
 },[selectedFile])
 
 async function setRestaurant (){
-  console.log(idRestaurateur)
     
   try {
     const url = 'http://localhost:3001/restaurant'
@@ -35,14 +34,7 @@ async function setRestaurant (){
       selectedFile.name);
 
     await fetchWrapper.upload(`${url}/uploadPicture/${res._id}`, formData);  
-    setNom("")
-    setAdresse("")
-    setCP("")
-    setVille("")
-    setNbTable(0)   
-    setSelectedFile()
-    setPreviewSrc()
-    setFieldValidationErrors({message : '', error:false})
+    SetFin(true)
   }
   catch(err)
   {
@@ -51,6 +43,12 @@ async function setRestaurant (){
 }
 
 return (
+  <div>
+    {(fin) ? 
+    <div>
+      Restaurant ajouter !!
+    </div>
+    :
     <div id='AjouterRestaurantForm'>
         <div>
           <img src={logo} alt="Logo" className='logo' />
@@ -82,6 +80,8 @@ return (
             </div>}
         </div>
     </div>
+  }
+  </div>
     );
   }
 

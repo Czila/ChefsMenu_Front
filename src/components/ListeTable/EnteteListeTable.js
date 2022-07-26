@@ -1,18 +1,21 @@
 import React, { useState,useEffect } from 'react';
 
+import {useParams} from 'react-router-dom';
 
 import {fetchWrapper} from '../../lib/useGestDB'
 import ListeTable from './ListeTable';
 import Commande from '../Commande/Commande';
 
 function EnteteListTable() {
-    const idRestaurateur ='62d6b04be6b9a14f00c98ec7'
+    const params = useParams();
+    let idRestaurant =params.restaurantID
     const [restaurant,setRestaurant] = useState({})
     const [showList,setShowList] = useState(true)
     const [currentCommande,setCurrentCommande] = useState({})
 
     async function getRestaurant() {
-        const R = (await fetchWrapper.get(`http://localhost:3001/restaurant/byOwner/${idRestaurateur}`))[0]
+        const R = (await fetchWrapper.get(`http://localhost:3001/restaurant/${idRestaurant}`))[0]
+        console.log(idRestaurant)
         setRestaurant(R)
     }
 
@@ -23,7 +26,7 @@ function EnteteListTable() {
 
     useEffect(() => {   
         getRestaurant()
-    }, [restaurant._id,showList]);
+    }, [idRestaurant,showList]);
     return (  
         <div>
             {(showList) ?

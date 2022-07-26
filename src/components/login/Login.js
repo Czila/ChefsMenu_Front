@@ -2,12 +2,20 @@ import React, { useState } from 'react';
 import './Login.css'
 import logo from '../../assets/logo.png'
 import { useGestLogin } from '../../lib/useGestLogin'
+import { useNavigate } from "react-router-dom";
 
 function Login(props) {
     const [erreur,setErreur]= useState("")
     const [login,setLogin] = useState({mail:'',password:''})
     const gestLogin = useGestLogin()
     //fonction qui vérifie la validité du mail.
+    
+    const navigate = useNavigate(); 
+    const goInscription = () =>{ 
+      let path = `/inscription`; 
+      navigate(path);
+    }
+
 
     const  verifEmail = () => 
     {    
@@ -19,7 +27,7 @@ function Login(props) {
           gestLogin.login(login.mail,login.password).then((res) => 
           {
             setErreur(res.message)
-            if (res.token) props.auth(true)
+            if (res.token) navigate("/");
           })
         }
       }
@@ -55,7 +63,7 @@ function Login(props) {
             {(erreur !=='') && <div className='alert'><label >{erreur}</label></div>}
 
             <p><br/><br/>Je n'ai pas encore de compte?</p>
-            <button>S'inscrire</button>
+            <button onClick={goInscription}>S'inscrire</button>
         </div>
         );
 }

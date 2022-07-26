@@ -35,7 +35,7 @@ function ListeTable(props) {
  
     if (props.restaurant._id) updateTables()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[]);
+    },[props.restaurant._id]);
 
     return (
         <div className='tables'>
