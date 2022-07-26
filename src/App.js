@@ -12,6 +12,9 @@ import AjouteruneCategorie from './components/AjouteruneCategorie/AjouteruneCate
 import Inscription from './components/Inscription/Inscription'
 import AjouterunMenu from './components/AjouterunMenu/AjouterunMenu';
 import MaCarte from './pages/MaCarte/MaCarte';
+import NavScroll from './components/Navbar/NavScroll';
+//import AjoutRestaurant from './components/AjoutRestaurant/AjoutRestaurant';
+
 import AjoutRestaurant from './components/AjoutRestaurant/AjoutRestaurant';
 import EnteteListTable from './components/ListeTable/EnteteListeTable';
 function App() {
@@ -30,24 +33,31 @@ function App() {
 
   return (
     <div>
+             
       {(!isLogin) ? <Login auth={setIsLogin} /> : 
+      
       <div>
-
-        <button onClick={()=> logOut() }>Logout</button>
-      </div>
+      <NavScroll />
+       </div>
       }
+<<<<<<< HEAD
  <AjouterunMenu />
+=======
+>>>>>>> 34221eecded85e97dfb17aa31c02f4906ebfaa70
 
+
+        
     </div>
+    
   );
 }
 
 export default App;
-/*
- <Route path="ajouterunelement" element={<AjouterunElement />} />
-       <Route path="modifiermacarte" element={<MaCarte />} />
+
+/*      <Route path="ajouterunelement" element={<AjouterunElement />} />
+        <Route path="modifiermacarte" element={<MaCarte />} />
+        <Route path="ajouterunmenu" element={<AjouterunMenu />} />
         <Route path="visualisercarte" element={<PreviewMaCarte />} />
-        <Route path="ajoutrestaurant" element={<AjoutRestaurant />} />  
-        <Route path="qrcode" element={<QRCode />} />
-        <Route path="genererqrcode" element={<GenererunQRCode />} /> 
-               <Route path="ajouterunmenu" element={<AjouterunMenu />} />*/
+        <Route path="ajoutrestaurant" element={<AjoutRestaurant />} />
+                <Route path="qrcode" element={<QRCode />} />
+        <Route path="genererqrcode" element={<GenererunQRCode />} />   */
