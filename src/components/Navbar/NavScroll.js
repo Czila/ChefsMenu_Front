@@ -9,46 +9,64 @@ import { useEffect, useState } from 'react';
 import {fetchWrapper} from '../../lib/useGestDB'
 import { useNavigate } from "react-router-dom";
 
-function NavScroll() {
+function NavScroll(props) {
   const navigate = useNavigate(); 
   const gestLogin = useGestLogin()
   const [isLogin,setIsLogin] = useState(false)
   const [restaurants,setRestaurants]= useState([])
   const idRestaurateur=localStorage.getItem("userId");
+  const [restaurateur,setRestaurateur]=useState({})
   const [currentRestaurant,setCurrentRestaurant]= useState(0)
   const [deMenu,setDeMenu]=useState(true)
 
   const logOut =() => {
     gestLogin.logout()
     setIsLogin(gestLogin.getState())
+    navigate(`/`);
   }
 
   const onRestaurantClick = (id) => {
     setCurrentRestaurant(id)
+    localStorage.setItem("CurrentRestaurant",id);
     navigate(`/listetable/${idRestaurateur}/${id}`);
+    setDeMenu(false)
   }
 
   
   const getMyRestaurant = async () => {
-    console.log(idRestaurateur)
     const R = (await fetchWrapper.get(`http://localhost:3001/restaurant/byOwner/${idRestaurateur}`))
     setRestaurants(R)
-    setDeMenu(false)
+
   }
   
-  useEffect(() => {
-    setIsLogin(gestLogin.getState())
-    getMyRestaurant()
+  const getRestaurateurInfos = async () => {
+    const R = (await fetchWrapper.get(`http://localhost:3001/restaurateur/${idRestaurateur}`))
+    setRestaurateur(R[0])
+  }
 
+  useEffect(() => {
+    setIsLogin(localStorage.getItem("token"))
+  
+    if(idRestaurateur) {getMyRestaurant()
+      getRestaurateurInfos()
+    }
+    if ((!currentRestaurant) && localStorage.getItem('CurrentRestaurant') )  {
+      setCurrentRestaurant(localStorage.getItem('CurrentRestaurant'))
+      setDeMenu(false)
+      console.log(currentRestaurant)
+    }
     console.log(deMenu)
-  },[isLogin,currentRestaurant])
+  },[localStorage.getItem("token")])
 
   return (
     <Navbar bg="light" expand="lg" className='navbar'>
       <Container>
         <img src={logo} alt="Logo" className='logo' />
+        
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
+        
+        {(isLogin) ?
           <Nav className="me-auto">
           <NavDropdown title="Mes restaurants" id="basic-nav-dropdown">
               {restaurants.map((restaurant)=> 
@@ -74,24 +92,32 @@ function NavScroll() {
               <NavDropdown.Item href="/ajouterunecategorie">Ajouter une catégorie</NavDropdown.Item>
               <NavDropdown.Item href="/ajouterunmenu">Créer un menu</NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link href={`/listetable/${idRestaurateur}/${currentRestaurant}`} disabled={deMenu}>Mes tables</Nav.Link>
-            <Nav.Link href="/genererunqrcode/${currentRestaurant}" disabled={deMenu}>Mes QR Codes</Nav.Link>
-            <Nav.Link href="/modifierrestaurant" disabled={deMenu}>Modifier mon restaurant</Nav.Link>
+            <Nav.Link href={`/listetable/${currentRestaurant}`} disabled={deMenu}>Mes tables</Nav.Link>
+            <Nav.Link href={`/genererunqrcode/${currentRestaurant}`} disabled={deMenu}>Mes QR Codes</Nav.Link>
+            <Nav.Link href={`/modifierrestaurant/${currentRestaurant}`} disabled={deMenu}>Modifier mon restaurant</Nav.Link>
             </Nav>
-            <NavDropdown title="Rimbaud Thierry" id="basic-nav-dropdown">
+          :
+          <Nav className="me-auto">
+            <Nav.Link href={`/nosrestaurants}`} >Nos Restaurants</Nav.Link>
+            <Nav.Link href={`/about}`} >Qui qui qui ??</Nav.Link>
+          </Nav>
+          }
+            {(isLogin) ?
+            <NavDropdown title={`${restaurateur.nom} ${restaurateur.prenom}`} id="basic-nav-dropdown">
               <NavDropdown.Item href="/modifiermoncompte">Modifier mon compte</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="logout" onClick={()=> logOut() }>Log out</NavDropdown.Item>
+              <NavDropdown.Item href="/" onClick={()=> logOut() }>Log out</NavDropdown.Item>
             </NavDropdown>
-            
-            
-          
+            :
+            <Nav>
+              <Nav.Link href={`/login`} disabled={deMenu}>Login</Nav.Link> 
+              <Nav.Link href={`/inscription`} disabled={deMenu}>Inscription</Nav.Link> 
+            </Nav>
+          }
         </Navbar.Collapse>
       </Container>
     </Navbar>
   );
-
-
 }
 <div>
 

@@ -9,13 +9,11 @@ function Login(props) {
     const [login,setLogin] = useState({mail:'',password:''})
     const gestLogin = useGestLogin()
     //fonction qui vérifie la validité du mail.
-    
     const navigate = useNavigate(); 
     const goInscription = () =>{ 
       let path = `/inscription`; 
       navigate(path);
     }
-
 
     const  verifEmail = () => 
     {    
@@ -27,7 +25,12 @@ function Login(props) {
           gestLogin.login(login.mail,login.password).then((res) => 
           {
             setErreur(res.message)
-            if (res.token) navigate("/");
+            if (res.token) {
+              let h = "/"
+              if (props.history) {h = props.history}
+              navigate(h);
+            }
+
           })
         }
       }
@@ -37,6 +40,7 @@ function Login(props) {
         else setErreur('ATTENTION : Bad PASSWORD ' )
       }
     }
+
     const handleChange = (e) => {
       const name = e.currentTarget.name
       const value = e.currentTarget.value

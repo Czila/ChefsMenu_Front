@@ -1,50 +1,51 @@
-import { useEffect, useState } from 'react';
-import NavScroll from './components/Navbar/NavScroll';
-import {BrowserRouter as Router, Route,  Routes} from 'react-router-dom';
 
+import NavScroll from './components/Navbar/NavScroll';
+import {Navigate, Route,  Routes} from 'react-router-dom';
 import Login from './components/login/Login';
 import EnteteListTable from './components/ListeTable/EnteteListeTable';
 import AjouterunElement from './components/AjouterunElement/AjouterunElement';
-import {useGestLogin} from './lib/useGestLogin'
 import Inscription from './components/Inscription/Inscription'
 import AjouteruneCategorie from './components/AjouteruneCategorie/AjouteruneCategorie'
 import AjouterunMenu from './components/AjouterunMenu/AjouterunMenu';
 import AccueilLogin from './pages/AccueilLogin/AccueilLogin';
 import AjoutRestaurant from './components/AjoutRestaurant/AjoutRestaurant'
 import NewQRCode from './components/NewQRCode/NewQRCode'
-function App() {
-  
-  function requireAuth(nextState, replace, next) {
-    if (!localStorage.getItem("userId")) {
-      replace({
-        pathname: "/login",
-        state: {nextPathname: nextState.location.pathname}
-      });
+
+function App() {  
+  const ProtectedRoute = ({ children }) => {
+    const user =localStorage.getItem("token")
+    if (!user) {
+      return <Navigate to="/login" replace />;
     }
-    next();
-  }
-
-
-
+    return children;
+  };
+  const requireAuth =() => { return ('test')}
   return (
     <div>
- 
         <NavScroll />
-  
         <Routes>
+        <Route path="/" onEnter={requireAuth} element={
+              <ProtectedRoute>
+                <AccueilLogin />
+              </ProtectedRoute>
+            } />
           <Route path="/login" element={<Login />} />
-          <Route path="/" element={<AccueilLogin />} onEnter={requireAuth}  />
-          <Route path="/ajouterunelement" element={<AjouterunElement />} onEnter={requireAuth} />
-          <Route path="/ajouterunecategorie" element={<AjouteruneCategorie />} onEnter={requireAuth} />
-          <Route path="/ajouterunmenu" element={<AjouterunMenu />} onEnter={requireAuth} />
           <Route path="/inscription" element={<Inscription />}  />
-          <Route path="/listetable/:userID/:restaurantID" element={<EnteteListTable />} onEnter={requireAuth} />
-          <Route path="/ajoutrestaurant" element={<AjoutRestaurant />} onEnter={requireAuth}  />
-          <Route path="/genererunqrcode/:restaurantID" element={<NewQRCode />} onEnter={requireAuth}  />
 
+          <Route path="/ajouterunelement"  element={
+              <ProtectedRoute>
+                <AjouterunElement />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/ajouterunecategorie" element={<ProtectedRoute><AjouteruneCategorie /></ProtectedRoute>} />
+          <Route path="/ajouterunmenu" element={<ProtectedRoute><AjouterunMenu /></ProtectedRoute>}  />
+          <Route path="/listetable/:restaurantID" element={<ProtectedRoute><EnteteListTable /></ProtectedRoute>}  />
+          <Route path="/ajoutrestaurant" element={<ProtectedRoute><AjoutRestaurant /></ProtectedRoute>} />
+          <Route path="/genererunqrcode/:restaurantID" element={<ProtectedRoute><NewQRCode /></ProtectedRoute>} />
+          <Route path="/modifierrestaurant/:restaurantID" element={<ProtectedRoute><NewQRCode /></ProtectedRoute>} />
         </Routes>
-    </div>
-  
+    </div>  
   );
 }
 

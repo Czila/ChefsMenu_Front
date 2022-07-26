@@ -15,7 +15,6 @@ function EnteteListTable() {
 
     async function getRestaurant() {
         const R = (await fetchWrapper.get(`http://localhost:3001/restaurant/${idRestaurant}`))[0]
-        console.log(idRestaurant)
         setRestaurant(R)
     }
 
