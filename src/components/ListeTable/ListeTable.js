@@ -18,7 +18,6 @@ function ListeTable(props) {
 
     const showCommande = (C) =>
     {
-        console.log(C)
         props.showCommande(C)
     }
 
