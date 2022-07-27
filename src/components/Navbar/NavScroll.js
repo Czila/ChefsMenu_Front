@@ -29,7 +29,7 @@ function NavScroll(props) {
   const onRestaurantClick = (id) => {
     setCurrentRestaurant(id)
     localStorage.setItem("CurrentRestaurant",id);
-    navigate(`/listetable/${idRestaurateur}/${id}`);
+    navigate(`/listetable/${id}`);
     setDeMenu(false)
   }
 
