@@ -4,9 +4,14 @@
  flex-wrap: wrap ;
  background-color: #bee3db;
  max-width: 300vh;
+ border-top: 2px solid #89b0ae;
+ margin-top: 10px;
+
+
 }
 
 .table {
+
     background-color: grey;
     min-width: 10vw;
     min-height: 10vw;
@@ -14,6 +19,8 @@
     max-height: 10vw;
     border-radius: 3vh;
     margin: 10px;
+    margin-top: 30px;
+    border: 2px solid #89b0ae
 
 }
 

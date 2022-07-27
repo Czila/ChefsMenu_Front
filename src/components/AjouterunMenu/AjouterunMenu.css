@@ -6,6 +6,7 @@
     height: 100vh;
     color: black;
     font-family: 'Quicksand';
+    border-top: 2px solid #89b0ae;
 }
 
 .tableItem {
