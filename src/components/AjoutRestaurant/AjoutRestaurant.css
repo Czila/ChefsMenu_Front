@@ -34,6 +34,11 @@
     
 }
 
-.ARtitre{
-    font-size: xx-large;
+.formulaireresto{
+    padding: 3vw;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
 }

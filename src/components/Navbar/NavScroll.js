@@ -2,12 +2,13 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import logo from '../../assets/logo.png'
+import petitlogo from '../../assets/petitlogo.png'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {useGestLogin} from '../../lib/useGestLogin';
 import { useEffect, useState } from 'react';
 import {fetchWrapper} from '../../lib/useGestDB'
 import { useNavigate } from "react-router-dom";
+
 
 function NavScroll(props) {
   const navigate = useNavigate(); 
@@ -53,22 +54,21 @@ function NavScroll(props) {
     if ((!currentRestaurant) && localStorage.getItem('CurrentRestaurant') )  {
       setCurrentRestaurant(localStorage.getItem('CurrentRestaurant'))
       setDeMenu(false)
-      console.log(currentRestaurant)
     }
-    console.log(deMenu)
+
   },[localStorage.getItem("token")])
 
   return (
     <Navbar bg="light" expand="lg" className='navbar'>
       <Container>
-        <img src={logo} alt="Logo" className='logo' />
+        <img src={petitlogo} alt="Logo" className='logo' />
         
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
         
         {(isLogin) ?
           <Nav className="me-auto">
-          <NavDropdown title="Mes restaurants" id="basic-nav-dropdown">
+          <NavDropdown title="🍽️ Mes restaurants" id="basic-nav-dropdown">
               {restaurants.map((restaurant)=> 
                 <NavDropdown.Item key={restaurant._id} onClick={() => onRestaurantClick(restaurant._id)} href="#">{restaurant.nom}</NavDropdown.Item>
               )
@@ -79,20 +79,20 @@ function NavScroll(props) {
               </NavDropdown.Item>
             </NavDropdown>
             
-            <NavDropdown title="Carte" id="basic-nav-dropdown" disabled={deMenu}>
-              <NavDropdown.Item href="previewcarte">Afficher carte</NavDropdown.Item>
+            <NavDropdown title='Carte' id="basic-nav-dropdown" disabled={deMenu}>
+              <NavDropdown.Item href="previewcarte">Afficher carte </NavDropdown.Item>
               <NavDropdown.Item href="nouvellecarte">
-                Nouvelle Carte
+              ➕ Nouvelle Carte
               </NavDropdown.Item>
               <NavDropdown.Item href="modifiermacarte">
-                Modifier ma Carte
+              ✏️ Modifier ma Carte
               </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="/ajouterunelement" disabled={deMenu}>Ajouter un élément</NavDropdown.Item>
-              <NavDropdown.Item href="/ajouterunecategorie">Ajouter une catégorie</NavDropdown.Item>
-              <NavDropdown.Item href="/ajouterunmenu">Créer un menu</NavDropdown.Item>
+              <NavDropdown.Item href={`/ajouterunelement/${currentRestaurant}`} disabled={deMenu}>➕ Ajouter un élément</NavDropdown.Item>
+              <NavDropdown.Item href={`/ajouterunecategorie/${currentRestaurant}`}>➕ Ajouter une catégorie</NavDropdown.Item>
+              <NavDropdown.Item href={`/ajouterunmenu/${currentRestaurant}`}>➕ Créer un menu</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="/supprimerelement">Supprimer un élement/catégorie/menu</NavDropdown.Item>
+              <NavDropdown.Item href={`/supprimerelement/${currentRestaurant}`}>❌ Supprimer un élement/catégorie/menu</NavDropdown.Item>
             </NavDropdown>
             <Nav.Link href={`/listetable/${currentRestaurant}`} disabled={deMenu}>Mes tables</Nav.Link>
             <Nav.Link href={`/genererunqrcode/${currentRestaurant}`} disabled={deMenu}>Mes QR Codes</Nav.Link>
@@ -105,7 +105,8 @@ function NavScroll(props) {
           </Nav>
           }
             {(isLogin) ?
-            <NavDropdown title={`${restaurateur.nom} ${restaurateur.prenom}`} id="basic-nav-dropdown">
+            
+            <NavDropdown title={`👤 ${restaurateur.nom} ${restaurateur.prenom}`} id="basic-nav-dropdown">
               <NavDropdown.Item href="/modifiermoncompte">Modifier mon compte</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="/" onClick={()=> logOut() }>Log out</NavDropdown.Item>
