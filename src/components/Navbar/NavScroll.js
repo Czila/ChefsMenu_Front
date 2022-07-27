@@ -2,7 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import logo from '../../assets/logo.png'
+import petitlogo from '../../assets/petitlogo.png'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {useGestLogin} from '../../lib/useGestLogin';
 import { useEffect, useState } from 'react';
@@ -61,7 +61,7 @@ function NavScroll(props) {
   return (
     <Navbar bg="light" expand="lg" className='navbar'>
       <Container>
-        <img src={logo} alt="Logo" className='logo' />
+        <img src={petitlogo} alt="Logo" className='logo' />
         
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
