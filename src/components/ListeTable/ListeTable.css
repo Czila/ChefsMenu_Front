@@ -1,21 +1,27 @@
 .tables {
  display: flex;   
- flex-direction: row;
- gap: 10px;
- align-content:space-around;
- flex-wrap: wrap 
+ gap: 30px;
+ flex-wrap: wrap ;
+ background-color: #bee3db;
+ max-width: 300vh;
+ border-top: 2px solid #89b0ae;
+ margin-top: 10px;
+
+
 }
 
 .table {
+
     background-color: grey;
-    display: flex;
-    width: 15vw;
-    height: 15vw;
-    flex-grow: 4;
-    flex-shrink: 3;
-    border-radius: 10vh;
-    align-items: center;
-    justify-content: center;
+    min-width: 10vw;
+    min-height: 10vw;
+    max-width: 10vw;
+    max-height: 10vw;
+    border-radius: 3vh;
+    margin: 10px;
+    margin-top: 30px;
+    border: 2px solid #89b0ae
+
 }
 
 .table.active {
@@ -23,11 +29,25 @@
 }
 
 .table.active:hover {
-    background-color:#bee3db;
+    background-color:#ffd6ba;
 }
 
-.restaurant {
+.titreresto {
+    font-size: large;
+    color: #555b6e;
+}
+
+
+/*   flex-grow: 4;
+flex-shrink: 3;
+    align-items: center;
+    justify-content: center;
+
+    .restaurant {
     height: 50vh;
     width: 50vh;
     padding: 10vh;
+    background-color: #bee3db;
 }
+
+*/

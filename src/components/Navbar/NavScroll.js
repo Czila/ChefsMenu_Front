@@ -68,7 +68,7 @@ function NavScroll(props) {
         
         {(isLogin) ?
           <Nav className="me-auto">
-          <NavDropdown title="🍽️ Mes restaurants" id="basic-nav-dropdown">
+          <NavDropdown title="Mes restaurants" id="basic-nav-dropdown">
               {restaurants.map((restaurant)=> 
                 <NavDropdown.Item key={restaurant._id} onClick={() => onRestaurantClick(restaurant._id)} href="#">{restaurant.nom}</NavDropdown.Item>
               )

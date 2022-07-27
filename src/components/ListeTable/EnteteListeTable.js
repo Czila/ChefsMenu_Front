@@ -30,11 +30,12 @@ function EnteteListTable() {
         <div>
             {(showList) ?
             <div>
-                <label>Vos tables pour le restaurant :  {restaurant.nom} </label> 
-                <div className='restaurant'>
+                <h4 className='titreresto'>&ensp; Vos tables pour le restaurant :  {restaurant.nom} </h4> 
+                <div>
                 {restaurant._id && <ListeTable showCommande={showCommande} restaurant={restaurant}/>}
                 </div>
             </div>
+            
             :
             <div className='commandeDetail'>
                 <button onClick={() => setShowList(true)}> ⬅️ Retour liste tables</button>

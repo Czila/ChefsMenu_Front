@@ -48,7 +48,7 @@ useEffect(() => {
     <div id="QRCodelist" className="QRCodelist">
       {(table.map((t) =>  
         <div  >
-          <h2>Table : {t.numTable}</h2>
+          <h4>Table {t.numTable}</h4>
           <QRCode size='250' className="QRCode" key={t.numTable} value={t.QRText} renderAs="svg" /> 
         </div>
       ))}
