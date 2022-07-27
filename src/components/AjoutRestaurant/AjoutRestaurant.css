@@ -11,6 +11,7 @@
     text-align: center;
     background-color: coral;
     color: aliceblue;
+    /* padding: 2vw; */
     
 }
 
@@ -27,4 +28,13 @@
     width: 200px;
     padding: 10px ;
     
+}
+
+.formulaireresto{
+    padding: 3vw;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
 }
