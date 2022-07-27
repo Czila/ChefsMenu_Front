@@ -1,14 +1,49 @@
 #AjouterunMenuForm {
     background-color : #bee3db;
-    flex: 1;
     display: flex;
     align-items: center;
     flex-direction: column;
     height: 100vh;
+    color: black;
+    font-family: 'Quicksand';
 }
 
 .tableItem {
     
     min-width: 80vw;
     max-width: 80vw;
+    background-color: #faf9f9;
+    border: 2px solid #89b0ae;
+    table-layout: fixed;
+}
+
+td,th {
+    min-width: 5vw;
+    max-width: 5vw;
+    padding: 20px;
+    align-items: center;
+    table-layout: fixed;
+}
+
+
+.AUMtitre{
+    font-size: xx-large;
+
+}
+
+.input{
+    background-color: #faf9f9;
+    border: 2px solid #89b0ae;
+}
+
+
+.endbutton{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.buttonstyle {
+    background-color: #faf9f9;
+    border: 2px solid #89b0ae;
 }

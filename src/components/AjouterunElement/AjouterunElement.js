@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react';
 import './AjouterunElement.css'
-import logo from '../../assets/logo.png'
+import menu from '../../assets/menu.png'
 import { fetchWrapper } from '../../lib/useGestDB';
 
 function AjouterunElement() {
@@ -52,22 +52,22 @@ async function setElement (){
     return (
         <div id='AjouterunElementForm'>
             <div>
-              <img src={logo} alt="Logo" className='logo' />
+              <img src={menu} alt="Logo" className='logo' />
             </div>
             <div className='AUEFdiv'>
                 <div className='AUEIdiv'>
                     
-                  <label className='AUEtitre'><b>Ajoutez votre élément</b><br/><br/></label>
+                  <label className='AUEtitre'><b>Ajoutez votre élément</b></label><br/><br/>
                   <label><b>Nom</b></label>
-                  <input type="text" placeholder="nom" onChange={(e) => setNom(e.currentTarget.value)} name='nom'value={nom} required/><br/><br/>
+                  <input className='input' type="text" placeholder="nom" onChange={(e) => setNom(e.currentTarget.value)} name='nom'value={nom} required/>
                   <label><b>Prix H.T.</b></label>
-                  <input type="number" placeholder="prix" name="prix HT" onChange={(e) => setPrixHT(e.currentTarget.value)} value={prix_HT} required/><br/><br/>
+                  <input className='input' type="number" placeholder="prix" name="prix HT" onChange={(e) => setPrixHT(e.currentTarget.value)} value={prix_HT} required/>
                   <label><b>TVA</b></label>
-                  <input type="number" placeholder="tva" name="tva" onChange={(e) => setTVA(e.currentTarget.value)} value={tva} required/><br/><br/>
+                  <input className='input' type="number" placeholder="tva" name="tva" onChange={(e) => setTVA(e.currentTarget.value)} value={tva} required/>
                   <label><b>Description</b></label>
-                  <input type="textarea" placeholder="description" name="description" onChange={(e) => setDescription(e.currentTarget.value)} value={description}/><br/><br/>
+                  <input className='input' type="textarea" placeholder="description" name="description" onChange={(e) => setDescription(e.currentTarget.value)} value={description}/>
                   <label><b>Catégorie</b></label>
-                  <select  value={categorie}  onChange={handleChange}>
+                  <select  className='input' value={categorie}  onChange={handleChange}>
                         <option>---</option>
                         {categories.map((cat) => 
                             <option value={cat.nom} key={cat._id}>{cat.nom} </option>
@@ -75,7 +75,7 @@ async function setElement (){
                      </select><br/><br/>
                   </div>
                 <div className='AUEBdiv'>
-                  <input type="submit" id='submit' onClick={setElement} />
+                  <button className='buttonstyle' onClick={setElement}>Ajouter</button>
                 </div>
                 {(fieldValidationErrors.error) && 
                 <div >

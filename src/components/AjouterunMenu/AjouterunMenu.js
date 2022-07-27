@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import logo from '../../assets/logo.png'
+import menu from '../../assets/menu.png'
 import { fetchWrapper } from '../../lib/useGestDB';
 import './AjouterunMenu.css'
 
@@ -105,24 +105,24 @@ const updateCat = (c) =>
         <div>
             {(fin) ?
             <div>
-                <h3>Menu ajouter !!!</h3>
+                <h3>Menu ajouté !!!</h3>
             </div>
             :
             <div id='AjouterunMenuForm'>
                 <div>
-                <img src={logo} alt="Logo" className='logo' />
+                <img src={menu} alt="Logo" className='logo' />
                 </div>
                 <div className='AUMdiv'>
                     <div className='AUMdiv'> 
-                    <label className='AUMtitre'><b>Créez vos menus personnalisés</b><br/></label>
-                    <label><b>Menu : </b></label>
-                    <input type="text" placeholder="nom" onChange={(e) => setNom(e.currentTarget.value)} name='nom'value={nom} required/>
-                    </div>
+                    <label className='AUMtitre'><b>Créez vos menus personnalisés</b><br/></label><br/><br/>
+                    <label><b>Nom de votre menu :&ensp;</b></label>
+                    <input type="text" className='input' placeholder="nom" onChange={(e) => setNom(e.currentTarget.value)} name='nom'value={nom} required/>
+                    </div><br/><br/>
 
                     <div>
-                        <h2>Elements disponibles : </h2>
+                        <h2>Eléments disponibles : </h2><br/>
                         <div>
-                        Filtre : 
+                        Filtre : &ensp;
                         <select  value={categorie}  name="categorie" onChange={handleChange}>
                             <option></option>
                             {categories.map((cat) => 
@@ -132,8 +132,8 @@ const updateCat = (c) =>
                     </div>
                         <table className='tableItem'>
                             <thead>
-                                <tr>
-                                    <th>nom</th>
+                                <tr className='cattableau'>
+                                    <th>Nom de l'élément</th>
                                     <th>Description</th>
                                     <th>Catégorie</th>
                                     <th>Prix HT</th>
@@ -146,25 +146,25 @@ const updateCat = (c) =>
                             (elementsDispo) &&
                             elementsDispo.map((element) =>                        
                             <tr key={element._id}>
-                                <td>{element.nom}</td>
-                                <td>{element.description}</td>
-                                <td>{element.categorie}</td>
-                                <td>{element.prix_HT}</td>
-                                <td><button onClick={() =>updateMenu(element)}>➕</button></td>
+                                <td className='grandecolonne'>{element.nom}</td>
+                                <td className='grandecolonne'>{element.description}</td>
+                                <td className='petitecolonne'>{element.categorie}</td>
+                                <td className='petitecolonne'>{element.prix_HT}</td>
+                                <td className='petitecolonne'><button onClick={() =>updateMenu(element)}>➕</button></td>
                             </tr> )
 
                             }
                         </tbody>
                         </table>
-                    </div>
+                    </div><br/><br/><br/>
                     <div>
-                        <h2>Actuellemnt sur le menu : </h2>
+                        <h2>Actuellement dans votre menu : </h2><br/>
                         {
                         (menuActuel) &&
                         <table className='tableItem'>
                             <thead>
                                 <tr>
-                                    <th>nom</th>
+                                    <th>Nom de l'élément</th>
                                     <th>Description</th>
                                     <th>Catégorie</th>
                                     <th>Prix HT</th>
@@ -174,27 +174,27 @@ const updateCat = (c) =>
                         <tbody>
                         {menuActuel.map((element) =>                        
                             <tr key={element._id}>
-                                <td>{element.nom}</td>
-                                <td>{element.description}</td>
-                                <td>{element.categorie}</td>
-                                <td>{element.prix_HT}</td>
-                                <td><button onClick={() =>delMenuActuelEl(element)}>➖</button></td>
+                                <td className='grandecolonne'>{element.nom}</td>
+                                <td className='grandecolonne'>{element.description}</td>
+                                <td className='petitecolonne'>{element.categorie}</td>
+                                <td className='petitecolonne'>{element.prix_HT}</td>
+                                <td className='petitecolonne'><button onClick={() =>delMenuActuelEl(element)}>➖</button></td>
                             </tr> )}
                         </tbody>
                         </table>
                         }
-                    </div>
+                    </div><br/><br/>
                     <div>
-                        <h3>Montant total Brut : {totalBrut.toFixed(2)} €  </h3>
+                        <h4>Montant total Brut : {totalBrut.toFixed(2)} €  </h4><br/>
                         <div>
-                            Remise (en %)
-                        <input type="number" name="remise" value={remise} onChange={handleChange} />
-                        </div>
-                        <h3>Montant total Net : {totalNet.toFixed(2)} €  </h3>
+                            Remise (en %) &ensp;
+                        <input type="number" className='input' name="remise" value={remise} onChange={handleChange} />
+                        </div><br/>
+                        <h4>Montant total Net : {totalNet.toFixed(2)} €  </h4>
                     </div>
-                    <div>
-                        <button onClick={() => updateBD()}>Enregistrer</button>
-                        <button>Annuler</button>
+                    <div className='endbutton'>
+                        <button className='buttonstyle' onClick={() => updateBD()}>Enregistrer</button><br/><br/>
+                        <button className='buttonstyle' >Annuler</button>
                     </div>
                 </div>
                 {(fieldValidationErrors.error) && 
