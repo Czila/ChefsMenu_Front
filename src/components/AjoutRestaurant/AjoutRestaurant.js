@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from 'react';
-import logo from '../../assets/logo.png'
+import restaurant from '../../assets/restaurant.png'
 import { fetchWrapper } from '../../lib/useGestDB';
 import './AjoutRestaurant.css'
 
@@ -46,33 +46,33 @@ return (
   <div>
     {(fin) ? 
     <div>
-      Restaurant ajouter !!
+      Restaurant ajouté !!
     </div>
     :
     <div id='AjouterRestaurantForm'>
         <div>
-          <img src={logo} alt="Logo" className='logo' />
+          <img src={restaurant} alt="Logo" className='logo' />
         </div>
-        <div className='formulaire'>
+        <div>
             <div className='formulaireresto'>
-              <label><b>Ajoutez votre Restaurant</b></label>
-              <label><b>Nom</b></label>
-              <input type="string" placeholder="nom" onChange={(e) => setNom(e.currentTarget.value)} name='nom'value={nom} required/>
-              <label><b>Adresse</b></label>
-              <input type="string" placeholder="adresse" name="adresse" onChange={(e) => setAdresse(e.currentTarget.value)} value={adresse} required/>
-              <label><b>CP</b></label>
-              <input type="string" placeholder="CP" name="CP" onChange={(e) => setCP(e.currentTarget.value)} value={cp} required/>
-              <label><b>Ville</b></label>
-              <input type="string" placeholder="ville" name="ville" onChange={(e) => setVille(e.currentTarget.value)} value={ville}/>
-              <label><b>Nombre de tables : </b></label>
-              <input type="number" placeholder="nbTable" onChange={(e) => {if(e.currentTarget.value>0) setNbTable(e.currentTarget.value)}} name='nbTable'value={nbTable} required/>
+              <label className='ARtitre'><h3><b>Ajoutez votre Restaurant</b></h3></label><br/><br/>
+              <label><b>Nom</b></label><br/>
+              <input className='input' type="string" placeholder="nom" onChange={(e) => setNom(e.currentTarget.value)} name='nom'value={nom} required/><br/><br/>
+              <label><b>Adresse</b></label><br/>
+              <input className='input' type="string" placeholder="adresse" name="adresse" onChange={(e) => setAdresse(e.currentTarget.value)} value={adresse} required/><br/><br/>
+              <label><b>CP</b></label><br/>
+              <input className='input' type="string" placeholder="CP" name="CP" onChange={(e) => setCP(e.currentTarget.value)} value={cp} required/><br/><br/>
+              <label><b>Ville</b></label><br/>
+              <input className='input' type="string" placeholder="ville" name="ville" onChange={(e) => setVille(e.currentTarget.value)} value={ville}/><br/><br/>
+              <label><b>Nombre de tables : </b></label><br/>
+              <input className='input' type="number" placeholder="nbTable" onChange={(e) => {if(e.currentTarget.value>0) setNbTable(e.currentTarget.value)}} name='nbTable'value={nbTable} required/><br/><br/>
               <input type="file" onChange={(e) => setSelectedFile(e.target.files[0])}   />
               <div className='imgPreview'>
                 {(previewSrc) && <img src={previewSrc} alt='Apercu' />}
               </div>
             </div>
             <div className='formulairebutton'>
-              <input type="submit"  name="myFile" onClick={setRestaurant} />
+              <button className='buttonstyle' onClick={setRestaurant}>C'est parti !</button>
             </div>
             {(fieldValidationErrors.error) && 
             <div className='error'>

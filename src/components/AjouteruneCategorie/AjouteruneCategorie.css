@@ -1,8 +1,25 @@
 #AjouteruneCategorieForm {
     background-color : #bee3db;
-    flex: 1;
     display: flex;
     align-items: center;
     flex-direction: column;
     height: 100vh;
+    color: black;
+    font-family: 'Quicksand';
 };
+
+
+.input{
+    background-color: #faf9f9;
+    border: 2px solid #89b0ae;
+};
+
+
+.AUCtitre{
+    font-size: xx-large;
+};
+
+.buttonstyle {
+    background-color: #faf9f9;
+    border: 2px solid #89b0ae;
+}

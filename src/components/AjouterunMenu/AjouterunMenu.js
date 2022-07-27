@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import logo from '../../assets/logo.png'
+import menu from '../../assets/menu.png'
 import { fetchWrapper } from '../../lib/useGestDB';
 import './AjouterunMenu.css'
 
@@ -14,85 +14,21 @@ function AjouterunMenu() {
     const [categories,setCategories]=useState([{}])
     const [categorie,setCategorie]=useState('')
     const [fin,setFin]=useState(false)
-    const [elementsDispoInit,setElementsDispoInit]=useState([{
-        "_id": "62dea7bf8a27cbe5e4b9df77",
-        "nom": "moule frittes",
-        "prix_HT": 22,
-        "tva": 22,
-        "description": "dsfds",
-        "categorie": "vins"
-    },
-    {
-        "_id": "62dea8ee8a27cbe5e4b9df80",
-        "nom": "BOURGOGNE - CHARDONNAY 2017 - CLOSERIE DES ALISIERS",
-        "prix_HT": 59,
-        "tva": 20,
-        "description": "Densité impressionante sur cette pépite qui exprime à merveille le caractère du cépage. Le fruit à chair blanche parfaitement mis en avant au nez qui nous invite à découvrir sa rondeur et ses arômes de fruits secs, sa fraîcheur, sa minéralité et surtout cette magnifique tension en fin de bouche !! Amateur de cuisine asiatique..? C'est L'accord parfait sur un assortiment de Sushis !",
-        "categorie": "vins"
-    },
-    {
-        "_id": "62dea94f8a27cbe5e4b9df85",
-        "nom": " \t BARGYLUS BLANC 2015",
-        "prix_HT": 25,
-        "tva": 20,
-        "description": "Un vin riche de saveurs et d'histoire, alliant finesse et puissance aromatique: un pari fou et lourd de sens.",
-        "categorie": "vins",
-        "__v": 0
-    },
-    {
-        "_id": "62df009e11ce379b31dd7b48",
-        "nom": "tiramisu",
-        "prix_HT": 20,
-        "tva": 5.5,
-        "description": "Tiramisù maison",
-        "categorie": "Dessert",
-        "__v": 0
-    }])
-    const [elementsDispo,setElementsDispo]=useState([{
-        "_id": "62dea7bf8a27cbe5e4b9df77",
-        "nom": "moule frittes",
-        "prix_HT": 22,
-        "tva": 22,
-        "description": "dsfds",
-        "categorie": "vins"
-    },
-    {
-        "_id": "62dea8ee8a27cbe5e4b9df80",
-        "nom": "BOURGOGNE - CHARDONNAY 2017 - CLOSERIE DES ALISIERS",
-        "prix_HT": 59,
-        "tva": 20,
-        "description": "Densité impressionante sur cette pépite qui exprime à merveille le caractère du cépage. Le fruit à chair blanche parfaitement mis en avant au nez qui nous invite à découvrir sa rondeur et ses arômes de fruits secs, sa fraîcheur, sa minéralité et surtout cette magnifique tension en fin de bouche !! Amateur de cuisine asiatique..? C'est L'accord parfait sur un assortiment de Sushis !",
-        "categorie": "vins"
-    },
-    {
-        "_id": "62dea94f8a27cbe5e4b9df85",
-        "nom": " \t BARGYLUS BLANC 2015",
-        "prix_HT": 25,
-        "tva": 20,
-        "description": "Un vin riche de saveurs et d'histoire, alliant finesse et puissance aromatique: un pari fou et lourd de sens.",
-        "categorie": "vins",
-        "__v": 0
-    },
-    {
-        "_id": "62df009e11ce379b31dd7b48",
-        "nom": "tiramisu",
-        "prix_HT": 20,
-        "tva": 5.5,
-        "description": "Tiramisù maison",
-        "categorie": "Dessert",
-        "__v": 0
-    }])
+    const [elementsDispoInit,setElementsDispoInit]=useState([{}])
+    const [elementsDispo,setElementsDispo]=useState([{}])
     const [fieldValidationErrors,setFieldValidationErrors] = useState({
         message:'',
         error:false})
 
 const updateMenu = (e) =>{
     const dispo = elementsDispo
+    const dispoInit = elementsDispoInit
     setTotalBrut(totalBrut+e.prix_HT)
     setMenuActuel(menuActuel => [...menuActuel, e])
     dispo.splice(dispo.indexOf(e), 1)
+    dispoInit.splice(dispoInit.indexOf(e), 1)
     setElementsDispo(dispo)
-    setElementsDispoInit(dispo)
+    setElementsDispoInit(dispoInit)
 }
 
 const delMenuActuelEl = (e) =>{
@@ -126,14 +62,13 @@ const updateBD = async () => {
 
 
 const updateCat = (c) => 
-(c === '') ? setElementsDispo(elementsDispoInit)
-: setElementsDispo(elementsDispo => elementsDispoInit.filter(el => el.categorie===c))
-
-useEffect(() => {   
-    updateTotalNet(totalBrut,remise)
-    updateCat(categorie)
-// eslint-disable-next-line react-hooks/exhaustive-deps
-}, [totalBrut,remise]);
+{
+    if (c === '')  setElementsDispo(elementsDispoInit)
+    else {
+    const dispo = elementsDispoInit
+    setElementsDispo(dispo.filter(el => el.categorie===c))
+}
+}
 
     const handleChange = (e) => {
         const name = e.currentTarget.name
@@ -148,37 +83,46 @@ useEffect(() => {
             updateCat(e.target.value)
         }
     }
-
+    useEffect(() => {   
+        updateTotalNet(totalBrut,remise)
+        updateCat(categorie)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [totalBrut,remise]);
     useEffect(()=>
     {
         async function updateCategories() {
             setCategories(await fetchWrapper.get(`http://localhost:3001/categorie/`))
+            const e = await fetchWrapper.get(`http://localhost:3001/element/`)
+            setElementsDispo(e)
+            setElementsDispoInit(e)
         }
         updateCategories()
+
+
     },[])
 
     return (
         <div>
             {(fin) ?
             <div>
-                <h3>Menu ajouter !!!</h3>
+                <h3>Menu ajouté !!!</h3>
             </div>
             :
             <div id='AjouterunMenuForm'>
                 <div>
-                <img src={logo} alt="Logo" className='logo' />
+                <img src={menu} alt="Logo" className='logo' />
                 </div>
                 <div className='AUMdiv'>
                     <div className='AUMdiv'> 
-                    <label className='AUMtitre'><b>Créez vos menus personnalisés</b><br/></label>
-                    <label><b>Menu : </b></label>
-                    <input type="text" placeholder="nom" onChange={(e) => setNom(e.currentTarget.value)} name='nom'value={nom} required/>
-                    </div>
+                    <label className='AUMtitre'><b>Créez vos menus personnalisés</b><br/></label><br/><br/>
+                    <label><b>Nom de votre menu :&ensp;</b></label>
+                    <input type="text" className='input' placeholder="nom" onChange={(e) => setNom(e.currentTarget.value)} name='nom'value={nom} required/>
+                    </div><br/><br/>
 
                     <div>
-                        <h2>Elements disponibles : </h2>
+                        <h2>Eléments disponibles : </h2><br/>
                         <div>
-                        Filtre : 
+                        Filtre : &ensp;
                         <select  value={categorie}  name="categorie" onChange={handleChange}>
                             <option></option>
                             {categories.map((cat) => 
@@ -188,8 +132,8 @@ useEffect(() => {
                     </div>
                         <table className='tableItem'>
                             <thead>
-                                <tr>
-                                    <th>nom</th>
+                                <tr className='cattableau'>
+                                    <th>Nom de l'élément</th>
                                     <th>Description</th>
                                     <th>Catégorie</th>
                                     <th>Prix HT</th>
@@ -202,25 +146,25 @@ useEffect(() => {
                             (elementsDispo) &&
                             elementsDispo.map((element) =>                        
                             <tr key={element._id}>
-                                <td>{element.nom}</td>
-                                <td>{element.description}</td>
-                                <td>{element.categorie}</td>
-                                <td>{element.prix_HT}</td>
-                                <td><button onClick={() =>updateMenu(element)}>➕</button></td>
+                                <td className='grandecolonne'>{element.nom}</td>
+                                <td className='grandecolonne'>{element.description}</td>
+                                <td className='petitecolonne'>{element.categorie}</td>
+                                <td className='petitecolonne'>{element.prix_HT}</td>
+                                <td className='petitecolonne'><button onClick={() =>updateMenu(element)}>➕</button></td>
                             </tr> )
 
                             }
                         </tbody>
                         </table>
-                    </div>
+                    </div><br/><br/><br/>
                     <div>
-                        <h2>Actuellemnt sur le menu : </h2>
+                        <h2>Actuellement dans votre menu : </h2><br/>
                         {
                         (menuActuel) &&
                         <table className='tableItem'>
                             <thead>
                                 <tr>
-                                    <th>nom</th>
+                                    <th>Nom de l'élément</th>
                                     <th>Description</th>
                                     <th>Catégorie</th>
                                     <th>Prix HT</th>
@@ -230,27 +174,27 @@ useEffect(() => {
                         <tbody>
                         {menuActuel.map((element) =>                        
                             <tr key={element._id}>
-                                <td>{element.nom}</td>
-                                <td>{element.description}</td>
-                                <td>{element.categorie}</td>
-                                <td>{element.prix_HT}</td>
-                                <td><button onClick={() =>delMenuActuelEl(element)}>➖</button></td>
+                                <td className='grandecolonne'>{element.nom}</td>
+                                <td className='grandecolonne'>{element.description}</td>
+                                <td className='petitecolonne'>{element.categorie}</td>
+                                <td className='petitecolonne'>{element.prix_HT}</td>
+                                <td className='petitecolonne'><button onClick={() =>delMenuActuelEl(element)}>➖</button></td>
                             </tr> )}
                         </tbody>
                         </table>
                         }
-                    </div>
+                    </div><br/><br/>
                     <div>
-                        <h3>Montant total Brut : {totalBrut.toFixed(2)} €  </h3>
+                        <h4>Montant total Brut : {totalBrut.toFixed(2)} €  </h4><br/>
                         <div>
-                            Remise (en %)
-                        <input type="number" name="remise" value={remise} onChange={handleChange} />
-                        </div>
-                        <h3>Montant total Net : {totalNet.toFixed(2)} €  </h3>
+                            Remise (en %) &ensp;
+                        <input type="number" className='input' name="remise" value={remise} onChange={handleChange} />
+                        </div><br/>
+                        <h4>Montant total Net : {totalNet.toFixed(2)} €  </h4>
                     </div>
-                    <div>
-                        <button onClick={() => updateBD()}>Enregistrer</button>
-                        <button>Annuler</button>
+                    <div className='endbutton'>
+                        <button className='buttonstyle' onClick={() => updateBD()}>Enregistrer</button><br/><br/>
+                        <button className='buttonstyle' >Annuler</button>
                     </div>
                 </div>
                 {(fieldValidationErrors.error) && 
