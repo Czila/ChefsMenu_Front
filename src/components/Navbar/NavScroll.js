@@ -91,6 +91,8 @@ function NavScroll(props) {
               <NavDropdown.Item href="/ajouterunelement" disabled={deMenu}>Ajouter un élément</NavDropdown.Item>
               <NavDropdown.Item href="/ajouterunecategorie">Ajouter une catégorie</NavDropdown.Item>
               <NavDropdown.Item href="/ajouterunmenu">Créer un menu</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="/supprimerelement">Supprimer un élement/catégorie/menu</NavDropdown.Item>
             </NavDropdown>
             <Nav.Link href={`/listetable/${currentRestaurant}`} disabled={deMenu}>Mes tables</Nav.Link>
             <Nav.Link href={`/genererunqrcode/${currentRestaurant}`} disabled={deMenu}>Mes QR Codes</Nav.Link>

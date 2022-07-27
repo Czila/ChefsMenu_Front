@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './AjouteruneCategorie.css'
-import logo from '../../assets/logo.png'
 import { fetchWrapper } from '../../lib/useGestDB';
+import menu from '../../assets/menu.png'
 
 function AjouteruneCategorie() {
     const [nom, setNom] = useState("")
@@ -25,17 +25,17 @@ catch(err)
     return (
         <div id='AjouteruneCategorieForm'>
             <div>
-              <img src={logo} alt="Logo" className='logo' />
+              <img src={menu} alt="Logo" className='logo' />
             </div>
             <div className='AUCdiv'>
                 <div className='AUCdiv'>
                     
-                  <label className='AUCtitre'><b>Ajoutez une catégorie (entrées, plats, desserts, boissons...)</b><br/></label>
-                  <label><b>Nom</b></label>
-                  <input type="text" placeholder="nom" onChange={(e) => setNom(e.currentTarget.value)} name='nom'value={nom} required/>
-                </div>
+                  <label className='AUCtitre'><h3><b>Ajoutez une catégorie (entrées, plats, desserts, boissons...) </b></h3></label><br/><br/>
+                  <label><b>Nom</b></label><br/>
+                  <input className='input' type="text" placeholder="nom" onChange={(e) => setNom(e.currentTarget.value)} name='nom'value={nom} required/>
+                </div><br/>
                 <div className='AUCdiv'>
-                  <input type="submit" id='submit' onClick={setCategorie} />
+                  <button className='buttonstyle' onClick={setCategorie}>Enregistrer</button>
 
                 </div>
                 {(fieldValidationErrors.error) && 

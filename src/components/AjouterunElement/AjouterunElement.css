@@ -1,8 +1,27 @@
 #AjouterunElementForm {
     background-color : #bee3db;
     display: flex;
-    flex-direction: column;
     align-items: center;
     flex-direction: column;
     height: 100vh;
+    color: black;
+    font-family: 'Quicksand';
+    
 };
+
+.input{
+    background-color: #faf9f9;
+    border: 2px solid #89b0ae;
+}
+
+
+
+.AUEtitre{
+    font-size: xx-large;
+
+}
+
+.buttonstyle {
+    background-color: #faf9f9;
+    border: 2px solid #89b0ae;
+}
