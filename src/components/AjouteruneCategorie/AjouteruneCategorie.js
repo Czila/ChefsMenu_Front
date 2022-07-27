@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import './AjouteruneCategorie.css'
 import { fetchWrapper } from '../../lib/useGestDB';
 import menu from '../../assets/menu.png'
+import {useParams} from 'react-router-dom';
 
 function AjouteruneCategorie() {
+    const params = useParams();
+    let idRestaurant =params.restaurantID
     const [nom, setNom] = useState("")
     const [fieldValidationErrors,setFieldValidationErrors] = useState({
         message:'',
@@ -12,7 +15,7 @@ function AjouteruneCategorie() {
 async function setCategorie (){
 const url = `http://localhost:3001/categorie`
 try {
-    await fetchWrapper.post(url,{nom})
+    await fetchWrapper.post(url,{nom,idRestaurant})
     setNom("")
     setFieldValidationErrors({message : "", error:false})
 }
