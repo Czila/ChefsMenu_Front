@@ -14,85 +14,21 @@ function AjouterunMenu() {
     const [categories,setCategories]=useState([{}])
     const [categorie,setCategorie]=useState('')
     const [fin,setFin]=useState(false)
-    const [elementsDispoInit,setElementsDispoInit]=useState([{
-        "_id": "62dea7bf8a27cbe5e4b9df77",
-        "nom": "moule frittes",
-        "prix_HT": 22,
-        "tva": 22,
-        "description": "dsfds",
-        "categorie": "vins"
-    },
-    {
-        "_id": "62dea8ee8a27cbe5e4b9df80",
-        "nom": "BOURGOGNE - CHARDONNAY 2017 - CLOSERIE DES ALISIERS",
-        "prix_HT": 59,
-        "tva": 20,
-        "description": "Densité impressionante sur cette pépite qui exprime à merveille le caractère du cépage. Le fruit à chair blanche parfaitement mis en avant au nez qui nous invite à découvrir sa rondeur et ses arômes de fruits secs, sa fraîcheur, sa minéralité et surtout cette magnifique tension en fin de bouche !! Amateur de cuisine asiatique..? C'est L'accord parfait sur un assortiment de Sushis !",
-        "categorie": "vins"
-    },
-    {
-        "_id": "62dea94f8a27cbe5e4b9df85",
-        "nom": " \t BARGYLUS BLANC 2015",
-        "prix_HT": 25,
-        "tva": 20,
-        "description": "Un vin riche de saveurs et d'histoire, alliant finesse et puissance aromatique: un pari fou et lourd de sens.",
-        "categorie": "vins",
-        "__v": 0
-    },
-    {
-        "_id": "62df009e11ce379b31dd7b48",
-        "nom": "tiramisu",
-        "prix_HT": 20,
-        "tva": 5.5,
-        "description": "Tiramisù maison",
-        "categorie": "Dessert",
-        "__v": 0
-    }])
-    const [elementsDispo,setElementsDispo]=useState([{
-        "_id": "62dea7bf8a27cbe5e4b9df77",
-        "nom": "moule frittes",
-        "prix_HT": 22,
-        "tva": 22,
-        "description": "dsfds",
-        "categorie": "vins"
-    },
-    {
-        "_id": "62dea8ee8a27cbe5e4b9df80",
-        "nom": "BOURGOGNE - CHARDONNAY 2017 - CLOSERIE DES ALISIERS",
-        "prix_HT": 59,
-        "tva": 20,
-        "description": "Densité impressionante sur cette pépite qui exprime à merveille le caractère du cépage. Le fruit à chair blanche parfaitement mis en avant au nez qui nous invite à découvrir sa rondeur et ses arômes de fruits secs, sa fraîcheur, sa minéralité et surtout cette magnifique tension en fin de bouche !! Amateur de cuisine asiatique..? C'est L'accord parfait sur un assortiment de Sushis !",
-        "categorie": "vins"
-    },
-    {
-        "_id": "62dea94f8a27cbe5e4b9df85",
-        "nom": " \t BARGYLUS BLANC 2015",
-        "prix_HT": 25,
-        "tva": 20,
-        "description": "Un vin riche de saveurs et d'histoire, alliant finesse et puissance aromatique: un pari fou et lourd de sens.",
-        "categorie": "vins",
-        "__v": 0
-    },
-    {
-        "_id": "62df009e11ce379b31dd7b48",
-        "nom": "tiramisu",
-        "prix_HT": 20,
-        "tva": 5.5,
-        "description": "Tiramisù maison",
-        "categorie": "Dessert",
-        "__v": 0
-    }])
+    const [elementsDispoInit,setElementsDispoInit]=useState([{}])
+    const [elementsDispo,setElementsDispo]=useState([{}])
     const [fieldValidationErrors,setFieldValidationErrors] = useState({
         message:'',
         error:false})
 
 const updateMenu = (e) =>{
     const dispo = elementsDispo
+    const dispoInit = elementsDispoInit
     setTotalBrut(totalBrut+e.prix_HT)
     setMenuActuel(menuActuel => [...menuActuel, e])
     dispo.splice(dispo.indexOf(e), 1)
+    dispoInit.splice(dispoInit.indexOf(e), 1)
     setElementsDispo(dispo)
-    setElementsDispoInit(dispo)
+    setElementsDispoInit(dispoInit)
 }
 
 const delMenuActuelEl = (e) =>{
@@ -126,14 +62,13 @@ const updateBD = async () => {
 
 
 const updateCat = (c) => 
-(c === '') ? setElementsDispo(elementsDispoInit)
-: setElementsDispo(elementsDispo => elementsDispoInit.filter(el => el.categorie===c))
-
-useEffect(() => {   
-    updateTotalNet(totalBrut,remise)
-    updateCat(categorie)
-// eslint-disable-next-line react-hooks/exhaustive-deps
-}, [totalBrut,remise]);
+{
+    if (c === '')  setElementsDispo(elementsDispoInit)
+    else {
+    const dispo = elementsDispoInit
+    setElementsDispo(dispo.filter(el => el.categorie===c))
+}
+}
 
     const handleChange = (e) => {
         const name = e.currentTarget.name
@@ -148,13 +83,22 @@ useEffect(() => {
             updateCat(e.target.value)
         }
     }
-
+    useEffect(() => {   
+        updateTotalNet(totalBrut,remise)
+        updateCat(categorie)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [totalBrut,remise]);
     useEffect(()=>
     {
         async function updateCategories() {
             setCategories(await fetchWrapper.get(`http://localhost:3001/categorie/`))
+            const e = await fetchWrapper.get(`http://localhost:3001/element/`)
+            setElementsDispo(e)
+            setElementsDispoInit(e)
         }
         updateCategories()
+
+
     },[])
 
     return (
