@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
+import {useParams} from 'react-router-dom';
+
 import menu from '../../assets/menu.png'
 import { fetchWrapper } from '../../lib/useGestDB';
 import './AjouterunMenu.css'
 
 function AjouterunMenu() {
-    const idRestaurant='62d96bb9d4455394b2a619c7'
+    const params = useParams();
+    let idRestaurant =params.restaurantID
     const [nom, setNom] = useState("")
     const [menuActuel,setMenuActuel]=useState([])
     const [totalNet,setTotalNet]=useState(0)
@@ -91,8 +94,8 @@ const updateCat = (c) =>
     useEffect(()=>
     {
         async function updateCategories() {
-            setCategories(await fetchWrapper.get(`http://localhost:3001/categorie/`))
-            const e = await fetchWrapper.get(`http://localhost:3001/element/`)
+            setCategories(await fetchWrapper.get(`http://localhost:3001/categorie/ByRestaurant/${idRestaurant}`))
+            const e = await fetchWrapper.get(`http://localhost:3001/element/ByRestaurant/${idRestaurant}`)
             setElementsDispo(e)
             setElementsDispoInit(e)
         }

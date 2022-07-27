@@ -2,8 +2,11 @@ import React, { useState,useEffect } from 'react';
 import './AjouterunElement.css'
 import menu from '../../assets/menu.png'
 import { fetchWrapper } from '../../lib/useGestDB';
+import {useParams} from 'react-router-dom';
 
 function AjouterunElement() {
+    const params = useParams();
+    let idRestaurant =params.restaurantID
     const [nom, setNom] = useState("")
     const [prix_HT, setPrixHT] = useState("")
     const [tva, setTVA] = useState(5.5)
@@ -22,7 +25,7 @@ function handleChange(e){
 useEffect(()=>
 {
     async function updateCategories() {
-        setCategories(await fetchWrapper.get(`http://localhost:3001/categorie/`))
+        setCategories(await fetchWrapper.get(`http://localhost:3001/categorie/ByRestaurant/${idRestaurant}`))
     }
     updateCategories()
 },[])
@@ -33,7 +36,7 @@ async function setElement (){
     
     try {
         await fetchWrapper.post('http://localhost:3001/element',
-        {"nom":nom, "prix_HT":prix_HT, "tva":tva, "description":description,"categorie":categorie})
+        {"nom":nom, "prix_HT":prix_HT, "tva":tva, "description":description,"categorie":categorie,idRestaurant})
 
         //réinitialisation des variables
         setNom("")

@@ -32,14 +32,14 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/inscription" element={<Inscription />}  />
 
-          <Route path="/ajouterunelement"  element={
+          <Route path="/ajouterunelement/:restaurantID"  element={
               <ProtectedRoute>
                 <AjouterunElement />
               </ProtectedRoute>
             }
           />
-          <Route path="/ajouterunecategorie" element={<ProtectedRoute><AjouteruneCategorie /></ProtectedRoute>} />
-          <Route path="/ajouterunmenu" element={<ProtectedRoute><AjouterunMenu /></ProtectedRoute>}  />
+          <Route path="/ajouterunecategorie/:restaurantID" element={<ProtectedRoute><AjouteruneCategorie /></ProtectedRoute>} />
+          <Route path="/ajouterunmenu/:restaurantID" element={<ProtectedRoute><AjouterunMenu /></ProtectedRoute>}  />
           <Route path="/listetable/:restaurantID" element={<ProtectedRoute><EnteteListTable /></ProtectedRoute>}  />
           <Route path="/ajoutrestaurant" element={<ProtectedRoute><AjoutRestaurant /></ProtectedRoute>} />
           <Route path="/genererunqrcode/:restaurantID" element={<ProtectedRoute><NewQRCode /></ProtectedRoute>} />
