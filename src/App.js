@@ -49,15 +49,6 @@ function App() {
   );
 }
 
-<Routes>
-  <Route path='/inscription' element={<Inscription/>} />
-  <Route path="/listetable" element={<EnteteListTable/>} />
-  <Route path="/ajouterunelement" element={<AjouterunElement/>} />
-  <Route path="/ajouterunecategorie" element={<AjouteruneCategorie/>} />
-  <Route path="ajouterunmenu" element={<AjouterunMenu/>} />
-  <Route path="genererunqrcode" element={<NewQRCode/>} />
-  <Route path="ajoutrestaurant" element={<AjoutRestaurant/>} />
-</Routes>
 
 
 export default App;
