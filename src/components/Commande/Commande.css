@@ -34,6 +34,21 @@ ul  {
     color: #faf9f9;
 }
 
+.totalPrt {
+    display: flex;
+    justify-content :space-around;
+    text-align: center;
+    padding: 1vh;
+
+}
+.titreCommandePrt {
+    text-align: center;
+    padding: 1vh;
+}
+.titreCommandeLi {
+    text-align: center;
+    padding: 1vh;
+}
 .butCommande {
     display: flex;
     margin: 2vh;

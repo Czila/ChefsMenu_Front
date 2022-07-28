@@ -8,4 +8,9 @@
     color: black;
     font-family: 'Quicksand';
     border-top: 2px solid #89b0ae;
-};
+}
+
+ul {
+
+    list-style: '';
+}

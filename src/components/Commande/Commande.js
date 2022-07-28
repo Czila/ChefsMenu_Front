@@ -10,30 +10,23 @@ import ('./Commande.css');
 
 function Commande(props) {
     const [commande,SetCommande] = useState(props.commande[0])
+    const [hide,setHide]= useState(true)
     let total =0;
     let totalTTC =0;
 
-    const canvasAdd =() => {
-        let add =''
-
-        add =`<div>'Addition de la table '${commande.numTable} </div>`
-        add +=`<div>'Addition de la table '${commande.numTable} </div>`
-
-        return add
-    }
-
     const printAddition =() => {
-        const input = document.getElementById('commandeForPrint');
+        setHide(false)
+        const input = document.getElementById('ForPrint');
         html2canvas(input)
           .then((canvas) => {
             const imgData = canvas.toDataURL('image/png');
             const pdf = new jsPDF();
 
-            pdf.text(`Addition de la table ${commande.numTable} `,10,10)
-            //pdf.addImage(imgData, 'JPEG', 0, 0);
-            // pdf.output('dataurlnewwindow');
+            pdf.addImage(imgData, 'JPEG', 0, 0);
+            pdf.output('dataurlnewwindow');
             pdf.save(`Addition${commande.numTable}.pdf`);
           })
+          setHide(true)
       }
 
     const updateTotal = (m,t) =>
@@ -46,9 +39,8 @@ function Commande(props) {
     {
         fetchWrapper.put(`http://localhost:3001/commande/${commande._id}`,{"etat":"Fini"})
         SetCommande({...commande,"etat":"Fini"})
-    }
-    console.log(commande)
 
+    }
     return ( <div>
     <div>
         <h1 className="titreCommande">Commande de la table {commande.numTable}</h1>
@@ -93,14 +85,13 @@ function Commande(props) {
             {(commande.etat==='enCours') && <button onClick={()=> closeCommande()}>✅ Terminer la commande</button>}
           </div>
     </div>
-    <div>
-    <h1 className="titreCommande">Commande de la table {commande.numTable}</h1>
+
+    <div id="ForPrint">
+    <h1 className="titreCommandePrt">Addition de la table {commande.numTable}</h1>
         <div id="commande">
             
             {(commande.menus.length>0) &&
             <ul >
-                <li className="titreCommandeLi liMenu">Menu : </li>
-
                 <ul className="detailCommandeul">
                     {commande.menus.map((me) => 
                         <li key={me._id}>{me.nom}{updateTotal(me.prix_HT,me.tva)}</li>
@@ -112,16 +103,15 @@ function Commande(props) {
             {
             (commande.elements.length>0) &&
             <ul >
-                <li className="titreCommandeLi liCarte">A la carte : </li>
                 <ul className="detailCommandeul">
                     {commande.elements.map((el) => 
-                        <li key={el._id}>{el.nom} {updateTotal(el.prix_HT,el.tva)}</li>
+                        <li key={el._id}>{el.nom} {el.prix_HT.toFixed(2)} € {el.tva.toFixed(2)} % {(el.prix_HT * (1+(el.tva/100))).toFixed(2) }€ TTC </li>
                     )}
                 </ul>
             </ul>
             }
           </div>
-          <div className="total">
+          <div className="totalPrt">
             <div>
                 <h3>Total HT</h3>
                 <span>{total.toFixed(2)} €</span>
@@ -130,7 +120,11 @@ function Commande(props) {
                 <h3>Total TTC</h3>
                 <span>{totalTTC.toFixed(2)} €</span>
             </div>
+          
           </div>
+          <div>
+                Merci pour votre visite ❤️❤️❤️❤️❤️
+            </div>
     </div>
 
     </div> );
