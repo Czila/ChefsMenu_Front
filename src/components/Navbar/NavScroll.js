@@ -35,8 +35,10 @@ function NavScroll({currentRestUpdate}) {
 
   
   const getMyRestaurant = async () => {
-    const R = (await fetchWrapper.get(`http://localhost:3001/restaurant/byOwner/${idRestaurateur}`))
-    setRestaurants(R)
+    if(idRestaurateur){
+      const R = (await fetchWrapper.get(`http://localhost:3001/restaurant/byOwner/${idRestaurateur}`))
+      setRestaurants(R)
+    }
 
   }
   
@@ -113,8 +115,8 @@ function NavScroll({currentRestUpdate}) {
             </NavDropdown>
             :
             <Nav>
-              <Nav.Link href={`/login`} disabled={deMenu}>Login</Nav.Link> 
-              <Nav.Link href={`/inscription`} disabled={deMenu}>Inscription</Nav.Link> 
+              <Nav.Link href={`/login`} >Login</Nav.Link> 
+              <Nav.Link href={`/inscription`} >Inscription</Nav.Link> 
             </Nav>
           }
         </Navbar.Collapse>
