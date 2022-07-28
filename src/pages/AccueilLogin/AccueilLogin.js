@@ -5,7 +5,7 @@ function AccueilLogin(){
     return(
         <div id="AccueilLogin">
             <div className='ALchoices'>
-                <label className='ALbienvenue'><b>Bienvenue (restaurateur)</b></label>
+                <label className='ALbienvenue'><b>Bienvenue </b></label>
             </div>
     </div>
     

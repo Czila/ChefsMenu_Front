@@ -10,6 +10,7 @@ import AjouterunMenu from './components/AjouterunMenu/AjouterunMenu';
 import AccueilLogin from './pages/AccueilLogin/AccueilLogin';
 import AjoutRestaurant from './components/AjoutRestaurant/AjoutRestaurant'
 import NewQRCode from './components/NewQRCode/NewQRCode'
+import MaCarte from './pages/MaCarte/MaCarte';
 
 function App() {  
   const ProtectedRoute = ({ children }) => {
@@ -44,6 +45,7 @@ function App() {
           <Route path="/ajoutrestaurant" element={<ProtectedRoute><AjoutRestaurant /></ProtectedRoute>} />
           <Route path="/genererunqrcode/:restaurantID" element={<ProtectedRoute><NewQRCode /></ProtectedRoute>} />
           <Route path="/modifierrestaurant/:restaurantID" element={<ProtectedRoute><NewQRCode /></ProtectedRoute>} />
+          <Route path="/previewcarte/:restaurantID" element={<ProtectedRoute><MaCarte /></ProtectedRoute>} />
         </Routes>
     </div>  
   );
