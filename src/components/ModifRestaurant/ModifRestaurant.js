@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './ModifRestaurant.css'
-import logo from '../../assets/restaurant.png'
+import restaurant from '../../assets/restaurant.png'
 import { fetchWrapper } from '../../lib/useGestDB';
 
 function ModifRestaurant() {
