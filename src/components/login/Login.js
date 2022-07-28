@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Login.css'
-import logo from '../../assets/logo.png'
+import animationentree from '../../assets/animationentree.gif'
 import { useGestLogin } from '../../lib/useGestLogin'
 import { useNavigate } from "react-router-dom";
 import { fetchWrapper } from '../../lib/useGestDB';
@@ -76,16 +76,16 @@ function Login(props) {
             :
             <div id='loginDiv'>
               <div>
-                <img src={logo} alt="Logo" className='logo' />
+                <img src={animationentree} alt="animationentree" className='logo' />
               </div>
               <div className='formDiv'>
                 <div className='inputDiv'>
-                    <label><b>Adresse mail </b></label>
-                    <input type="email" placeholder="Votre mail" value={login.mail} onChange={handleChange} name='mail' multiple  required/>
-                    <label><b>Mot de passe</b></label>
-                    <input type="password" placeholder="Entrer le mot de passe" name="password" onChange={handleChange} value={login.password} required />
+                    <label><h4>Adresse mail </h4></label>
+                    <input className='input' type="email" placeholder="Votre mail" value={login.mail} onChange={handleChange} name='mail' multiple  required/>
+                    <label><h4>Mot de passe</h4></label>
+                    <input className='input' type="password" placeholder="Entrer le mot de passe" name="password" onChange={handleChange} value={login.password} required />
                     <br/>
-                    <input type="submit" id='submit' onClick={verifEmail} value='Connexion'/>  
+                    <button className='buttonstyle' type="submit" id='submit' onClick={verifEmail} value='Connexion'>C'est parti !</button>  
                     <br/>
                     {(erreur !=='') && <div className='alert'><label >{erreur}</label></div>}
                     <a href="#" onClick={() => lostPass()} className='lost'>Mot de passe oublié</a>
