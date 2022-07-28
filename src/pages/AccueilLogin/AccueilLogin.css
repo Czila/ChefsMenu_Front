@@ -1,8 +1,13 @@
 #AccueilLogin {
     background-color : #bee3db;
-    flex: 1;
     display: flex;
     align-items: center;
     flex-direction: column;
     height: 100vh;
+    color: black;
+    font-family: 'Quicksand';
+    border-top: 2px solid #89b0ae;
+    justify-content: center;
+    text-align: center
+
 };

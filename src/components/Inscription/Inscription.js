@@ -78,7 +78,7 @@ function Inscription() {
                       <div>
               <img src={inscription} alt="inscription" className='logo' /><br/><br/><br/>
             </div>
-            <label><h3>Bienvenue sur la plateforme Chef's Menu <br/>qui va vous simplifier la gestion de vos restaurants !</h3></label><br/><br/><br/>
+            <label><h3>Bienvenue sur la plateforme Chef's Menu <br/>qui va simplifier la gestion de vos restaurants !</h3></label><br/><br/><br/>
             <label htmlFor="nom">Nom <em>*&ensp;</em></label>
             <input id="nom" placeholder="Serre" autoFocus value={newRestaurateur.nom} onChange={handleChange} name='nom' required /><br/><br/>
             <label htmlFor="prenom">Prénom <em>*&ensp;</em></label>
