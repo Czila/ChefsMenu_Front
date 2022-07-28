@@ -27,7 +27,6 @@ function NewQRCode() {
 
 const printQRCode =() => {
   const input = document.getElementById('QRCodelist');
- console.log(input)
   html2canvas(input)
     .then((canvas) => {
       const imgData = canvas.toDataURL('image/png');

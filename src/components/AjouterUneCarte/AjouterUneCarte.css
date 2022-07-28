@@ -9,10 +9,23 @@
     border-top: 2px solid #89b0ae;
 }
 
+#dispoDiv {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:space-around;
+}
+#carteDiv {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:space-around;
+}
+
 .tableItem {
     
-    min-width: 80vw;
-    max-width: 80vw;
+    min-width: 45vw;
+    max-width: 45vw;
     background-color: #faf9f9;
     border: 2px solid #89b0ae;
     table-layout: fixed;
