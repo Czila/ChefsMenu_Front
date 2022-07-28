@@ -3,7 +3,7 @@ import welcome from '../../assets/welcome.gif'
 
 
 function AccueilLogin(){  
-
+   
     return(
         <div id="AccueilLogin">
             <div>

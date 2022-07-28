@@ -4,33 +4,66 @@ import { useEffect, useState } from 'react';
 import {fetchWrapper} from '../../lib/useGestDB'
 
 
-
 function MaCarte(){  
 
     const idRestaurant=localStorage.getItem("CurrentRestaurant");
-    const [nomRestaurant, setNomRestaurant] = useState('')
+    const [nomRestaurant, setNomRestaurant] = useState([]);
+    const [menus, setMenus] = useState([]);
 
     const getNomRestaurant = async () => {
         const NR = (await fetchWrapper.get(`http://localhost:3001/restaurant/${idRestaurant}`))
-        setNomRestaurant(NR)
+        setNomRestaurant(NR[0].nom)
     }
 useEffect( () => {
     getNomRestaurant()
-})
+}, [])
     
+const getMenus = async () => {
+    const mns = (await fetchWrapper.get(``))
+}
 
     return(
         <div id="MaCarte">
             <div>
                 <img src={carte} alt="carte" className='logo' /><br/>
-                <label><h4>Bienvenue chez {`${nomRestaurant[0].nom}`}</h4></label>
+                <label><h2>Bienvenue chez {`${nomRestaurant}`}</h2></label><br/>
             </div>
             <div>
-                <h2>Menus disponibles : </h2><br/>
+                <h2>Menus disponibles : </h2>
 
-                    <ul></ul>
-                <h2>A la Carte : </h2><br/>
-                    <p>Liste des éléments à la carte avec un select par catégorie</p>
+                    <ul>
+                        <li>Menu 1<br/><i>description</i><br/><div align="right">Prix &ensp;<input type='submit' value='Commander'/></div></li>
+                        <li>Menu 1<br/><i>description</i><br/><div align="right">Prix &ensp;<input type='submit' value='Commander'/></div></li>
+                        <li>Menu 1<br/><i>description</i><br/><div align="right">Prix &ensp;<input type='submit' value='Commander'/></div></li>
+                        <li>Menu 1<br/><i>description</i><br/><div align="right">Prix &ensp;<input type='submit' value='Commander'/></div></li>
+                        <li>Menu 1<br/><i>description</i><br/><div align="right">Prix &ensp;<input type='submit' value='Commander'/></div></li>
+                    </ul>
+                <h2>A la Carte : </h2>
+                <h3>Catégorie 1</h3>
+                    <ul>
+                        <li>Element 1<br/><i>description</i><div align="right">Prix &ensp;<input type='submit' value='Commander'/></div></li>
+                        <li>Element 1<br/><i>description</i><div align="right">Prix &ensp;<input type='submit' value='Commander'/></div></li>
+                        <li>Element 1<br/><i>description</i><div align="right">Prix &ensp;<input type='submit' value='Commander'/></div></li>
+                        <li>Element 1<br/><i>description</i><div align="right">Prix &ensp;<input type='submit' value='Commander'/></div></li>
+
+                    </ul>
+                    <h3>Catégorie 2</h3>
+                    <ul>
+                        <li>Element 1<br/><i>description</i><div align="right">Prix &ensp;<input type='submit' value='Commander'/></div></li>
+                        <li>Element 1<br/><i>description</i><div align="right">Prix &ensp;<input type='submit' value='Commander'/></div></li>
+                        <li>Element 1<br/><i>description</i><div align="right">Prix &ensp;<input type='submit' value='Commander'/></div></li>
+                        <li>Element 1<br/><i>description</i><div align="right">Prix &ensp;<input type='submit' value='Commander'/></div></li>
+
+                    </ul>
+
+                    <h3>Catégorie 3</h3>
+                    <ul>
+                        <li>Element 1<br/><i>description</i><div align="right">Prix &ensp;<input type='submit' value='Commander'/></div></li>
+                        <li>Element 1<br/><i>description</i><div align="right">Prix &ensp;<input type='submit' value='Commander'/></div></li>
+                        <li>Element 1<br/><i>description</i><div align="right">Prix &ensp;<input type='submit' value='Commander'/></div></li>
+                        <li>Element 1<br/><i>description</i><div align="right">Prix &ensp;<input type='submit' value='Commander'/></div></li>
+
+                    </ul>
                 
             </div>
                     
