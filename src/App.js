@@ -13,6 +13,8 @@ import NewQRCode from './components/NewQRCode/NewQRCode'
 import MaCarte from './pages/MaCarte/MaCarte';
 
 function App() {  
+const [currentRestaurantId,setCurrentRestaurantId]=useState('')
+
   const ProtectedRoute = ({ children }) => {
     const user =localStorage.getItem("token")
     if (!user) {
@@ -31,6 +33,7 @@ function App() {
               </ProtectedRoute>
             } />
           <Route path="/login" element={<Login />} />
+          <Route path="/changePass/:token" element={<ChangerMotDepasse />} />
           <Route path="/inscription" element={<Inscription />}  />
 
           <Route path="/ajouterunelement/:restaurantID"  element={

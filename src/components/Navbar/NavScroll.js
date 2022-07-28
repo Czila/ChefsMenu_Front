@@ -10,7 +10,7 @@ import {fetchWrapper} from '../../lib/useGestDB'
 import { useNavigate } from "react-router-dom";
 
 
-function NavScroll(props) {
+function NavScroll({currentRestUpdate}) {
   const navigate = useNavigate(); 
   const gestLogin = useGestLogin()
   const [isLogin,setIsLogin] = useState(false)
