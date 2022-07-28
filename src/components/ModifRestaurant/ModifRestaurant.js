@@ -3,7 +3,7 @@ import './ModifRestaurant.css'
 import logo from '../../assets/restaurant.png'
 import { fetchWrapper } from '../../lib/useGestDB';
 
-function AjoutRestaurant() {
+function ModifRestaurant() {
     const [nom, setNom] = useState("")
     const [adresse, setAdresse] = useState("")
     const [cp, setCP] = useState("")
@@ -54,7 +54,7 @@ return (
           </div>
           <div>
               <div className='formulairemodifresto'>
-                <label className='ARtitre'><h3><b>Ajoutez votre Restaurant</b></h3></label><br/><br/>
+                <label className='ARtitre'><h3><b>Modifier votre Restaurant</b></h3></label><br/><br/>
                 <label><b>Nom</b></label><br/>
                 <input className='input' type="string" placeholder="nom" onChange={(e) => setNom(e.currentTarget.value)} name='nom'value={nom} required/><br/><br/>
                 <label><b>Adresse</b></label><br/>
@@ -70,7 +70,7 @@ return (
                   {(previewSrc) && <img src={previewSrc} alt='Apercu' />}
                 </div>
               </div>
-              <div className='formulairebutton'>
+              <div className='formulairemodifbutton'>
                 <button className='buttonstyle' onClick={setRestaurant}> </button>
               </div>
               {(fieldValidationErrors.error) && 
