@@ -10,8 +10,12 @@ import AjouterunMenu from './components/AjouterunMenu/AjouterunMenu';
 import AccueilLogin from './pages/AccueilLogin/AccueilLogin';
 import AjoutRestaurant from './components/AjoutRestaurant/AjoutRestaurant'
 import NewQRCode from './components/NewQRCode/NewQRCode'
+import ChangerMotDepasse from './components/ChangerMotDepasse/ChangerMotDepasse'
+import { useState } from 'react';
 
 function App() {  
+const [currentRestaurantId,setCurrentRestaurantId]=useState('')
+
   const ProtectedRoute = ({ children }) => {
     const user =localStorage.getItem("token")
     if (!user) {
@@ -30,6 +34,7 @@ function App() {
               </ProtectedRoute>
             } />
           <Route path="/login" element={<Login />} />
+          <Route path="/changePass/:token" element={<ChangerMotDepasse />} />
           <Route path="/inscription" element={<Inscription />}  />
 
           <Route path="/ajouterunelement/:restaurantID"  element={

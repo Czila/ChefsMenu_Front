@@ -73,10 +73,10 @@ function Login(props) {
         <div id='loginForm'>
             {(finReset) ?
             <div>
-              <h3> 📧 Un mail avec les instructions pour réinitialiser votre mot de passe viens de partir !!!</h3>
+              <h3> 📧 Un mail avec les instructions pour réinitialiser votre mot de passe vient de partir !!!</h3>
             </div>
             :
-            <div>
+            <div id='loginDiv'>
               <div>
                 <img src={logo} alt="Logo" className='logo' />
               </div>
@@ -87,16 +87,19 @@ function Login(props) {
                     <label><b>Mot de passe</b></label>
                     <input type="password" placeholder="Entrer le mot de passe" name="password" onChange={handleChange} value={login.password} required />
                     <br/>
-                    <a href="#" onClick={() => lostPass()}>Récuperer mon mot de passe</a>
+                    <input type="submit" id='submit' onClick={verifEmail} value='Connexion'/>  
+                    <br/>
+                    {(erreur !=='') && <div className='alert'><label >{erreur}</label></div>}
+                    <a href="#" onClick={() => lostPass()} className='lost'>Mot de passe oublié</a>
+                    <a href="#" onClick={() => goInscription()} className='new'>Je n'ai pas encore de compte?</a>
                   </div>
+              
                 <div className='buttonDiv'>
-                  <input type="submit" id='submit' onClick={verifEmail} value='Connexion'/>
+                  
                 </div>
               </div>
-              {(erreur !=='') && <div className='alert'><label >{erreur}</label></div>}
-              <p><br/><br/>Je n'ai pas encore de compte?</p>
-              <button onClick={goInscription}>S'inscrire</button>
-            </div>
+              
+             </div>
           }
         </div>
         );

@@ -7,6 +7,12 @@
     height: 100vh;
 }
 
+#loginDiv {
+    display: flex;
+    flex-direction: row;
+
+}
+
 .logo {
   align-items: center;
    justify-content: center;
@@ -15,11 +21,13 @@
     display: flex;
     flex-direction: row;  
     justify-content: center;  
+    width: 50vw;
 }   
 
 .inputDiv{
     display: flex;
     flex-direction: column;
+    width: 30vw;
 }
 .buttonDiv {
     align-self: center;
@@ -48,7 +56,9 @@
   }
 
 .alert {
-    background-color: #f44336;
+    color : #000000;
+    font-weight: bold;
+    background-color: #ffd6ba;
     text-align: center;
     padding: 0.5vh;
     width: 30vw;
@@ -59,4 +69,25 @@
     background-color: #bee3db;
     color: #555b6e;
   }
+  
+
+  a {
+    color: #0d6efd;
+    text-decoration: none;
+  }
+
+.lost {
+    color : #fd7e14
+}
+  
+  a:hover {
+    text-decoration: underline;
+  }
+
+  .input{
+    background-color: #faf9f9;
+    border: 2px solid #89b0ae;
+}
+
+
   
