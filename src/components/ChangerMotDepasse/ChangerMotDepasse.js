@@ -38,7 +38,7 @@ function ChangerMotDePasse() {
         {
             try {
                 await fetchWrapper.post('http://localhost:3001/restaurateur/updatePassword/'+restaurateur , {mdp})
-                setInfo({active:true,message:"mot de passe modifier"})
+                setInfo({active:true,message:"mot de passe modifié"})
             }
             catch (err)
             {

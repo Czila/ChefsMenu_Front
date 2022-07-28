@@ -8,18 +8,19 @@
   min-height: 10vw;
   max-width: 10vw;
   max-height: 10vw;
-  margin: 30px
+  margin: 30px;
+  align-items: center;
 
 }
 
 .QRCodelist {
-  background-color: #bee3db;
-  border-top: 2px solid #89b0ae;
+
   display: flex;
   flex-direction: row;
   flex-wrap:wrap;
   gap: 10px;
   margin-top: 10px;
+  align-items: center;
 
 }
 h2 {
@@ -29,4 +30,20 @@ html {
     background-color : #bee3db;
     font-size: 14px;
     min-width: 100%;
+  }
+  #QRCodetitre{
+    display: flex;
+    justify-content: center;
+    margin-top: revert
+  }
+
+  #conteneurqrcode{
+    display: flex;
+    flex-direction: column;
+    background-color: #bee3db;
+    border-top: 2px solid #89b0ae;
+  }
+
+  #buttonqrcode{
+ 
   }
