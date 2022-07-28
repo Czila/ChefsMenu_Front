@@ -1,23 +1,34 @@
 import './MaCarte.css'
 import carte from '../../assets/carte.png'
-
+import { useEffect, useState } from 'react';
+import {fetchWrapper} from '../../lib/useGestDB'
 
 
 
 function MaCarte(){  
 
+    const idRestaurant=localStorage.getItem("CurrentRestaurant");
+    const [nomRestaurant, setNomRestaurant] = useState('')
+
+    const getNomRestaurant = async () => {
+        const NR = (await fetchWrapper.get(`http://localhost:3001/restaurant/${idRestaurant}`))
+        setNomRestaurant(NR)
+    }
+useEffect( () => {
+    getNomRestaurant()
+}, [])
+    
 
     return(
         <div id="MaCarte">
             <div>
-                <img src={carte} alt="Logo" className='logo' />
-                <label><h4>Restaurant sélectionné</h4></label>
+                <img src={carte} alt="carte" className='logo' />
+                <label><h4>Bienvenue chez {`${nomRestaurant[0].nom}`}</h4></label>
             </div>
-
-
             <div>
                 <h2>Menus disponibles : </h2><br/>
-                    <p>Liste des menus</p>
+
+                    <ul></ul>
                 <h2>A la Carte : </h2><br/>
                     <p>Liste des éléments à la carte avec un select par catégorie</p>
                 
