@@ -1,14 +1,41 @@
 import {useState } from "react";
 import {fetchWrapper} from '../../lib/useGestDB'
+import { jsPDF } from "jspdf"
+import html2canvas from "html2canvas"
 
 import ('./Commande.css');
+
+
+
 
 function Commande(props) {
     const [commande,SetCommande] = useState(props.commande[0])
     let total =0;
     let totalTTC =0;
 
+    const canvasAdd =() => {
+        let add =''
 
+        add =`<div>'Addition de la table '${commande.numTable} </div>`
+        add +=`<div>'Addition de la table '${commande.numTable} </div>`
+
+        return add
+    }
+
+    const printAddition =() => {
+        const input = document.getElementById('commande');
+        console.log(canvasAdd())
+        html2canvas(canvasAdd)
+          .then((canvas) => {
+            const imgData = canvas.toDataURL('image/png');
+            const pdf = new jsPDF();
+
+            pdf.text(`Addition de la table ${commande.numTable} `,10,10)
+            //pdf.addImage(imgData, 'JPEG', 0, 0);
+            // pdf.output('dataurlnewwindow');
+            pdf.save(`Addition${commande.numTable}.pdf`);
+          })
+      }
 
     const updateTotal = (m,t) =>
     {
@@ -18,14 +45,14 @@ function Commande(props) {
 
     const closeCommande =() =>
     {
-        console.log("d")
         fetchWrapper.put(`http://localhost:3001/commande/${commande._id}`,{"etat":"Fini"})
         SetCommande({...commande,"etat":"Fini"})
     }
+    console.log(commande)
 
     return ( <div>
         <h1 className="titreCommande">Commande de la table {commande.numTable}</h1>
-        <div>
+        <div id="commande">
             
             {(commande.menus.length>0) &&
             <ul >
@@ -62,7 +89,7 @@ function Commande(props) {
             </div>
           </div>
           <div className="butCommande">
-            <button>🖨️ Imprimer l'addition</button>
+            <button onClick={printAddition}>🖨️ Imprimer l'addition</button>
             {(commande.etat==='enCours') && <button onClick={()=> closeCommande()}>✅ Terminer la commande</button>}
           </div>
     </div> );

@@ -83,7 +83,7 @@ function NavScroll({currentRestUpdate}) {
             
             <NavDropdown title='Carte' id="basic-nav-dropdown" disabled={deMenu}>
               <NavDropdown.Item href={`/previewcarte/${currentRestaurant}`}>Afficher carte </NavDropdown.Item>
-              <NavDropdown.Item href="nouvellecarte">
+              <NavDropdown.Item href={`/nouvellecarte/${currentRestaurant}`}>
               ➕ Nouvelle Carte
               </NavDropdown.Item>
               <NavDropdown.Item href="modifiermacarte">
