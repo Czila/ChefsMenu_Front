@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Inscription.css'
-import logo from '../../assets/logo.png'
+import inscription from '../../assets/inscription.png'
 
 
 function Inscription() {
@@ -70,21 +70,22 @@ function Inscription() {
         <div id='inscriptionForm' className='formDiv'>
         {(inscriptionFini) ?
         <div>
-          <h1>Inscription validé</h1>
-          <span>Merci pour vogtre inscription ... Bonne journée.</span>
+          <h1>Inscription validée</h1>
+          <span>Bienvenue sur la plateforme Chef's Menu ! </span>
         </div>
         :
         <form>
                       <div>
-              <img src={logo} alt="Logo" className='logo' />
+              <img src={inscription} alt="inscription" className='logo' /><br/><br/><br/>
             </div>
-            <label htmlFor="nom">Nom <em>*</em></label>
+            <label><h3>Bienvenue sur la plateforme Chef's Menu <br/>qui va vous simplifier la gestion de vos restaurants !</h3></label><br/><br/><br/>
+            <label htmlFor="nom">Nom <em>*&ensp;</em></label>
             <input id="nom" placeholder="Serre" autoFocus value={newRestaurateur.nom} onChange={handleChange} name='nom' required /><br/><br/>
-            <label htmlFor="prenom">Prénom <em>*</em></label>
+            <label htmlFor="prenom">Prénom <em>*&ensp;</em></label>
             <input id="prenom" placeholder="Pierre" value={newRestaurateur.prenom} onChange={handleChange} name='prenom' required /><br/><br/>
-            <label><b>Adresse mail <em>*</em> </b></label>
+            <label><b>Adresse mail <em>*&ensp;</em> </b></label>
             <input htmlFor='email' type="email" placeholder="Votre mail" value={newRestaurateur.mail} onChange={handleChange} name='mail' required/><br/><br/>
-            <label htmlFor='password'><b>Mot de passe <em>*</em></b></label>
+            <label htmlFor='password'><b>Mot de passe <em>*&ensp;</em></b></label>
             <input type="password" placeholder="Entrer le mot de passe" name="motdepasse" value={newRestaurateur.password} onChange={handleChange} required /><br/><br/>
             <input type="submit" id='submit' onClick={saveRestaurateur} />
             <div className='error'>
