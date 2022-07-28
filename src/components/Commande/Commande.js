@@ -23,9 +23,8 @@ function Commande(props) {
     }
 
     const printAddition =() => {
-        const input = document.getElementById('commande');
-        console.log(canvasAdd())
-        html2canvas(canvasAdd)
+        const input = document.getElementById('commandeForPrint');
+        html2canvas(input)
           .then((canvas) => {
             const imgData = canvas.toDataURL('image/png');
             const pdf = new jsPDF();
@@ -51,6 +50,7 @@ function Commande(props) {
     console.log(commande)
 
     return ( <div>
+    <div>
         <h1 className="titreCommande">Commande de la table {commande.numTable}</h1>
         <div id="commande">
             
@@ -92,6 +92,47 @@ function Commande(props) {
             <button onClick={printAddition}>🖨️ Imprimer l'addition</button>
             {(commande.etat==='enCours') && <button onClick={()=> closeCommande()}>✅ Terminer la commande</button>}
           </div>
+    </div>
+    <div>
+    <h1 className="titreCommande">Commande de la table {commande.numTable}</h1>
+        <div id="commande">
+            
+            {(commande.menus.length>0) &&
+            <ul >
+                <li className="titreCommandeLi liMenu">Menu : </li>
+
+                <ul className="detailCommandeul">
+                    {commande.menus.map((me) => 
+                        <li key={me._id}>{me.nom}{updateTotal(me.prix_HT,me.tva)}</li>
+                    )}
+                </ul>
+                 
+            </ul>
+            }
+            {
+            (commande.elements.length>0) &&
+            <ul >
+                <li className="titreCommandeLi liCarte">A la carte : </li>
+                <ul className="detailCommandeul">
+                    {commande.elements.map((el) => 
+                        <li key={el._id}>{el.nom} {updateTotal(el.prix_HT,el.tva)}</li>
+                    )}
+                </ul>
+            </ul>
+            }
+          </div>
+          <div className="total">
+            <div>
+                <h3>Total HT</h3>
+                <span>{total.toFixed(2)} €</span>
+            </div>
+            <div>
+                <h3>Total TTC</h3>
+                <span>{totalTTC.toFixed(2)} €</span>
+            </div>
+          </div>
+    </div>
+
     </div> );
 }
 
