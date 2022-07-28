@@ -34,7 +34,7 @@ function ChangerMotDePasse() {
     return (
         <div>
             <div className="changerMotDePasse">
-                <h2>Merci de saissir votre mot de passe</h2>
+                <h2>Merci de saisir votre mot de passe</h2>
                 <label htmlFor="mdp1">Nouveau mot de passe : </label>
                 <input type="password" id="mdp1" name="mdp1" />
                 <label htmlFor="mdp2">Confirmation : </label>

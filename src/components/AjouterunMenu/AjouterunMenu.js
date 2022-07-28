@@ -151,9 +151,9 @@ const updateCat = (c) =>
                             <tr key={element._id}>
                                 <td >{element.nom}</td>
                                 <td >{element.description}</td>
-                                <td className='petitecolonne'>{element.categorie}</td>
-                                <td className='petitecolonne'>{element.prix_HT}</td>
-                                <td className='petitecolonne'><button onClick={() =>updateMenu(element)}>➕</button></td>
+                                <td >{element.categorie}</td>
+                                <td >{element.prix_HT}</td>
+                                <td ><button onClick={() =>updateMenu(element)}>➕</button></td>
                             </tr> )
 
                             }
@@ -179,9 +179,9 @@ const updateCat = (c) =>
                             <tr key={element._id}>
                                 <td >{element.nom}</td>
                                 <td >{element.description}</td>
-                                <td className='petitecolonne'>{element.categorie}</td>
-                                <td className='petitecolonne'>{element.prix_HT}</td>
-                                <td className='petitecolonne'><button onClick={() =>delMenuActuelEl(element)}>➖</button></td>
+                                <td >{element.categorie}</td>
+                                <td >{element.prix_HT}</td>
+                                <td ><button onClick={() =>delMenuActuelEl(element)}>➖</button></td>
                             </tr> )}
                         </tbody>
                         </table>
