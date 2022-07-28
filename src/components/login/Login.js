@@ -27,9 +27,7 @@ function Login(props) {
         }
         catch(err)
         {
-          console.log('ee')
-          console.log(err.message)
-          setErreur('ATTENTION : erreur DB!!! ')
+          setErreur(err)
         }
       }
 
