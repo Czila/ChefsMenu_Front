@@ -11,6 +11,8 @@ import AccueilLogin from './pages/AccueilLogin/AccueilLogin';
 import AjoutRestaurant from './components/AjoutRestaurant/AjoutRestaurant'
 import NewQRCode from './components/NewQRCode/NewQRCode'
 import MaCarte from './pages/MaCarte/MaCarte';
+import { useState } from 'react';
+import ChangerMotDepasse from './components/ChangerMotDepasse/ChangerMotDepasse'
 
 function App() {  
 const [currentRestaurantId,setCurrentRestaurantId]=useState('')

@@ -11,7 +11,7 @@ function MaCarte(){
         <div id="MaCarte">
             <div>
                 <img src={carte} alt="Logo" className='logo' />
-                <label><h4>{`${currentRestaurant}`}</h4></label>
+                <label></label>
             </div>
 
 
