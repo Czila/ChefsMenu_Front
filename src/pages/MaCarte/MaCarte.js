@@ -1,72 +1,12 @@
 import './MaCarte.css'
 import carte from '../../assets/carte.png'
-import {useGestLogin} from '../../lib/useGestLogin';
-import { useEffect, useState } from 'react';
-import {fetchWrapper} from '../../lib/useGestDB'
-import { useNavigate } from "react-router-dom";
+
 
 
 
 function MaCarte(){  
 
-    const navigate = useNavigate(); 
-    const gestLogin = useGestLogin()
-    const [isLogin,setIsLogin] = useState(false)
-    const [restaurants,setRestaurants]= useState([])
-    const idRestaurateur=localStorage.getItem("userId");
-    const [currentRestaurant,setCurrentRestaurant]= useState(0)
-    const [deMenu,setDeMenu]=useState(true)
-    const[menus, setMenus] = useState('')
-    const params = useParams();
-    let idRestaurant =params.restaurantID
-    const [categories,setCategories]=useState([{}])
-    const [categorie,setCategorie]=useState('')
-    const [elementsDispoInit,setElementsDispoInit]=useState([{}])
-    const [elementsDispo,setElementsDispo]=useState([{}])
-    const [fieldValidationErrors,setFieldValidationErrors] = useState({
-        message:'',
-        error:false})
 
-    
-    const getMyRestaurant = async () => {
-            const R = (await fetchWrapper.get(`http://localhost:3001/restaurant/byOwner/${idRestaurateur}`))
-            setRestaurants(R)
-          }
-      
-
-    const getMyMenus = async () => {
-        const menus = (await fetchWrapper.get(`http://localhost:3001/restaurant/byOwner/${idRestaurateur}/menu`))
-        setMenus(menus)
-    }
-    
-    useEffect(() => {
-      setIsLogin(localStorage.getItem("token"))
-
-      if ((!currentRestaurant) && localStorage.getItem('CurrentRestaurant') )  {
-        setCurrentRestaurant(localStorage.getItem('CurrentRestaurant'))
-        setDeMenu(false)
-      }
-  
-    },[localStorage.getItem("token")])
-
-const updateCat = (c) => 
-{
-    if (c === '')  setElementsDispo(elementsDispoInit)
-    else {
-    const dispo = elementsDispoInit
-    setElementsDispo(dispo.filter(el => el.categorie===c))
-}
-}
-
-    const handleChange = (e) => {
-        const name = e.currentTarget.name
-        if (name=== 'categorie') 
-        {
-            updateCat(e.target.value)
-        }
-    }
-
-   
     return(
         <div id="MaCarte">
             <div>
@@ -78,47 +18,17 @@ const updateCat = (c) =>
             <div>
             <h2>Menus disponibles : </h2><br/>
 
-            {menus.map((menu) => 
-                                <p value={menu.nom} key={menu._id}>{menu.nom} </p>
-                            )}
+      
+                                <p>Liste des menus</p>
+                          
 
 
                         
             <h2>A la Carte : </h2><br/>
                         <div>
-                        Filtre : &ensp;
-                        <select  value={categorie}  name="categorie" onChange={handleChange}>
-                            <option></option>
-                            {categories.map((cat) => 
-                                <option value={cat.nom} key={cat._id}>{cat.nom} </option>
-                            )}
-                            </select><br/><br/>
+                     <p>Liste des éléments à la carte avec un select par catégorie</p>
                     </div>
-                        <table className='tableItem'>
-                            <thead>
-                                <tr className='cattableau'>
-                                    <th>Nom de l'élément</th>
-                                    <th>Description</th>
-                                    <th>Catégorie</th>
-                                    <th>Prix HT</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                        <tbody>
-
-                            {
-                            (elementsDispo) &&
-                            elementsDispo.map((element) =>                        
-                            <tr key={element._id}>
-                                <td >{element.nom}</td>
-                                <td >{element.description}</td>
-                                <td >{element.categorie}</td>
-                                <td >{element.prix_HT}</td>
-                            </tr> )
-
-                            }
-                        </tbody>
-                        </table>
+                        
                     </div><br/><br/><br/>
                     
     
