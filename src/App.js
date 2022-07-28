@@ -13,6 +13,7 @@ import NewQRCode from './components/NewQRCode/NewQRCode'
 import MaCarte from './pages/MaCarte/MaCarte';
 import { useState } from 'react';
 import ChangerMotDepasse from './components/ChangerMotDepasse/ChangerMotDepasse'
+import AjouterUneCarte from './components/AjouterUneCarte/AjouterUneCarte'
 
 function App() {  
 const [currentRestaurantId,setCurrentRestaurantId]=useState('')
@@ -51,6 +52,7 @@ const [currentRestaurantId,setCurrentRestaurantId]=useState('')
           <Route path="/genererunqrcode/:restaurantID" element={<ProtectedRoute><NewQRCode /></ProtectedRoute>} />
           <Route path="/modifierrestaurant/:restaurantID" element={<ProtectedRoute><NewQRCode /></ProtectedRoute>} />
           <Route path="/previewcarte/:restaurantID" element={<ProtectedRoute><MaCarte /></ProtectedRoute>} />
+          <Route path="/nouvellecarte/:restaurantID" element={<ProtectedRoute><AjouterUneCarte /></ProtectedRoute>} />
         </Routes>
     </div>  
   );
