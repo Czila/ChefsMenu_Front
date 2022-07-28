@@ -11,25 +11,17 @@ function MaCarte(){
         <div id="MaCarte">
             <div>
                 <img src={carte} alt="Logo" className='logo' />
-                <label><h4>{`${currentRestaurant}`}</h4></label>
+                <label><h4>Restaurant sélectionné</h4></label>
             </div>
 
 
             <div>
-            <h2>Menus disponibles : </h2><br/>
-
-      
-                                <p>Liste des menus</p>
-                          
-
-
-                        
-            <h2>A la Carte : </h2><br/>
-                        <div>
-                     <p>Liste des éléments à la carte avec un select par catégorie</p>
-                    </div>
-                        
-                    </div><br/><br/><br/>
+                <h2>Menus disponibles : </h2><br/>
+                    <p>Liste des menus</p>
+                <h2>A la Carte : </h2><br/>
+                    <p>Liste des éléments à la carte avec un select par catégorie</p>
+                
+            </div>
                     
     
 
