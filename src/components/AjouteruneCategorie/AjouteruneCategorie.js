@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './AjouteruneCategorie.css'
 import { fetchWrapper } from '../../lib/useGestDB';
 import menu from '../../assets/menu.png'
 import {useParams} from 'react-router-dom';
 
-function AjouteruneCategorie() {
+function AjouteruneCategorie({currentRest}) {
     const params = useParams();
     let idRestaurant =params.restaurantID
     const [nom, setNom] = useState("")
@@ -25,6 +25,10 @@ catch(err)
 }
 }
 
+useEffect(() => {
+console.log(currentRest)
+},[currentRest])
+
     return (
         <div id='AjouteruneCategorieForm'>
             <div>
@@ -32,8 +36,7 @@ catch(err)
             </div>
             <div className='AUCdiv'>
                 <div className='AUCdiv'>
-                    
-                  <label className='AUCtitre'><h3><b>Ajoutez une catégorie (entrées, plats, desserts, boissons...) </b></h3></label><br/><br/>
+                  <label className='AUCtitre'><h3><b>{currentRest}Ajoutez une catégorie (entrées, plats, desserts, boissons...) </b></h3></label><br/><br/>
                   <label><b>Nom</b></label><br/>
                   <input className='input' type="text" placeholder="nom" onChange={(e) => setNom(e.currentTarget.value)} name='nom'value={nom} required/>
                 </div><br/>

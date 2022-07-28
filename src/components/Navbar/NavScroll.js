@@ -10,7 +10,7 @@ import {fetchWrapper} from '../../lib/useGestDB'
 import { useNavigate } from "react-router-dom";
 
 
-function NavScroll(props) {
+function NavScroll({currentRestUpdate}) {
   const navigate = useNavigate(); 
   const gestLogin = useGestLogin()
   const [isLogin,setIsLogin] = useState(false)
@@ -83,7 +83,7 @@ function NavScroll(props) {
             </NavDropdown>
             
             <NavDropdown title='Carte' id="basic-nav-dropdown" disabled={deMenu}>
-              <NavDropdown.Item href="previewcarte">Afficher carte </NavDropdown.Item>
+              <NavDropdown.Item href={`/previewcarte/${currentRestaurant}`}>Afficher carte </NavDropdown.Item>
               <NavDropdown.Item href="nouvellecarte">
               ➕ Nouvelle Carte
               </NavDropdown.Item>
