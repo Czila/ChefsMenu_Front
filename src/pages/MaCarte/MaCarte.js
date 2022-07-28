@@ -9,18 +9,44 @@ function MaCarte(){
     const idRestaurant=localStorage.getItem("CurrentRestaurant");
     const [nomRestaurant, setNomRestaurant] = useState([]);
     const [menus, setMenus] = useState([]);
+    const [elements, setElements] = useState([]);
+    const [currentCategorie, setCurrentCategorie] = useState('');
 
     const getNomRestaurant = async () => {
         const NR = (await fetchWrapper.get(`http://localhost:3001/restaurant/${idRestaurant}`))
         setNomRestaurant(NR[0].nom)
     }
+
+const getMenus = async () => {
+    const mns = (await fetchWrapper.get(`http://localhost:3001/menu/ByRestaurant/${idRestaurant}`))
+    setMenus(mns)
+    console.log('test1', mns)
+}
+
+
+const getElements = async () => {
+    const elmts = (await fetchWrapper.get(`http://localhost:3001/element/ByRestaurant/${idRestaurant}`))
+    setElements(elmts)
+    console.log('test1', elmts)
+}
+const verifCategorie = (newCategorie) => {
+if (newCategorie === currentCategorie){
+console.log('false')
+return false}
+
+else{ 
+    console.log('true')
+    setCurrentCategorie(newCategorie)
+return true
+}}
+
 useEffect( () => {
     getNomRestaurant()
-}, [])
+    getMenus()
+    getElements()
+}, [idRestaurant])
     
-const getMenus = async () => {
-    const mns = (await fetchWrapper.get(``))
-}
+
 
     return(
         <div id="MaCarte">
@@ -32,38 +58,19 @@ const getMenus = async () => {
                 <h2>Menus disponibles : </h2>
 
                     <ul>
-                        <li>Menu 1<br/><i>description</i><br/><div align="right">Prix &ensp;<input type='submit' value='Commander'/></div></li>
-                        <li>Menu 1<br/><i>description</i><br/><div align="right">Prix &ensp;<input type='submit' value='Commander'/></div></li>
-                        <li>Menu 1<br/><i>description</i><br/><div align="right">Prix &ensp;<input type='submit' value='Commander'/></div></li>
-                        <li>Menu 1<br/><i>description</i><br/><div align="right">Prix &ensp;<input type='submit' value='Commander'/></div></li>
-                        <li>Menu 1<br/><i>description</i><br/><div align="right">Prix &ensp;<input type='submit' value='Commander'/></div></li>
+                        {menus.map((menu) => 
+                                <li value={menu.nom} key={menu._id}>{menu.nom}<br/><i>{menu.description}</i><br/><div align="right">{menu.prix_HT.toFixed(2)}€ &ensp;<input type='submit' value='Commander'/></div> </li>
+                            )}
                     </ul>
                 <h2>A la Carte : </h2>
-                <h3>Catégorie 1</h3>
                     <ul>
-                        <li>Element 1<br/><i>description</i><div align="right">Prix &ensp;<input type='submit' value='Commander'/></div></li>
-                        <li>Element 1<br/><i>description</i><div align="right">Prix &ensp;<input type='submit' value='Commander'/></div></li>
-                        <li>Element 1<br/><i>description</i><div align="right">Prix &ensp;<input type='submit' value='Commander'/></div></li>
-                        <li>Element 1<br/><i>description</i><div align="right">Prix &ensp;<input type='submit' value='Commander'/></div></li>
-
+                    {elements.map((element) => 
+                    <div>
+                                <li value={element.nom} key={element._id}>{element.nom}<br/><i>{element.description}</i><br/><div align="right">{element.prix_HT.toFixed(2)}€ &ensp;<input type='submit' value='Commander'/></div> </li>
+                                </div>)}
+                      
                     </ul>
-                    <h3>Catégorie 2</h3>
-                    <ul>
-                        <li>Element 1<br/><i>description</i><div align="right">Prix &ensp;<input type='submit' value='Commander'/></div></li>
-                        <li>Element 1<br/><i>description</i><div align="right">Prix &ensp;<input type='submit' value='Commander'/></div></li>
-                        <li>Element 1<br/><i>description</i><div align="right">Prix &ensp;<input type='submit' value='Commander'/></div></li>
-                        <li>Element 1<br/><i>description</i><div align="right">Prix &ensp;<input type='submit' value='Commander'/></div></li>
-
-                    </ul>
-
-                    <h3>Catégorie 3</h3>
-                    <ul>
-                        <li>Element 1<br/><i>description</i><div align="right">Prix &ensp;<input type='submit' value='Commander'/></div></li>
-                        <li>Element 1<br/><i>description</i><div align="right">Prix &ensp;<input type='submit' value='Commander'/></div></li>
-                        <li>Element 1<br/><i>description</i><div align="right">Prix &ensp;<input type='submit' value='Commander'/></div></li>
-                        <li>Element 1<br/><i>description</i><div align="right">Prix &ensp;<input type='submit' value='Commander'/></div></li>
-
-                    </ul>
+                    
                 
             </div>
                     
@@ -81,55 +88,5 @@ const getMenus = async () => {
 
 
     /*    
-const updateMenu = (e) =>{
-    const dispo = elementsDispo
-    const dispoInit = elementsDispoInit
-    setTotalBrut(totalBrut+e.prix_HT)
-    setMenuActuel(menuActuel => [...menuActuel, e])
-    dispo.splice(dispo.indexOf(e), 1)
-    dispoInit.splice(dispoInit.indexOf(e), 1)
-    setElementsDispo(dispo)
-    setElementsDispoInit(dispoInit)
-}
-
-
-const updateBD = async () => {
-    const url = 'http://localhost:3001/menu'
-    try {
-        await fetchWrapper.post(url,{nom, prix_HT:totalNet, remise,idRestaurant,elements:menuActuel})
-        setFin(true)
-    }
-    catch(err)
-    {
-        setFieldValidationErrors({message : err, error:true})
-    }
-
-}
-
-  
-    const logOut =() => {
-      gestLogin.logout()
-      setIsLogin(gestLogin.getState())
-      navigate(`/`);
-    }
-  
-    const onRestaurantClick = (id) => {
-      setCurrentRestaurant(id)
-      localStorage.setItem("CurrentRestaurant",id);
-      navigate(`/listetable/${id}`);
-      setDeMenu(false)
-    }
-  
-    
-
-
-const delMenuActuelEl = (e) =>{
-    const actuel = menuActuel
-    const newBrut = totalBrut-e.prix_HT
-    actuel.splice(actuel.indexOf(e), 1)
-    setMenuActuel(actuel)
-    setElementsDispo(elementsDispo => [...elementsDispo, e])
-    setElementsDispoInit(elementsDispoInit => [...elementsDispoInit, e])
-    setTotalBrut(newBrut)
-}
+{(verifCategorie(element.categorie))&&<h3>{element.categorie}</h3>}
 */
