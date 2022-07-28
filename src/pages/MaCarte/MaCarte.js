@@ -16,13 +16,13 @@ function MaCarte(){
     }
 useEffect( () => {
     getNomRestaurant()
-}, [])
+})
     
 
     return(
         <div id="MaCarte">
             <div>
-                <img src={carte} alt="carte" className='logo' />
+                <img src={carte} alt="carte" className='logo' /><br/>
                 <label><h4>Bienvenue chez {`${nomRestaurant[0].nom}`}</h4></label>
             </div>
             <div>
