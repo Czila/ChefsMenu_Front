@@ -149,8 +149,8 @@ const updateCat = (c) =>
                             (elementsDispo) &&
                             elementsDispo.map((element) =>                        
                             <tr key={element._id}>
-                                <td className='grandecolonne'>{element.nom}</td>
-                                <td className='grandecolonne'>{element.description}</td>
+                                <td >{element.nom}</td>
+                                <td >{element.description}</td>
                                 <td className='petitecolonne'>{element.categorie}</td>
                                 <td className='petitecolonne'>{element.prix_HT}</td>
                                 <td className='petitecolonne'><button onClick={() =>updateMenu(element)}>➕</button></td>
@@ -177,8 +177,8 @@ const updateCat = (c) =>
                         <tbody>
                         {menuActuel.map((element) =>                        
                             <tr key={element._id}>
-                                <td className='grandecolonne'>{element.nom}</td>
-                                <td className='grandecolonne'>{element.description}</td>
+                                <td >{element.nom}</td>
+                                <td >{element.description}</td>
                                 <td className='petitecolonne'>{element.categorie}</td>
                                 <td className='petitecolonne'>{element.prix_HT}</td>
                                 <td className='petitecolonne'><button onClick={() =>delMenuActuelEl(element)}>➖</button></td>
