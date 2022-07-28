@@ -79,6 +79,9 @@ function NavScroll({currentRestUpdate}) {
               <NavDropdown.Item href="/ajoutrestaurant">
                 Créer un restaurant
               </NavDropdown.Item>
+              {/* <NavDropdown.Item href="/modifrestaurant">
+                Modifier un restaurant
+              </NavDropdown.Item> */}
             </NavDropdown>
             
             <NavDropdown title='Carte' id="basic-nav-dropdown" disabled={deMenu}>

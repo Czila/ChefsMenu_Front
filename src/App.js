@@ -14,6 +14,7 @@ import MaCarte from './pages/MaCarte/MaCarte';
 import { useState } from 'react';
 import ChangerMotDepasse from './components/ChangerMotDepasse/ChangerMotDepasse'
 import AjouterUneCarte from './components/AjouterUneCarte/AjouterUneCarte'
+import ModifRestaurant from './components/ModifRestaurant/ModifRestaurant'
 
 function App() {  
 const [currentRestaurantId,setCurrentRestaurantId]=useState('')
@@ -53,6 +54,7 @@ const [currentRestaurantId,setCurrentRestaurantId]=useState('')
           <Route path="/modifierrestaurant/:restaurantID" element={<ProtectedRoute><NewQRCode /></ProtectedRoute>} />
           <Route path="/previewcarte/:restaurantID" element={<ProtectedRoute><MaCarte /></ProtectedRoute>} />
           <Route path="/nouvellecarte/:restaurantID" element={<ProtectedRoute><AjouterUneCarte /></ProtectedRoute>} />
+          <Route path="/modifierrestaurant/:restaurantID" element={<ProtectedRoute><ModifRestaurant /></ProtectedRoute>} />
         </Routes>
     </div>  
   );

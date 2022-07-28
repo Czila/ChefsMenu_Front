@@ -1,0 +1,9 @@
+ModifierRestaurantForm{
+    display: flex;   
+    gap: 30px;
+    flex-wrap: wrap ;
+    background-color: #bee3db;
+    max-width: 300vh;
+    border-top: 2px solid #89b0ae;
+    margin-top: 10px;
+}
