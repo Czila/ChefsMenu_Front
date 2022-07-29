@@ -3,8 +3,8 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    height: 100vh;
-    height: 100vh;
+    max-height: 50vh;
+    min-height: 50vh;
     color: black;
     font-family: 'Quicksand';
     border-top: 2px solid #89b0ae;
@@ -13,4 +13,9 @@
 ul {
 
     list-style: '';
+}
+#carte {
+    display: flex;
+    max-height: 100vh;
+    min-height: 100vh;
 }

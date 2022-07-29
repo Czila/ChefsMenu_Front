@@ -44,7 +44,7 @@ function Login(props) {
           {
             setErreur(res.message)
             if (res.token) {
-              let h = "/"
+              let h = "/AccueilLogin"
               if (props.history) {h = props.history}
               navigate(h);
             }
