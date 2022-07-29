@@ -13,6 +13,9 @@
     background-color: #89b0ae;
     padding: 1vh;
 }
+.titreCommandePrt {
+    padding-left:10vh;
+}
 
 .liMenu {
     list-style: '🍱';
@@ -39,10 +42,6 @@ ul  {
     text-align: center;
     padding: 1vh;
 
-}
-.titreCommandePrt {
-    text-align: center;
-    padding: 1vh;
 }
 .titreCommandeLi {
     text-align: center;
