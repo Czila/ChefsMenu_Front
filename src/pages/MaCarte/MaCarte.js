@@ -150,19 +150,7 @@ useEffect( () => {
                 <label><h2>Bienvenue chez {`${restaurant.nom}`} {restaurant.nbTable}</h2></label><br/>
             </div>
             <div>
-                    {((!commandeFlag))&&
-                        <div>
-                            <span>Pour commander merci de saissir le numéro de votre table : </span>
-                            <input className='input' type="number" placeholder="nbTable" onChange={(e) => { handleChangeNbTable(e)}} name='nbTable' value={numTable} required/>
-                        </div>
-                        }
-                    {
-                    ((!btCommande)) ?
-                        <button onClick={() => createCommande() }>Commander</button>
-                    :
-                    <button onClick={() =>  { setBtCommande(false)
-                        setCommandeFlag(false)} }>Changer table</button>
-                    }
+               
                 <h2>Menus disponibles : </h2>
 
                     <ul>
@@ -185,10 +173,24 @@ useEffect( () => {
                 
             </div>
         </div>
-        <div hidden={!commandeFlag}>
-            <h2>Votre commande : </h2>
-            <div id="commande">
+        <div id='commandeclient'>
+        {((client)&&(!commandeFlag))&&
+                    <div>
+                        <span>Pour commander merci de saisir le numéro de votre table : </span>
+                        <input className='input' type="number" placeholder="nbTable" onChange={(e) => { handleChangeNbTable(e)}} name='nbTable' value={numTable} required/>
+                    </div>
+                    }
+                {
+                ((client)&&(!btCommande)) ?
+                    <button onClick={() => createCommande() }>Commander</button>
+                :
+                <button onClick={() =>  { setBtCommande(false)
+                    setCommandeFlag(false)} }>Changer table</button>
+                }   
+            <div hidden={!commandeFlag}>
             
+            <div id="commande">
+            <h4>Votre commande : </h4>
             {(commande.menus) &&
             <ul >
                 <li className="titreCommandeLi liMenu">Menu : </li>
@@ -223,7 +225,7 @@ useEffect( () => {
                 <span>{totalTTC.toFixed(2)} €</span>
             </div>
           </div>
-        </div>
+          </div></div>
     </div>
     )};    
 

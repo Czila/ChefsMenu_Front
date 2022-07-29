@@ -3,8 +3,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    max-height: 50vh;
-    min-height: 50vh;
+
     color: black;
     font-family: 'Quicksand';
     border-top: 2px solid #89b0ae;
@@ -14,8 +13,26 @@ ul {
 
     list-style: '';
 }
-#carte {
 
-    max-height: 100vh;
-    min-height: 100vh;
+#carte{
+    display: flex;
+    flex-direction: row;
+}
+#commandeclient{
+    max-width: 20%;
+    background-color: #bee3db;
+    display: flex;
+    flex-direction: column;
+
+}
+#MaCarte{
+    min-width: 80%;
+    background-color: #bee3db;
+}
+#commande{
+
+    background-color: #bee3db;
+
+    margin: 20px;
+    
 }
