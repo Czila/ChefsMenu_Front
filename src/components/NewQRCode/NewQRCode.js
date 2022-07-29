@@ -4,7 +4,7 @@ import {fetchWrapper} from '../../lib/useGestDB'
 import {useParams} from 'react-router-dom';
 import { jsPDF } from "jspdf"
 import html2canvas from "html2canvas"
-import ('./NewQRCode.css')
+import './NewQRCode.css'
 
 
 function NewQRCode() {
