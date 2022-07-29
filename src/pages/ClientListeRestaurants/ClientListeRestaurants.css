@@ -40,3 +40,26 @@ h2 {
     background-color: #faf9f9;
     border: 2px solid #89b0ae;
 }
+#carte{
+    display: flex;
+    flex-direction: row;
+}
+#commandeclient{
+    min-width: 20%;
+    border: 2px solid #89b0ae;
+    background-color: #bee3db;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+#MaCarte{
+    min-width: 80%;
+}
+#commande{
+    border: 2px solid #89b0ae;
+    background-color: #bee3db;
+    align-self:flex-end;
+    justify-content: center;
+    padding: 10px;
+    
+}
