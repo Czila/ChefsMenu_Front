@@ -15,7 +15,7 @@ ul {
     list-style: '';
 }
 #carte {
-    display: flex;
+
     max-height: 100vh;
     min-height: 100vh;
 }

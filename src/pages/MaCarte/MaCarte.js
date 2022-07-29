@@ -12,7 +12,6 @@ function MaCarte(){
     const [restaurant, setRestaurant] = useState([]);
     const [menus, setMenus] = useState([]);
     const [elements, setElements] = useState([]);
-    const [client, setClient] = useState(false);
     const [commandeFlag, setCommandeFlag] = useState(false);
     const [commandeElement,setCommandeElement]= useState([])
     const [commandeMenu,setCommandeMenu]= useState([])
@@ -131,8 +130,7 @@ useEffect( () => {
     if (params.restaurantID)  
     {
         setIdRestaurant(params.restaurantID)
-        if (!params.numTable) setClient(true)
-        else setNumTable(params.numTable)
+        if (params.numTable)  setNumTable(params.numTable)
         //on vérifie si la table est libre
         
     }
@@ -152,19 +150,19 @@ useEffect( () => {
                 <label><h2>Bienvenue chez {`${restaurant.nom}`} {restaurant.nbTable}</h2></label><br/>
             </div>
             <div>
-                {((client)&&(!commandeFlag))&&
-                    <div>
-                        <span>Pour commander merci de saissir le numéro de votre table : </span>
-                        <input className='input' type="number" placeholder="nbTable" onChange={(e) => { handleChangeNbTable(e)}} name='nbTable' value={numTable} required/>
-                    </div>
+                    {((!commandeFlag))&&
+                        <div>
+                            <span>Pour commander merci de saissir le numéro de votre table : </span>
+                            <input className='input' type="number" placeholder="nbTable" onChange={(e) => { handleChangeNbTable(e)}} name='nbTable' value={numTable} required/>
+                        </div>
+                        }
+                    {
+                    ((!btCommande)) ?
+                        <button onClick={() => createCommande() }>Commander</button>
+                    :
+                    <button onClick={() =>  { setBtCommande(false)
+                        setCommandeFlag(false)} }>Changer table</button>
                     }
-                {
-                ((client)&&(!btCommande)) ?
-                    <button onClick={() => createCommande() }>Commander</button>
-                :
-                <button onClick={() =>  { setBtCommande(false)
-                    setCommandeFlag(false)} }>Changer table</button>
-                }   
                 <h2>Menus disponibles : </h2>
 
                     <ul>
