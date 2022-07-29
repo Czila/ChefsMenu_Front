@@ -12,7 +12,6 @@ function MaCarte(){
     const [restaurant, setRestaurant] = useState([]);
     const [menus, setMenus] = useState([]);
     const [elements, setElements] = useState([]);
-    const [client, setClient] = useState(false);
     const [commandeFlag, setCommandeFlag] = useState(false);
     const [commandeElement,setCommandeElement]= useState([])
     const [commandeMenu,setCommandeMenu]= useState([])
@@ -131,8 +130,7 @@ useEffect( () => {
     if (params.restaurantID)  
     {
         setIdRestaurant(params.restaurantID)
-        if (!params.numTable) setClient(true)
-        else setNumTable(params.numTable)
+        if (params.numTable)  setNumTable(params.numTable)
         //on vérifie si la table est libre
         
     }
