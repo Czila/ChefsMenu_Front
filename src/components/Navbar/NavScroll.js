@@ -105,7 +105,7 @@ function NavScroll({currentRestUpdate}) {
             </Nav>
           :
           <Nav className="me-auto">
-            <Nav.Link href={`/nosrestaurants}`} >Nos Restaurants</Nav.Link>
+            <Nav.Link href={`/`} >Nos Restaurants</Nav.Link>
             <Nav.Link href={`/about}`} >Qui qui qui ??</Nav.Link>
           </Nav>
           }

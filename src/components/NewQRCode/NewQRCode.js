@@ -10,13 +10,12 @@ import ('./NewQRCode.css')
 function NewQRCode() {
   const params = useParams();
   let idRestaurant =params.restaurantID
-  const urlBase = "http://localhost:3001/restaurant/"
-  const restaurant_id='62d96bb9d4455394b2a619c7'
+  const urlBase = `http://localhost:3000/restaurant/${idRestaurant}`
   const [table,setTables]=useState([{}])
 
   async function updateTables() {
     const t=[]
-    const R = await fetchWrapper.get(`http://localhost:3001/restaurant/${idRestaurant}`)
+    const R = await fetchWrapper.get(`http://localhost:3001/carte/${idRestaurant}`)
     console.log( R[0])
     for (let i =1 ; i< R[0].nbTable +1; i++)      
     {   
@@ -37,7 +36,6 @@ const printQRCode =() => {
     })
 }
 useEffect(() => {  
-  console.log(restaurant_id)
   updateTables()
 },[idRestaurant]);   
 

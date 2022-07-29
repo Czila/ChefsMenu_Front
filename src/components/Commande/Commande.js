@@ -2,7 +2,6 @@ import {useState } from "react";
 import {fetchWrapper} from '../../lib/useGestDB'
 import { jsPDF } from "jspdf"
 import html2canvas from "html2canvas"
-
 import ('./Commande.css');
 
 
@@ -10,23 +9,23 @@ import ('./Commande.css');
 
 function Commande(props) {
     const [commande,SetCommande] = useState(props.commande[0])
-    const [hide,setHide]= useState(true)
     let total =0;
     let totalTTC =0;
 
     const printAddition =() => {
-        setHide(false)
-        const input = document.getElementById('ForPrint');
+        let input = document.getElementById('ForPrint');
+        input.removeAttribute("hidden");
         html2canvas(input)
           .then((canvas) => {
             const imgData = canvas.toDataURL('image/png');
             const pdf = new jsPDF();
 
             pdf.addImage(imgData, 'JPEG', 0, 0);
+            pdf.autoPrint();
             pdf.output('dataurlnewwindow');
             pdf.save(`Addition${commande.numTable}.pdf`);
           })
-          setHide(true)
+          input.setAttribute("hidden",true);
       }
 
     const updateTotal = (m,t) =>
@@ -86,7 +85,7 @@ function Commande(props) {
           </div>
     </div>
 
-    <div id="ForPrint">
+    <div id="ForPrint" hidden>
     <h1 className="titreCommandePrt">Addition de la table {commande.numTable}</h1>
         <div id="commande">
             

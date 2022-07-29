@@ -11,13 +11,12 @@ import AccueilLogin from './pages/AccueilLogin/AccueilLogin';
 import AjoutRestaurant from './components/AjoutRestaurant/AjoutRestaurant'
 import NewQRCode from './components/NewQRCode/NewQRCode'
 import MaCarte from './pages/MaCarte/MaCarte';
-import { useState } from 'react';
+import ClientListeRestaurants from './pages/ClientListeRestaurants/ClientListeRestaurants'
 import ChangerMotDepasse from './components/ChangerMotDepasse/ChangerMotDepasse'
 import AjouterUneCarte from './components/AjouterUneCarte/AjouterUneCarte'
 import ModifRestaurant from './components/ModifRestaurant/ModifRestaurant'
 
 function App() {  
-const [currentRestaurantId,setCurrentRestaurantId]=useState('')
 
   const ProtectedRoute = ({ children }) => {
     const user =localStorage.getItem("token")
@@ -32,6 +31,9 @@ const [currentRestaurantId,setCurrentRestaurantId]=useState('')
         <NavScroll />
         <Routes>
         <Route path="/" onEnter={requireAuth} element={
+                <ClientListeRestaurants />
+            } />
+        <Route path="/AccueilLogin" onEnter={requireAuth} element={
               <ProtectedRoute>
                 <AccueilLogin />
               </ProtectedRoute>
@@ -55,6 +57,8 @@ const [currentRestaurantId,setCurrentRestaurantId]=useState('')
           <Route path="/previewcarte/:restaurantID" element={<ProtectedRoute><MaCarte /></ProtectedRoute>} />
           <Route path="/nouvellecarte/:restaurantID" element={<ProtectedRoute><AjouterUneCarte /></ProtectedRoute>} />
           <Route path="/modifierrestaurant/:restaurantID" element={<ProtectedRoute><ModifRestaurant /></ProtectedRoute>} />
+          <Route path="/carte/:restaurantID/:numTable" element={<MaCarte />} />
+          <Route path="/carte/:restaurantID/" element={<MaCarte />} />
         </Routes>
     </div>  
   );
