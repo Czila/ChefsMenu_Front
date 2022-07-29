@@ -55,7 +55,7 @@ function Login(props) {
       else 
       {
         if (!(login.mail)) setErreur('ATTENTION : Mail vide ')
-        else setErreur('ATTENTION : Bad PASSWORD ' )
+        else setErreur('ATTENTION : Erreur de mot de passe ' )
       }
     }
 

@@ -88,7 +88,7 @@ useEffect( () => {
             <div>
                 {(client)&&
                 <div>
-                    <span>Si vous souhaitez commandé merci de saissir le numéro de votre table : </span>
+                    <span>Si vous souhaitez commander merci de saisir le numéro de votre table : </span>
                     <input className='input' type="number" placeholder="nbTable" onChange={(e) => {if(e.currentTarget.value>0) setNumTable(e.currentTarget.value)}} name='nbTable' value={numTable} required/>
                 </div>
                 }

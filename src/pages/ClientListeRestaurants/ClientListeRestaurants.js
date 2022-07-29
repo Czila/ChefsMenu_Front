@@ -26,7 +26,7 @@ function ClientListeRestaurant() {
 
     return ( 
         <div className="listRestaurant">
-            <h1>Bienvenue voici la liste de nos restaurants partenaire</h1>
+            <h2>Bienvenue ! Voici la liste de nos restaurants partenaires</h2>
             
             <div className="listR">
                 {restaurants.map((restaurant) => 
@@ -36,7 +36,7 @@ function ClientListeRestaurant() {
                     <span>{restaurant.adresse} </span>
                     <span>{restaurant.vp} {restaurant.ville} </span>
                     <br/>
-                    <button onClick={()=>goToCarte(restaurant._id)} className='btCarte'>la carte</button>
+                    <button onClick={()=>goToCarte(restaurant._id)} className='btCarte'>La Carte</button>
                 </div>
                 )}
             </div>
