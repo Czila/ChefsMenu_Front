@@ -27,6 +27,7 @@ ul  {
     padding-top: 2vh;
 }
 
+
 .total {
     display: flex;
     justify-content :space-around;
@@ -38,10 +39,8 @@ ul  {
 
 .totalPrt {
     display: flex;
-    justify-content :space-around;
-    text-align: center;
     padding: 1vh;
-
+    justify-content: space-between;
 }
 .titreCommandeLi {
     text-align: center;
@@ -52,4 +51,9 @@ ul  {
     margin: 2vh;
     background-color: #555b6e;
     justify-content :space-around;
+}
+
+#ForPrint{
+    min-width: 50vw;
+    max-width: 50vw;
 }

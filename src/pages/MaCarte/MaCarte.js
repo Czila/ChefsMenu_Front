@@ -101,13 +101,11 @@ const checkTable = async (n) =>
             setCommandeElement(c.elements)
             setBtCommande(true)
             setCommandeFlag(true)
-            console.log('commande')
         }
         else 
         {
             setBtCommande(false)
             setCommandeFlag(false)
-            console.log('âs commande')
         } 
     }
     catch (err)
@@ -134,7 +132,7 @@ useEffect( () => {
         //on vérifie si la table est libre
         
     }
-    console.log(numTable)
+
     getRestaurant()
     getMenus()
     getElements()
@@ -147,7 +145,7 @@ useEffect( () => {
         <div id="MaCarte">
             <div>
                 <img src={carte} alt="carte" className='logo' /><br/>
-                <label><h2>Bienvenue chez {`${restaurant.nom}`} {restaurant.nbTable}</h2></label><br/>
+                <label><h2>Bienvenue chez {`${restaurant.nom}`}</h2></label><br/>
             </div>
             <div>
                
@@ -174,14 +172,14 @@ useEffect( () => {
             </div>
         </div>
         <div id='commandeclient'>
-        {((client)&&(!commandeFlag))&&
+        {((!commandeFlag))&&
                     <div>
                         <span>Pour commander merci de saisir le numéro de votre table : </span>
                         <input className='input' type="number" placeholder="nbTable" onChange={(e) => { handleChangeNbTable(e)}} name='nbTable' value={numTable} required/>
                     </div>
                     }
                 {
-                ((client)&&(!btCommande)) ?
+                ((!btCommande)) ?
                     <button onClick={() => createCommande() }>Commander</button>
                 :
                 <button onClick={() =>  { setBtCommande(false)
@@ -197,7 +195,7 @@ useEffect( () => {
 
                 <ul className="detailCommandeul">
                     {commande.menus.map((me,index) => 
-                        <li key={index}>{me.nom}{updateTotal(me.prix_HT,me.tva)}</li>
+                        <li key={index}>{me.nom}{updateTotal(me.prix_HT,5.5)}</li>
                     )}
                 </ul>
                  

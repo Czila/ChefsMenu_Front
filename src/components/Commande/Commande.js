@@ -51,7 +51,7 @@ function Commande(props) {
 
                 <ul className="detailCommandeul">
                     {commande.menus.map((me) => 
-                        <li key={me._id}>{me.nom}{updateTotal(me.prix_HT,me.tva)}</li>
+                        <li key={me._id}>{me.nom}{updateTotal(me.prix_HT,5.5)}</li>
                     )}
                 </ul>
                  
@@ -87,13 +87,13 @@ function Commande(props) {
 
     <div id="ForPrint" hidden>
     <h1 className="titreCommandePrt">Addition de la table {commande.numTable}</h1>
-        <div id="commande">
-            
+        <div id="commandePrt">
+        <hr/>
             {(commande.menus.length>0) &&
             <ul >
-                <ul className="detailCommandeul">
+                <ul className="detailCommandeulPrt">
                     {commande.menus.map((me) => 
-                        <li key={me._id}>{me.nom}{updateTotal(me.prix_HT,me.tva)}</li>
+                        <li key={me._id}>{me.nom} - {me.prix_HT} - {'5,5'} % {(me.prix_HT * (1+(5.5/100))).toFixed(2) }€ TTC </li>
                     )}
                 </ul>
                  
@@ -102,7 +102,7 @@ function Commande(props) {
             {
             (commande.elements.length>0) &&
             <ul >
-                <ul className="detailCommandeul">
+                <ul className="detailCommandeulPrt">
                     {commande.elements.map((el) => 
                         <li key={el._id}>{el.nom} {el.prix_HT.toFixed(2)} € {el.tva.toFixed(2)} % {(el.prix_HT * (1+(el.tva/100))).toFixed(2) }€ TTC </li>
                     )}
@@ -110,6 +110,7 @@ function Commande(props) {
             </ul>
             }
           </div>
+          <hr/>
           <div className="totalPrt">
             <div>
                 <h3>Total HT</h3>
@@ -119,9 +120,11 @@ function Commande(props) {
                 <h3>Total TTC</h3>
                 <span>{totalTTC.toFixed(2)} €</span>
             </div>
+
           
           </div>
           <div>
+          <hr/>
                 Merci pour votre visite ❤️❤️❤️❤️❤️
             </div>
     </div>
