@@ -15,8 +15,7 @@ function NewQRCode() {
 
   async function updateTables() {
     const t=[]
-    const R = await fetchWrapper.get(`http://localhost:3001/carte/${idRestaurant}`)
-    console.log( R[0])
+    const R = await fetchWrapper.get(`http://localhost:3001/restaurant/${idRestaurant}`)
     for (let i =1 ; i< R[0].nbTable +1; i++)      
     {   
         t.push({numTable:i, QRText : urlBase+i})
